@@ -29,10 +29,6 @@
 
 <body>
 
-        @php
-        dump(session())
-        @endphp
-
     <section class="vh-100">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
