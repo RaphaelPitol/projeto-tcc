@@ -50,16 +50,30 @@ Route::get('/forgot-password', function () {
 Route::post('/forgot-password', function (Request $request) {
 
     // dd($request);
-    $request->validate(['email' => 'required|email']);
+    $request->validate(['email' => ['required','email']],
+    [
+        'email.required' => "Preencha o campo email!",
+        'email.email' => "O email deve ser valido"
+    ]
+);
 
-    // dd($request->only('email'));
     $status = Password::sendResetLink(
         $request->only('email')
     );
 
+    // dd($status);
+    if($status === "passwords.user"){
+        $status = "Verifique o email! Email não encontrado!";
+    }
+    // if($status === "passwords.sent"){
+    //     $status = "Tentativas excedidas!";
+    // }
+
+    // dd($status);
+
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+    ? back()->with(['status' => "Link Enviado, verifique sua caixa de entrada!" ])
+    : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', function (string $token) {
