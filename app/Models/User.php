@@ -54,4 +54,9 @@ class User extends Authenticatable implements CanResetPassword
 
         $this->notify(new PasswordRestNotification($url));
     }
+
+    public function vistorias()
+    {
+        return $this->hasMany(Vistoria::class);
+    }
 }

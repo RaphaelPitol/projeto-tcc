@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LocadorLocatario extends Model
+class Imovel extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'telefone',
-        'rg',
-        'cpf',
+        'cep',
+        'logradouro',
+        'cidade',
+        'numero'
     ];
 
     public function vistorias()
