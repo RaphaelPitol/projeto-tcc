@@ -27,8 +27,8 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/createuser', [UserController::class, 'create'])->name('create.user')->middleware('auth');
-Route::post('/storeuser', [UserController::class, 'store'])->name('store.user')->middleware('auth');
+Route::get('/createuser', [UserController::class, 'create'])->name('create.user');
+Route::post('/storeuser', [UserController::class, 'store'])->name('store.user');
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit.user')->middleware('auth');
 Route::put('/update/{id}', [UserController::class, 'update'])->name('update.user')->middleware('auth');
 

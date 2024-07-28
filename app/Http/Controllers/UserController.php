@@ -33,7 +33,7 @@ class UserController extends Controller
 
         User::create($dados);
 
-        return view('login');
+        return view('auth.login');
     }
 
     /**
