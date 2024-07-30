@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\DashbordController;
+use App\Http\Controllers\ImovelController;
 use App\Http\Controllers\LocadorLocatarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
@@ -101,3 +102,6 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+Route::get('/imovel', [ImovelController::class, 'create'])->name('imovel.create');
+Route::post('/imovel', [ImovelController::class, 'store'])->name('imovel.store');
