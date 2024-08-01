@@ -14,6 +14,7 @@ class Imovel extends Model
         'cep',
         'logradouro',
         'cidade',
+        'bairro',
         'numero'
     ];
 

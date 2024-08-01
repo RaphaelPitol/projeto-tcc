@@ -16,6 +16,14 @@
 
                                 <form action="{{route('imovel.store')}}" method="POST" class="mx-1 mx-md-4">
                                     @csrf
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="cep">Cep</label>
+                                            <input type="text" id="cep" name="cep" class="form-control" />
+                                        </div>
+                                    </div>
+
                                     <div class="d-flex flex-row align-items-center mb-2">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
@@ -25,18 +33,17 @@
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="cep">Cep</label>
-                                            <input type="text" id="cep" name="cep" class="form-control" />
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="logradouro">Logradouro</label>
                                             <input type="text" id="logradouro" name="logradouro" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="bairro">Bairro</label>
+                                            <input type="text" id="bairro" name="bairro" class="form-control" required />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -69,4 +76,35 @@
         </div>
     </div>
 </section>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#cep').on('change', function() {
+                var cep = $(this).val();
+
+                if (cep.length === 8) {
+                    $.ajax({
+                        url: 'https://viacep.com.br/ws/' + cep + '/json/',
+                        method: 'GET',
+                        success: function(data) {
+                            if (!("erro" in data)) {
+                                $('#logradouro').val(data.logradouro);
+                                $('#bairro').val(data.bairro);
+                                $('#cidade').val(data.localidade+'-'+data.uf);
+                            } else {
+                                alert('CEP não encontrado.');
+                            }
+                        },
+                        error: function() {
+                            alert('Erro ao buscar o CEP.');
+                        }
+                    });
+                } else {
+                    alert('Formato de CEP inválido.');
+                }
+            });
+        });
+    </script>
+
 @endsection

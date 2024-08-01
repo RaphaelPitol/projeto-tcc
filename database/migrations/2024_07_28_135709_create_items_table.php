@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('material')->references('id')->on('material_items')->onDelete('cascade');
             $table->foreign('cor')->references('id')->on('cor_items')->onDelete('cascade');
             $table->foreign('conservacao')->references('id')->on('conservacao_items')->onDelete('cascade');
-            $table->foreign('descricao')->references('id')->on('descricao_items')->onDelete('cascade');
+            // $table->foreign('descricao')->references('id')->on('descricao_items')->onDelete('cascade');
         });
     }
 
