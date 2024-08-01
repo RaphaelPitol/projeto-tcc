@@ -32,9 +32,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <!-- {{ config('app.name', 'Laravel') }} -->
-                    Vistoria Pró
+                <a class="navbar-brand" href="{{route('layouts.app')}}">
+                    {{ config('app.name', 'VistoriaPro') }}
+
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -52,7 +52,6 @@
                         <li><a class="nav-link" href="">Feature</a></li>
                         <li><a class="nav-link" href="">Cep</a></li>
                         @endif
-                        <li><a class="nav-link" href="{{route('layouts.app')}}">Home</a></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Cadastro

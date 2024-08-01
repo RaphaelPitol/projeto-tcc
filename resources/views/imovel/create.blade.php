@@ -20,7 +20,7 @@
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="cep">Cep</label>
-                                            <input type="text" id="cep" name="cep" class="form-control" />
+                                            <input type="text" id="cep" name="cep" maxlength="8" class="form-control" />
                                         </div>
                                     </div>
 

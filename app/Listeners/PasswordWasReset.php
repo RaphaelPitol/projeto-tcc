@@ -21,6 +21,6 @@ class PasswordWasReset
      */
     public function handle(PasswordReset $event): void
     {
-        dd($event);
+        // dd($event);
     }
 }
