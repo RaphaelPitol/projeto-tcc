@@ -51,11 +51,9 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                         @if (Auth::user()->permission == 'surveyor')
-                        <li><a class="nav-link" href="">Batalha</a></li>
-                        <li><a class="nav-link" href="">Carros</a></li>
-                        <li><a class="nav-link" href="">Produtos</a></li>
-                        <li><a class="nav-link" href="">Feature</a></li>
-                        <li><a class="nav-link" href="">Cep</a></li>
+                        <li><a class="nav-link" href="">Menu</a></li>
+                        <li><a class="nav-link" href="">Menu</a></li>
+                        <li><a class="nav-link" href="">Menu</a></li>
                         @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -87,40 +85,26 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @endif
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-                        @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Olá {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('login.logout')}}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <a class="dropdown-item" href="{{route('edit.user', Auth::user())}}">
-                                    {{ __('Editar') }}
-                                </a>
+                                    <form id="logout-form" action="{{route('login.logout')}}" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+                                    <a class="dropdown-item" href="{{route('edit.user', Auth::user())}}">
+                                        {{ __('Editar') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('login.logout')}}" onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                        {{ __('Sair') }}
+                                    </a>
 
-                                <form id="logout-form" action="{{route('login.logout')}}" method="GET" class="d-none">
-                                    @csrf
-                                </form>
                             </div>
                         </li>
-                        @endguest
                     </ul>
                 </div>
             </div>

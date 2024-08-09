@@ -39,9 +39,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 Route::get('/layouts/app', [DashbordController::class, 'index'])->name('layouts.app')->middleware('auth');
 
-Route::get('/locloca/index', [LocadorLocatarioController::class, 'index'])->name('locloca.index');
-Route::get('/locloca', [LocadorLocatarioController::class, 'create'])->name('locloca.create');
-Route::post('/locloca/store', [LocadorLocatarioController::class, 'store'])->name('locloca.store');
+Route::get('/locloca/index', [LocadorLocatarioController::class, 'index'])->name('locloca.index')->middleware('auth');
+Route::get('/locloca', [LocadorLocatarioController::class, 'create'])->name('locloca.create')->middleware('auth');
+Route::post('/locloca/store', [LocadorLocatarioController::class, 'store'])->name('locloca.store')->middleware('auth');
 
 
 

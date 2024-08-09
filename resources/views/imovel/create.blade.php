@@ -3,18 +3,18 @@
 @section('content')
 
 
-<section class="vh-100" style="background-color: #eee;">
+<section class="vh-100 rounded" style="background-color: #eee;">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
-                <div class="card text-black" style="border-radius: 25px;">
+                <div class="card text-black" style="border-radius: 25px; top: 10px">
                     <div class="card-body p-md-1">
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                 <p class="text-center h4 fw-bold mb-5 mx-1 mx-md-4 mt-2">Cadastro Imovel</p>
 
-                                <form action="{{route('imovel.store')}}" method="POST" class="mx-1 mx-md-4">
+                                <form action="{{route('imovel.store')}}" method="POST" class="mx-1 mx-md-3 ">
                                     @csrf
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
