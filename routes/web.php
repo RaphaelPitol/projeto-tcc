@@ -8,6 +8,7 @@ use App\Http\Controllers\LocadorLocatarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VistoriaController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -52,3 +53,9 @@ Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']
 
 Route::get('/imovel', [ImovelController::class, 'create'])->name('imovel.create');
 Route::post('/imovel', [ImovelController::class, 'store'])->name('imovel.store');
+
+Route::get('/form', function(){
+    return view('quarto.form');
+});
+
+Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');
