@@ -24,7 +24,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credenciais)) {
             $request->session()->regenerate();
-            return redirect()->intended('/layouts/app');
+            return redirect('/layouts/app');
         } else {
             return redirect()->back()->with('erro', 'Email ou senha invalidos.');
         }

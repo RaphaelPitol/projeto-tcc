@@ -30,7 +30,7 @@ class ResetPasswordController extends Controller
 
     // dd($status);
     if($status === "passwords.user"){
-        $status = "Verifique o email! Email não encontrado!";
+        $status = "Verifique o email e digite novamente!";
     }
     // if($status === "passwords.sent"){
     //     $status = "Tentativas excedidas!";
