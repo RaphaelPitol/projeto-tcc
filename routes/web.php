@@ -63,6 +63,6 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
 
 Route::get('/form', function () {
     return view('quarto.form');
-})->middleware('auth');
+})->name('quarto');
 
-Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store')->middleware('auth');
+Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');

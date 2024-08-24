@@ -69,6 +69,9 @@
                                 <a class="dropdown-item" href="{{route('imovel.create')}}">
                                     Imovel
                                 </a>
+                                <a class="dropdown-item" href="{{route('quarto')}}">
+                                    Ambiente
+                                </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
