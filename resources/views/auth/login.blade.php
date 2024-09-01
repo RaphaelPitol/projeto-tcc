@@ -39,23 +39,8 @@
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form action="{{route('login.auth')}}" method="POST">
                         @csrf
-                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                        </div>
-
                         <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                            <p class="text-center fw-bold mx-3 mb-0 fs-1">Login</p>
                         </div>
 
                         @if ($mensagem = Session::get('erro'))
@@ -72,14 +57,14 @@
                         @endif
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid email address" />
-                            <label class="form-label" for="email">Email address</label>
+                            <label class="form-label" for="email">E-mail</label>
+                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Digite o seu e-mail" />
                         </div>
 
                         <!-- Password input -->
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" />
-                            <label class="form-label" for="password">Password</label>
+                            <label class="form-label" for="password">Senha</label>
+                            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg" placeholder="Digite a sua senha" />
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center">
@@ -87,15 +72,15 @@
                             <div class="form-check mb-0">
                                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
                                 <label class="form-check-label" for="form2Example3">
-                                    Remember me
+                                    Lembrar-me
                                 </label>
                             </div>
-                            <a href="{{route('password.request')}}" class="text-body">Forgot password?</a>
+                            <a href="{{route('password.request')}}" class="text-body">Esqueceu sua senha?</a>
                         </div>
 
                         <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{route('create.user')}}" class="link-danger">Register</a></p>
+                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Entrar</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Não tem uma conta? <a href="{{route('create.user')}}" class="link-danger">Cadastre-se</a></p>
                         </div>
 
                     </form>

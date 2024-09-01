@@ -3,7 +3,7 @@
 @section('content')
 
 
-<section class="vh-100 rounded" style="background-color: #eee;">
+<section class="vh-100 rounded">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">

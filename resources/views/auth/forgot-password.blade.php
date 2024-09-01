@@ -39,7 +39,7 @@
                     <form action="{{route('password.email')}}" method="POST">
                         @csrf
                         <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">Forgot Password</p>
+                            <p class="text-center fw-bold mx-3 mb-0 fs-1">Esqueceu a senha?</p>
                         </div>
 
                         @if ($mensagem = Session::get('erro'))
@@ -52,15 +52,21 @@
                         @endif
 
                         @if (session()->has('status'))
-                            <span class="text text-success">{{session()->get('status')}}</span>
+                        <span class="text text-success">{{session()->get('status')}}</span>
                         @endif
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid email address" />
-                            <label class="form-label" for="email">Email address</label>
+                            <label class="form-label" for="email">E-mail</label>
+                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Digite o seu e-mail" />
+
                         </div>
                         <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">ResetPassword</button>
+                            <div class="d-grid gap-2 d-md-block">
+                                <a href="{{ route('login') }}" class="btn btn-secondary btn-md" style="padding-left: 2.5rem; padding-right: 2.5rem; margin: 2rem;">
+                                    Voltar
+                                </a>
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-md" style="padding-left: 2.5rem; padding-right: 2.5rem;">Reiniciar Senha</button>
+                            </div>
                         </div>
 
                     </form>
