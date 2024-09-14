@@ -118,7 +118,7 @@
             @endif
 
             @if (Auth::user()->permission == 'imobiliaria')
-            <h1 class="text-center">Vistorias</h1>
+            <h1 class="text-center mt-1">Vistorias</h1>
             <div class="container mt-5 text-right">
                 <div class="d-grid gap-2">
                     <button class="btn btn-primary btn-lg">
@@ -205,6 +205,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{ asset('/sw.js') }}"></script>
     <script>

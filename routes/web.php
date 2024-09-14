@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
 });
 
 Route::get('/form', function () {
-    return view('quarto.form2');
+    return view('quarto.form3');
 })->name('quarto');
 
 Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');
