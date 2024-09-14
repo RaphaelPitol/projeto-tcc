@@ -17,6 +17,8 @@
     <!-- Adicionar CSS do jQuery UI -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- Adicionar jQuery e jQuery UI -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -52,14 +54,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                        @if (Auth::user()->permission == 'surveyor')
-                        <li><a class="nav-link" href="">Menu</a></li>
-                        <li><a class="nav-link" href="">Menu</a></li>
-                        <li><a class="nav-link" href="">Menu</a></li>
+                        @if (Auth::user()->permission == 'imobiliaria')
+                        <li><a class="nav-link" href="{{route('imovel.create')}}">Imovel</a></li>
+                        <li><a class="nav-link" href="{{route('locloca.create')}}">Locador/Locatario</a></li>
+                        <li><a class="nav-link" href="{{route('create.user')}}">Vistoriador</a></li>
                         @endif
+
+                        @if (Auth::user()->permission == 'admin')
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Cadastro
+                                Gerenciamento
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -74,17 +78,8 @@
                                 </a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Listar
-                            </a>
+                        @endif
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('locloca.index')}}">
-                                    Locador/Locátario
-                                </a>
-                            </div>
-                        </li>
                         @endauth
                     </ul>
 
@@ -97,16 +92,16 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <form id="logout-form" action="{{route('login.logout')}}" method="GET" class="d-none">
-                                        @csrf
-                                    </form>
-                                    <a class="dropdown-item" href="{{route('edit.user', Auth::user())}}">
-                                        {{ __('Editar') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{route('login.logout')}}" onclick="event.preventDefault();
+                                <form id="logout-form" action="{{route('login.logout')}}" method="GET" class="d-none">
+                                    @csrf
+                                </form>
+                                <a class="dropdown-item" href="{{route('edit.user', Auth::user())}}">
+                                    {{ __('Editar') }}
+                                </a>
+                                <a class="dropdown-item" href="{{route('login.logout')}}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                        {{ __('Sair') }}
-                                    </a>
+                                    {{ __('Sair') }}
+                                </a>
 
                             </div>
                         </li>
@@ -117,6 +112,93 @@
 
         <main class="py-4 container mt-3">
             @yield('content')
+
+            @if (Auth::user()->permission == 'admin')
+            <h1>Teste</h1>
+            @endif
+
+            @if (Auth::user()->permission == 'imobiliaria')
+            <h1 class="text-center">Vistorias</h1>
+            <div class="container mt-5 text-right">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary btn-lg">
+                        <i class="bi bi-plus-lg"></i> Vistoria
+                    </button>
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-success text-white text-center">
+                                    <h3 class="card-title">Realizadas</h3>
+                                </div>
+                                <div class="card-body p-0">
+                                    <table class="table table-hover table-striped mb-0">
+                                        <thead class="table-primary">
+                                            <tr>
+                                                <th>Vistoria</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Apto-Fulano de Tal</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-around">
+                                                        <button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                                                        <button class="btn btn-outline-secondary"><i class="bi bi-filetype-pdf"></i></button>
+                                                        <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <!-- <td>Dado 3</td>
+                                                <td>Dado 4</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-danger text-white text-center">
+                                    <h3 class="card-title">Pendentes</h3>
+                                </div>
+                                <div class="card-body p-0">
+                                    <table class="table table-hover table-striped mb-0">
+                                        <thead class="table-primary">
+                                            <tr>
+                                                <th>Vistoria</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td>Apto-Fulano de Tal</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-around">
+                                                        <button class="btn btn-outline-danger"><i class="bi bi-hourglass"></i></button>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <!-- <td>Dado C</td>
+                                                <td>Dado D</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
         </main>
     </div>
 

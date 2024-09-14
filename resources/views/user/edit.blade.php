@@ -43,7 +43,8 @@
                       <select class="form-control" name="permission">
                         <option value="{{$user->permission}}">{{$user->permission}}</option>
                         <option value="admin">Admin</option>
-                        <option value="surveyor">Vistoriador</option>
+                          <option value="vistoriador">Vistoriador</option>
+                          <option value="imobiliaria">Imobiliaria</option>
                       </select>
                     </div>
                   </div>

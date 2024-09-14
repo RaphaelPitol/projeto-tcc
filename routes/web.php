@@ -33,12 +33,8 @@ Route::get('/', function () {
 Route::get('/createuser', [UserController::class, 'create'])->name('create.user');
 Route::post('/storeuser', [UserController::class, 'store'])->name('store.user');
 
-
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
-
-
-
 
 Route::get('/forgot-password', [ResetPasswordController::class, 'forgot'])->middleware('guest')->name('password.request');
 Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword'])->middleware('guest')->name('password.email');
@@ -62,7 +58,7 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
 });
 
 Route::get('/form', function () {
-    return view('quarto.form');
+    return view('quarto.form2');
 })->name('quarto');
 
 Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');
