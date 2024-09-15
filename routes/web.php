@@ -55,6 +55,14 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
 
     Route::get('/imovel', [ImovelController::class, 'create'])->name('imovel.create');
     Route::post('/imovel', [ImovelController::class, 'store'])->name('imovel.store');
+
+    Route::get('/uservistoriador', function () {
+        return view('user.userVistoriador');
+    })->name('vistoriador');
+
+    Route::get('/imobiliaria', function() {
+        return view('user.userImobiliaria');
+    })->name('imobiliaria');
 });
 
 Route::get('/form', function () {

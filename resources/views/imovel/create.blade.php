@@ -3,7 +3,7 @@
 @section('content')
 
 
-<section class="vh-100 rounded">
+<section class="vh-100 mb-5">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -28,7 +28,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="name">Nome</label>
-                                            <input type="text" id="name" name="name" class="form-control" placeholder="Ex: Casa, Apartamento..."/>
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="Ex: Casa, Apartamento..." />
                                         </div>
                                     </div>
 
@@ -78,33 +78,33 @@
 </section>
 
 
-    <script>
-        $(document).ready(function() {
-            $('#cep').on('change', function() {
-                var cep = $(this).val();
+<script>
+    $(document).ready(function() {
+        $('#cep').on('change', function() {
+            var cep = $(this).val();
 
-                if (cep.length === 8) {
-                    $.ajax({
-                        url: 'https://viacep.com.br/ws/' + cep + '/json/',
-                        method: 'GET',
-                        success: function(data) {
-                            if (!("erro" in data)) {
-                                $('#logradouro').val(data.logradouro);
-                                $('#bairro').val(data.bairro);
-                                $('#cidade').val(data.localidade+'-'+data.uf);
-                            } else {
-                                alert('CEP não encontrado.');
-                            }
-                        },
-                        error: function() {
-                            alert('Erro ao buscar o CEP.');
+            if (cep.length === 8) {
+                $.ajax({
+                    url: 'https://viacep.com.br/ws/' + cep + '/json/',
+                    method: 'GET',
+                    success: function(data) {
+                        if (!("erro" in data)) {
+                            $('#logradouro').val(data.logradouro);
+                            $('#bairro').val(data.bairro);
+                            $('#cidade').val(data.localidade + '-' + data.uf);
+                        } else {
+                            alert('CEP não encontrado.');
                         }
-                    });
-                } else {
-                    alert('Formato de CEP inválido.');
-                }
-            });
+                    },
+                    error: function() {
+                        alert('Erro ao buscar o CEP.');
+                    }
+                });
+            } else {
+                alert('Formato de CEP inválido.');
+            }
         });
-    </script>
+    });
+</script>
 
 @endsection

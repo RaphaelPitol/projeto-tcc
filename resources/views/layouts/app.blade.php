@@ -57,7 +57,7 @@
                         @if (Auth::user()->permission == 'imobiliaria')
                         <li><a class="nav-link" href="{{route('imovel.create')}}">Imovel</a></li>
                         <li><a class="nav-link" href="{{route('locloca.create')}}">Locador/Locatario</a></li>
-                        <li><a class="nav-link" href="{{route('create.user')}}">Vistoriador</a></li>
+                        <li><a class="nav-link" href="{{route(name: 'vistoriador')}}">Vistoriador</a></li>
                         @endif
 
                         @if (Auth::user()->permission == 'admin')
@@ -67,8 +67,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('locloca.create')}}">
-                                    Locador/Locátario
+                                <a class="dropdown-item" href="{{route(name: 'imobiliaria')}}">
+                                    Imobiliaria
                                 </a>
                                 <a class="dropdown-item" href="{{route('imovel.create')}}">
                                     Imovel

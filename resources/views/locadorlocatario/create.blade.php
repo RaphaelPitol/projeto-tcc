@@ -2,11 +2,11 @@
 @section('title', 'Edição')
 @section('content')
 
-<section class="vh-100">
+<section class="vh-100 mb-04">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-11">
-        <!-- <div class="card text-black" style="border-radius: 25px;"> -->
+        <div class="card text-black" style="border-radius: 25px;">
           <div class="card-body p-md-1">
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -56,7 +56,7 @@
 
             </div>
           </div>
-        <!-- </div> -->
+        </div>
       </div>
     </div>
   </div>
