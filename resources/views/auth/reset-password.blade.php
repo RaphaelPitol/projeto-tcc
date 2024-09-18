@@ -56,7 +56,7 @@
                         <input type="hidden" name="token" value="{{$token}}">
 
                         <div class="divider d-flex align-items-center my-4">
-                            <h1 class="text-center fw-bold mx-3 mb-0">Reset Password</h1>
+                            <h1 class="text-center fw-bold mx-3 mb-0">Redefinir Senha</h1>
                         </div>
 
                         @if ($mensagem = Session::get('erro'))
@@ -69,24 +69,24 @@
                         @endif
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid email address" />
-                            <label class="form-label" for="email">Email address</label>
+                            <label class="form-label" for="email">Endereço de E-mail</label>
+                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Entre com e-mail válido" />
                         </div>
 
                         <!-- Password input -->
 
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" />
-                            <label class="form-label" for="password">Password</label>
+                            <label class="form-label" for="password">Senha</label>
+                            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg" placeholder="nova senha" />
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="password" name="password_confirmation" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password_confirmation" />
-                            <label class="form-label" for="password_confirmation">Password_confirmation</label>
+                            <label class="form-label" for="password_confirmation">Confirmação de Senha</label>
+                            <input type="password" name="password_confirmation" id="form3Example4" class="form-control form-control-lg" placeholder="confirme sua senha" />
                         </div>
 
                         <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Reste Password</button>
+                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Resete</button>
                         </div>
 
                     </form>

@@ -65,7 +65,7 @@
                                 <a href="{{ route('login') }}" class="btn btn-secondary btn-md" style="padding-left: 2.5rem; padding-right: 2.5rem; margin: 2rem;">
                                     Voltar
                                 </a>
-                                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-md" style="padding-left: 2.5rem; padding-right: 2.5rem;">Reiniciar Senha</button>
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-md" style="padding-left: 2.5rem; padding-right: 2.5rem;">Redefinir Senha</button>
                             </div>
                         </div>
 
