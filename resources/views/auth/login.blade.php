@@ -90,9 +90,10 @@
         <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
             <!-- Copyright -->
             <div class="text-white mb-3 mb-md-0">
-                Copyright © 2020. All rights reserved.
+                Copyright © {{date('Y')}}. All rights reserved.
             </div>
             <!-- Copyright -->
+
 
             <!-- Right -->
             <div>
@@ -115,6 +116,6 @@
 
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></scrip>
 
 </html>

@@ -41,6 +41,7 @@
 </style>
 
 @php
+$dados = ["sem furos", "sem manchas", "com manchas"];
 // Simulando dados vindos do banco de dados para interruptores e tomadas
 $tomadasdobanco = ["Tomada 20A", "Tomada 10A dupla"];
 // Quantidade correspondente às tomadas
@@ -203,10 +204,12 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
                         <div class="form-group">
                             <label for="descricao_piso">Descrição do Piso</label>
-                            <select class="form-control" id="descricao_piso" name="descricao_piso">
-                                <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
-                                <option value="com furos, pequenas manchas">Com furos, pequenas manchas</option>
+                            <select class="form-control" id="descricao_piso" name="descricao_piso[]" multiple>
+                                @foreach ($dados as $dado )
+                                <option value="{{$dado}}">{{$dado}}</option>
+                                @endforeach
                             </select>
+
                         </div>
 
                         <div class="form-group">
@@ -505,7 +508,14 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 </div>
 
 <!-- Scripts para manipulação de DOM e adição de elementos dinâmicos -->
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
 <script>
+    new MultiSelectTag('descricao_piso') // id
+    new MultiSelectTag('descricao_rodape')
+    new MultiSelectTag('descricao_parede')
+    new MultiSelectTag('descricao_teto')
+    new MultiSelectTag('descricao_porta')
+    new MultiSelectTag('descricao_janela')
     $(document).ready(function() {
         // Função para adicionar novos interruptores dinamicamente
         $('#add-interruptor').click(function() {
