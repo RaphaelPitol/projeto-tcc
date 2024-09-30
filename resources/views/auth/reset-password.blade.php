@@ -60,12 +60,12 @@
                         </div>
 
                         @if ($mensagem = Session::get('erro'))
-                           <p class="link-danger">{{$mensagem}}</p>
-                           @endif
-                           @if ($errors->any())
-                           @foreach ($errors->all() as $erro )
-                           <p class="link-danger"> {{$erro}}</p>
-                            @endforeach
+                        <p class="link-danger">{{$mensagem}}</p>
+                        @endif
+                        @if ($errors->any())
+                        @foreach ($errors->all() as $erro )
+                        <p class="link-danger"> {{$erro}}</p>
+                        @endforeach
                         @endif
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
@@ -96,7 +96,7 @@
         <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
             <!-- Copyright -->
             <div class="text-white mb-3 mb-md-0">
-                Copyright © 2020. All rights reserved.
+                Copyright © {{date('Y')}}. All rights reserved.
             </div>
             <!-- Copyright -->
 
