@@ -49,16 +49,20 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit.user');
     Route::put('/update/{id}', [UserController::class, 'update'])->name('update.user');
 
-    Route::get('/locloca/index', [LocadorLocatarioController::class, 'index'])->name('locloca.index');
-    Route::get('/locloca', [LocadorLocatarioController::class, 'create'])->name('locloca.create');
-    Route::post('/locloca/store', [LocadorLocatarioController::class, 'store'])->name('locloca.store');
+    Route::middleware(['can:imobiliaria'])->group(function(){
+        Route::get('/locloca/index', [LocadorLocatarioController::class, 'index'])->name('locloca.index');
+        Route::get('/locloca', [LocadorLocatarioController::class, 'create'])->name('locloca.create');
+        Route::post('/locloca/store', [LocadorLocatarioController::class, 'store'])->name('locloca.store');
 
-    Route::get('/imovel', [ImovelController::class, 'create'])->name('imovel.create');
-    Route::post('/imovel', [ImovelController::class, 'store'])->name('imovel.store');
+        Route::get('/imovel', [ImovelController::class, 'create'])
+        ->name('imovel.create');
+        Route::post('/imovel', [ImovelController::class, 'store'])->name('imovel.store');
 
-    Route::get('/uservistoriador', function () {
-        return view('user.userVistoriador');
-    })->name('vistoriador');
+        Route::get('/uservistoriador', function () {
+            return view('user.userVistoriador');
+        })->name('vistoriador');
+    });
+
 
     Route::get('/imobiliaria', function() {
         return view('user.userImobiliaria');
