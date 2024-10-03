@@ -30,8 +30,6 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/createuser', [UserController::class, 'create'])->name('create.user');
-Route::post('/storeuser', [UserController::class, 'store'])->name('store.user');
 
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
@@ -46,9 +44,12 @@ Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']
 Route::group(['middleware' => ['auth', 'no.cache']], function () {
     Route::get('/layouts/app', [DashbordController::class, 'index'])->name('layouts.app');
 
+    Route::get('/createuser', [UserController::class, 'create'])->name('create.user');
+    Route::post('/storeuser', [UserController::class, 'store'])->name('store.user');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit.user');
     Route::put('/update/{id}', [UserController::class, 'update'])->name('update.user');
 
+    //Rotas Gerenciadas apenas pela imobiliaria
     Route::middleware(['can:imobiliaria'])->group(function(){
         Route::get('/locloca/index', [LocadorLocatarioController::class, 'index'])->name('locloca.index');
         Route::get('/locloca', [LocadorLocatarioController::class, 'create'])->name('locloca.create');
@@ -70,7 +71,7 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
 });
 
 Route::get('/form', function () {
-    return view('quarto.form3');
+    return view('ambiente.form3');
 })->name('quarto');
 
 Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');

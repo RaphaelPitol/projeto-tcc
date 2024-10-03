@@ -76,10 +76,11 @@
                                 <a class="dropdown-item" href="{{route(name: 'imobiliaria')}}">
                                     Imobiliaria
                                 </a>
-                                <a class="dropdown-item" href="{{route('imovel.create')}}">
+
+                                <a class="dropdown-item" href="">
                                     Imovel
                                 </a>
-                                <a class="dropdown-item" href="{{route('quarto')}}">
+                                <a class="dropdown-item" href="">
                                     Ambiente
                                 </a>
                             </div>
