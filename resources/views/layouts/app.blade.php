@@ -20,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
+
     <!-- Adicionar jQuery e jQuery UI -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -84,7 +85,7 @@
                                     <span class="dropdown-arrow"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Tipo de Piso</a></li>
+                                        <li><a class="dropdown-item" href="/piso">Tipo de Piso</a></li>
                                         <li><a class="dropdown-item" href="#">Descrição de Piso</a></li>
                                     </ul>
                                 </div>

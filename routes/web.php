@@ -75,3 +75,7 @@ Route::get('/form', function () {
 })->name('quarto');
 
 Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');
+
+Route::get('/piso', function(){
+    return view('piso.index');
+});
