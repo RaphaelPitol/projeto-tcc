@@ -1,0 +1,56 @@
+body {
+    background: rgb(251, 253, 253);
+}
+
+/* Estilo para o submenu aninhado */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+/* Estilo para alinhar e girar a seta no final do menu */
+.dropdown-submenu > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Criando uma seta com bordas visíveis */
+.dropdown-arrow {
+    border: solid black;  /* Cor da seta */
+    border-width: 0 3px 3px 0;  /* Largura das bordas para formar a seta */
+    display: inline-block;
+    padding: 5px;
+    margin-left: 10px;
+    transform: rotate(-0.13turn);
+    transition: transform 0.3s ease;  /* Transição suave ao rotacionar */
+}
+
+/* O submenu inicialmente está oculto */
+.dropdown-submenu .dropdown-menu {
+    display: none;
+}
+
+/* Quando o submenu estiver aberto */
+.dropdown-submenu.show .dropdown-menu {
+    display: block;
+}
+
+/* Rotacionar a seta para baixo quando o submenu estiver aberto */
+.dropdown-submenu.show .dropdown-arrow {
+   /* Seta apontando para a direita */
+      transform: rotate(45deg);
+      border-color: blue;
+
+}
+
+/* Remover o ícone ::after padrão do Bootstrap para o dropdown-toggle */
+.dropdown-toggle::after {
+    display: none !important;
+}
+

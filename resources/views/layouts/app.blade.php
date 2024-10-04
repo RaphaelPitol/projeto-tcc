@@ -25,6 +25,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
     <!-- Fonts -->
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
 
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -77,12 +79,60 @@
                                     Imobiliaria
                                 </a>
 
-                                <a class="dropdown-item" href="">
-                                    Imovel
-                                </a>
-                                <a class="dropdown-item" href="">
-                                    Ambiente
-                                </a>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Piso
+                                    <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Piso</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Piso</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Parede
+                                    <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Parede</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Parede</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Teto
+                                    <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Teto</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Teto</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Porta
+                                    <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Porta</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Porta</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Janela
+                                    <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Janela</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Janela</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Eletrica
+                                    <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Interruptor</a></li>
+                                        <li><a class="dropdown-item" href="#">Tipo de Tomada</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </li>
                         @endif
@@ -299,6 +349,7 @@
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="/js/script.js"></script>
     <script src="{{ asset('/sw.js') }}"></script>
     <script>
         if ("serviceWorker" in navigator) {
