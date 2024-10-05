@@ -85,7 +85,7 @@
                                     <span class="dropdown-arrow"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/piso">Tipo de Piso</a></li>
+                                        <li><a class="dropdown-item" href="{{route('piso.index')}}">Tipo de Piso</a></li>
                                         <li><a class="dropdown-item" href="#">Descrição de Piso</a></li>
                                     </ul>
                                 </div>

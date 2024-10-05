@@ -6,6 +6,7 @@ use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\ImovelController;
 use App\Http\Controllers\LocadorLocatarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PisoController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VistoriaController;
@@ -76,6 +77,8 @@ Route::get('/form', function () {
 
 Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');
 
-Route::get('/piso', function(){
-    return view('piso.index');
-});
+Route::get('/piso', [PisoController::class, 'index'])->name('piso.index');
+Route::post('/piso', [PisoController::class, 'store'])->name('piso.store');
+Route::delete('/piso/{id}', [PisoController::class, 'destroy'])->name('piso.destroy');
+Route::get('/piso/edit/{id}', [PisoController::class, 'edit'])->name('piso.edit');
+Route::put('/pisos/{piso}', [PisoController::class, 'update'])->name('piso.update');
