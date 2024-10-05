@@ -7,6 +7,7 @@ use App\Http\Controllers\DescricaoPisoController;
 use App\Http\Controllers\ImovelController;
 use App\Http\Controllers\LocadorLocatarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ParedeController;
 use App\Http\Controllers\PisoController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserController;
@@ -88,3 +89,9 @@ Route::post('/descricaoPiso', [DescricaoPisoController::class, 'store'])->name('
 Route::delete('/descricaoPiso/{id}', [DescricaoPisoController::class, 'destroy'])->name('descricaoPiso.destroy');
 Route::get('/descricaoPiso/edit/{id}', [DescricaoPisoController::class, 'edit'])->name('descricaoPiso.edit');
 Route::put('/descricaoPiso/{descricao}', [DescricaoPisoController::class, 'update'])->name('descricaoPiso.update');
+
+Route::get('/parede', [ParedeController::class, 'index'])->name('parede.index');
+Route::post('/parede', [ParedeController::class, 'store'])->name('parede.store');
+Route::delete('/parede/{id}', [ParedeController::class, 'destroy'])->name('parede.destroy');
+Route::get('/parede/edit/{id}', [ParedeController::class, 'edit'])->name('parede.edit');
+Route::put('/parede/{parede}', [ParedeController::class, 'update'])->name('parede.update');
