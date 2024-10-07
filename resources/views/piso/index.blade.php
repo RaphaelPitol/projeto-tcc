@@ -8,7 +8,7 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
 
 
 <div class="container mt-5">
-    <h2 class="mb-4">Cadastrar Tipo de Piso</h2>
+    <h2 class="mb-4" id="tipoPiso">Cadastrar Tipo de Piso</h2>
 
     <form action="{{route('piso.store')}}" method="POST">
         @csrf

@@ -54,3 +54,19 @@ body {
     display: none !important;
 }
 
+.btn-close {
+    color: brown;
+    border: none;
+}
+.btn-close:hover {
+    background: rgb(107, 92, 92);
+    color: white;
+    border-radius: 10%;
+}
+
+.modal-dialog {
+    margin-top: 15rem;
+}
+#tipoPiso{
+    text-align: center;
+}
