@@ -1,23 +1,23 @@
 @extends('layouts.app')
-@section('title', 'Piso')
+@section('title', 'DescricaoPiso')
 @section('content')
 
 @php
-$tipos = ["Ceramica", "Porcelanato", "Açoalho"]
+$descricao = ["Bom", "Novo", "Com Ranhuras"]
 @endphp
 
 
 <div class="container mt-5">
-    <h2 class="mb-4" id="tipoPiso">Cadastrar Tipo de Piso</h2>
+    <h2 class="mb-4">Cadastrar Descrição de Piso</h2>
 
-    <form action="{{route('piso.store')}}" method="POST">
+    <form action="{{route('descricaoPiso.store')}}" method="POST">
         @csrf
         <div class="row align-items-end mb-3">
             <div class="col-auto">
-                <label for="tipo" class="form-label">Novo Tipo de Piso</label>
+                <label for="descricao_piso" class="form-label">Nova Descrição de Piso</label>
             </div>
-            <div class="col-md-8">
-                <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Digite o tipo de piso" required>
+            <div class="col-md-7">
+                <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição do piso" required>
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-success w-100">Cadastrar</button>
@@ -29,7 +29,7 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
         <span class="input-group-text" id="basic-addon1">
             <i class="bi bi-search"></i>
         </span>
-        <input type="text" class="form-control" id="search" placeholder="Buscar tipo de piso..." onkeyup="searchFunction()">
+        <input type="text" class="form-control" id="search" placeholder="Buscar descrição de piso..." onkeyup="searchFunction()">
     </div>
 
 
@@ -37,25 +37,25 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Tipos de Piso</th>
+                    <th>Descrição de Piso</th>
                     <th class="text-end">Ações</th>
                 </tr>
             </thead>
-            <tbody id="lista-tipos">
-                @foreach($pisos as $piso)
+            <tbody id="lista-descricao">
+                @foreach($descricao_pisos as $descricao)
                 <tr>
-                    <td>{{ $piso->tipo }}</td>
+                    <td>{{ $descricao->descricao }}</td>
                     <td class="text-end" style="width: 150px;">
                         <div class="d-flex justify-content-between">
                             <a href="javascript:void(0)"
-                                class="btn btn-primary edit-piso-btn"
+                                class="btn btn-primary edit-descricao-piso-btn"
                                 data-bs-toggle="modal"
-                                data-bs-target="#editPisoModal"
-                                data-id="{{ $piso->id }}"
-                                data-tipo="{{ $piso->tipo }}">
+                                data-bs-target="#editDescricaoPisoModal"
+                                data-id="{{ $descricao->id }}"
+                                data-descricao="{{ $descricao->descricao }}">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
-                            <form action="{{route('piso.destroy', $piso)}}" method="POST">
+                            <form action="{{route('descricaoPiso.destroy', $descricao)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')"><i class="bi bi-trash-fill"></i></button>
@@ -66,30 +66,25 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
                 @endforeach
             </tbody>
         </table>
-
-
-        <!-- <div class="mt-3">
-         $tipos->links()
-    </div> -->
     </div>
 
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="editPisoModal" tabindex="-1" aria-labelledby="editPisoModalLabel" aria-hidden="true">
+<div class="modal fade" id="editDescricaoPisoModal" tabindex="-1" aria-labelledby="editDescricaoPisoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editPisoModalLabel">Editar Tipo de Piso</h5>
+                <h5 class="modal-title" id="editDescricaoPisoModalLabel">Editar Descrição do Piso</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
             </div>
             <div class="modal-body">
-                <form id="editPisoForm" method="POST" action="">
+                <form id="editDescricaoPisoForm" method="POST" action="">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="tipo" class="form-label">Tipo de Piso</label>
-                        <input type="text" class="form-control" id="tipo" name="tipo" required>
+                        <label for="descricaoPiso" class="form-label">Descrição do Piso</label>
+                        <input type="text" class="form-control" id="descricao" name="descricao" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </form>
@@ -102,7 +97,7 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
     function searchFunction() {
         let input = document.getElementById('search');
         let filter = input.value.toLowerCase();
-        let tbody = document.getElementById('lista-tipos');
+        let tbody = document.getElementById('lista-descricao');
         let tr = tbody.getElementsByTagName('tr');
 
         for (let i = 0; i < tr.length; i++) {
@@ -117,16 +112,16 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
 
 
     document.addEventListener('DOMContentLoaded', function () {
-        const editButtons = document.querySelectorAll('.edit-piso-btn');
+        const editButtons = document.querySelectorAll('.edit-descricao-piso-btn');
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
-                const pisoId = this.getAttribute('data-id');
-                const pisoTipo = this.getAttribute('data-tipo');
+                const descricaoPisoId = this.getAttribute('data-id');
+                const descricaoPisoDescricao = this.getAttribute('data-descricao');
 
                 // Preencher o formulário com os dados do piso
-                const form = document.getElementById('editPisoForm');
-                form.action = `/pisos/${pisoId}`; // Definir a URL do formulário
-                form.querySelector('#tipo').value = pisoTipo; // Preencher o input tipo
+                const form = document.getElementById('editDescricaoPisoForm');
+                form.action = `/descricaoPiso/${descricaoPisoId}`; // Definir a URL do formulário
+                form.querySelector('#descricao').value = descricaoPisoDescricao; // Preencher o input tipo
             });
         });
     });

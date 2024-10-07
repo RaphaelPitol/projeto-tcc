@@ -3,21 +3,21 @@
 @section('content')
 
 @php
-$tipos = ["Ceramica", "Porcelanato", "Açoalho"]
+$tipos = ["Gesso", "Alvenaria", "Drywall"]
 @endphp
 
 
 <div class="container mt-5">
-    <h2 class="mb-4" id="tipoPiso">Cadastrar Tipo de Piso</h2>
+    <h2 class="mb-4">Cadastrar Tipo de Parede</h2>
 
-    <form action="{{route('piso.store')}}" method="POST">
+    <form action="{{route('parede.store')}}" method="POST">
         @csrf
         <div class="row align-items-end mb-3">
             <div class="col-auto">
                 <label for="tipo" class="form-label">Novo Tipo de Piso</label>
             </div>
             <div class="col-md-8">
-                <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Digite o tipo de piso" required>
+                <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Digite o tipo de parede" required>
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-success w-100">Cadastrar</button>
@@ -29,7 +29,7 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
         <span class="input-group-text" id="basic-addon1">
             <i class="bi bi-search"></i>
         </span>
-        <input type="text" class="form-control" id="search" placeholder="Buscar tipo de piso..." onkeyup="searchFunction()">
+        <input type="text" class="form-control" id="search" placeholder="Buscar tipo de parede..." onkeyup="searchFunction()">
     </div>
 
 
@@ -37,25 +37,25 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Tipos de Piso</th>
+                    <th>Tipos de Parede</th>
                     <th class="text-end">Ações</th>
                 </tr>
             </thead>
             <tbody id="lista-tipos">
-                @foreach($pisos as $piso)
+                @foreach($paredes as $parede)
                 <tr>
-                    <td>{{ $piso->tipo }}</td>
+                    <td>{{ $parede->tipo }}</td>
                     <td class="text-end" style="width: 150px;">
                         <div class="d-flex justify-content-between">
                             <a href="javascript:void(0)"
-                                class="btn btn-primary edit-piso-btn"
+                                class="btn btn-primary edit-parede-btn"
                                 data-bs-toggle="modal"
-                                data-bs-target="#editPisoModal"
-                                data-id="{{ $piso->id }}"
-                                data-tipo="{{ $piso->tipo }}">
+                                data-bs-target="#editParedeModal"
+                                data-id="{{ $parede->id }}"
+                                data-tipo="{{ $parede->tipo }}">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
-                            <form action="{{route('piso.destroy', $piso)}}" method="POST">
+                            <form action="{{route('parede.destroy', $parede)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')"><i class="bi bi-trash-fill"></i></button>
@@ -66,29 +66,24 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
                 @endforeach
             </tbody>
         </table>
-
-
-        <!-- <div class="mt-3">
-         $tipos->links()
-    </div> -->
     </div>
 
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="editPisoModal" tabindex="-1" aria-labelledby="editPisoModalLabel" aria-hidden="true">
+<div class="modal fade" id="editParedeModal" tabindex="-1" aria-labelledby="editParedeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editPisoModalLabel">Editar Tipo de Piso</h5>
+                <h5 class="modal-title" id="editParedeModalLabel">Editar Tipo de Piso</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
             </div>
             <div class="modal-body">
-                <form id="editPisoForm" method="POST" action="">
+                <form id="editParedeForm" method="POST" action="">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="tipo" class="form-label">Tipo de Piso</label>
+                        <label for="tipo" class="form-label">Tipo de Parede</label>
                         <input type="text" class="form-control" id="tipo" name="tipo" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Editar</button>
@@ -117,16 +112,16 @@ $tipos = ["Ceramica", "Porcelanato", "Açoalho"]
 
 
     document.addEventListener('DOMContentLoaded', function () {
-        const editButtons = document.querySelectorAll('.edit-piso-btn');
+        const editButtons = document.querySelectorAll('.edit-parede-btn');
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
-                const pisoId = this.getAttribute('data-id');
-                const pisoTipo = this.getAttribute('data-tipo');
+                const paredeId = this.getAttribute('data-id');
+                const paredeTipo = this.getAttribute('data-tipo');
 
                 // Preencher o formulário com os dados do piso
-                const form = document.getElementById('editPisoForm');
-                form.action = `/pisos/${pisoId}`; // Definir a URL do formulário
-                form.querySelector('#tipo').value = pisoTipo; // Preencher o input tipo
+                const form = document.getElementById('editParedeForm');
+                form.action = `/parede/${paredeId}`; // Definir a URL do formulário
+                form.querySelector('#tipo').value = paredeTipo; // Preencher o input tipo
             });
         });
     });

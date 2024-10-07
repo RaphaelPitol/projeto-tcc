@@ -86,7 +86,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="{{route('piso.index')}}">Tipo de Piso</a></li>
-                                        <li><a class="dropdown-item" href="#">Descrição de Piso</a></li>
+                                        <li><a class="dropdown-item" href="{{route('descricaoPiso.index')}}">Descrição de Piso</a></li>
                                     </ul>
                                 </div>
                                 <div class="dropdown-submenu">
@@ -94,7 +94,7 @@
                                     <span class="dropdown-arrow"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Tipo de Parede</a></li>
+                                        <li><a class="dropdown-item" href="{{route('parede.index')}}">Tipo de Parede</a></li>
                                         <li><a class="dropdown-item" href="#">Descrição de Parede</a></li>
                                     </ul>
                                 </div>
