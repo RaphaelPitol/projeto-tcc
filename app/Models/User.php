@@ -26,6 +26,17 @@ class User extends Authenticatable implements CanResetPassword
         'email',
         'permission',
         'password',
+        'sobreNome',
+        'nome_fantasia',
+        'razao_social',
+        'cpf',
+        'cnpj',
+        'telefone',
+        'logradouro',
+        'numero',
+        'bairro',
+        'cidade',
+        'id_imobiliaria',
     ];
 
     /**
@@ -59,4 +70,6 @@ class User extends Authenticatable implements CanResetPassword
     {
         return $this->hasMany(Vistoria::class);
     }
+
+ 
 }

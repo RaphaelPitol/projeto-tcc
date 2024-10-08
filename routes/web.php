@@ -95,3 +95,7 @@ Route::post('/parede', [ParedeController::class, 'store'])->name('parede.store')
 Route::delete('/parede/{id}', [ParedeController::class, 'destroy'])->name('parede.destroy');
 Route::get('/parede/edit/{id}', [ParedeController::class, 'edit'])->name('parede.edit');
 Route::put('/parede/{parede}', [ParedeController::class, 'update'])->name('parede.update');
+
+
+Route::get('/vistoriadoes', [UserController::class, 'listvistoriador'])->name('vistoriadores.list');
+

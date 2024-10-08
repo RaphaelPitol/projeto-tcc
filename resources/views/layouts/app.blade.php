@@ -3,9 +3,9 @@
 
 <head>
     <!-- PWA  -->
-    <meta name="theme-color" content="#6777ef" />
+    <!-- <meta name="theme-color" content="#6777ef" />
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
-    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}"> -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +66,20 @@
                         @if (Auth::user()->permission == 'imobiliaria')
                         <li><a class="nav-link" href="{{route('imovel.create')}}">Imovel</a></li>
                         <li><a class="nav-link" href="{{route('locloca.create')}}">Locador/Locatario</a></li>
-                        <li><a class="nav-link" href="{{route(name: 'vistoriador')}}">Vistoriador</a></li>
+                        <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Vistoriador
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route(name: 'vistoriador')}}">Cadastro Vistoriador</a>
+
+                                <a class="dropdown-item" href="{{route('vistoriadores.list')}}">
+                                    Listagem
+                                </a>
+                            </div>
+
+                        </li>
                         @endif
 
                         @if (Auth::user()->permission == 'admin')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -28,12 +29,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $dados = $request->except('_token');
 
         User::create($dados);
 
-        return view('auth.login');
+        return view('layouts.app');
     }
 
     /**
@@ -78,6 +79,13 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function listvistoriador()
+    {
+        $vistoriadores = User::where('id_imobiliaria', Auth::user()->id)->get();
+
+        return view('user.listvistoriador', ['vistoriadores' => $vistoriadores]);
     }
 
 }
