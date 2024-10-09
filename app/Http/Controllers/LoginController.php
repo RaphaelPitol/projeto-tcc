@@ -25,7 +25,17 @@ class LoginController extends Controller
         if (Auth::attempt($credenciais)) {
             $request->session()->regenerate();
             // dd(Auth::user()->permission);
-            return redirect('/layouts/app');
+            if(Auth::user()->permission == 'admin')
+            {
+                return view('home.admin');
+
+            }
+            if(Auth::user()->permission == 'imobiliaria')
+            {
+                return view('home.imobiliaria');
+            }
+
+            return view('home.vistoriador');
         } else {
             return redirect()->back()->with('erro', 'Email ou senha invalidos.');
         }

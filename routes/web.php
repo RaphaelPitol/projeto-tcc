@@ -46,6 +46,13 @@ Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']
 Route::group(['middleware' => ['auth', 'no.cache']], function () {
     Route::get('/layouts/app', [DashbordController::class, 'index'])->name('layouts.app');
 
+    Route::get('/home/vistoriador', function(){
+        return view('home.vistoriador');})->name('vistoriador.home');
+    Route::get('/home/imobiliaria', function(){
+        return view('home.imobiliaria');})->name('imobiliaria.home');
+    Route::get('/home/admin', function(){
+        return view('home.admin');})->name('admin.home');
+
     Route::get('/createuser', [UserController::class, 'create'])->name('create.user');
     Route::post('/storeuser', [UserController::class, 'store'])->name('store.user');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit.user');
@@ -97,5 +104,6 @@ Route::get('/parede/edit/{id}', [ParedeController::class, 'edit'])->name('parede
 Route::put('/parede/{parede}', [ParedeController::class, 'update'])->name('parede.update');
 
 
-Route::get('/vistoriadoes', [UserController::class, 'listvistoriador'])->name('vistoriadores.list');
+Route::get('/vistoriadores', [UserController::class, 'listvistoriador'])->name('vistoriadores.list');
+Route::delete('/vistoriador/{id}', [UserController::class, 'destroy'])->name('destroy.vistoriador');
 

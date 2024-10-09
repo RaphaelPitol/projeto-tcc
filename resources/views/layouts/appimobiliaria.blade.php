@@ -50,7 +50,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{route('vistoriador.home')}}">
+                <a class="navbar-brand" href="{{route('imobiliaria.home')}}">
                     {{ config('app.name', 'VistoriaPro') }}
 
                 </a>
@@ -63,24 +63,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-
-                        <!-- <li><a class="nav-link" href="">Imovel</a></li>
-                        <li><a class="nav-link" href="">Locador/Locatario</a></li>
-                        <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Vistoriador
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">Cadastro Vistoriador</a>
-
-                                <a class="dropdown-item" href="">
-                                    Listagem
-                                </a>
-                            </div> -->
-
-                        </li>
-
+                        @if (Auth::user()->permission == 'imobiliaria')
+                        <li><a class="nav-link" href="{{route('imovel.create')}}">Imovel</a></li>
+                        <li><a class="nav-link" href="{{route('locloca.create')}}">Locador/Locatario</a></li>
+                        <li><a class="nav-link" href="{{route('vistoriadores.list')}}" >Vistoriador</a></li>
+                        @endif
                         @endauth
                     </ul>
 

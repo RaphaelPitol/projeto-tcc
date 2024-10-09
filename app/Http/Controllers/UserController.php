@@ -34,7 +34,16 @@ class UserController extends Controller
 
         User::create($dados);
 
-        return view('layouts.app');
+        if (Auth::user()->permission == 'admin') {
+            return redirect('/home/admin');
+        }
+
+        if (Auth::user()->permission == 'imobiliaria') {
+            return redirect('/home/imobiliaria');
+        }
+
+        // return view('home.vistoriador');
+        return redirect('/home/vistoriador');
     }
 
     /**
@@ -64,13 +73,22 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->update([
-          'name' => $request->name,
-          'email' => $request->email,
-          'password' => $request->password,
-          'permission' => $request->permission
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'permission' => $request->permission
         ]);
 
-        return redirect('/layouts/app');
+        if (Auth::user()->permission == 'admin') {
+            return redirect('/home/admin');
+        }
+
+        if (Auth::user()->permission == 'imobiliaria') {
+            return redirect('/home/imobiliaria');
+        }
+
+        // return view('home.vistoriador');
+        return redirect('/home/vistoriador');
     }
 
     /**
@@ -78,7 +96,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::destroy($id);
+
+        return redirect()->back();
     }
 
     public function listvistoriador()
@@ -87,5 +107,4 @@ class UserController extends Controller
 
         return view('user.listvistoriador', ['vistoriadores' => $vistoriadores]);
     }
-
 }
