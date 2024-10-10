@@ -39,7 +39,7 @@ class UserController extends Controller
         }
 
         if (Auth::user()->permission == 'imobiliaria') {
-            return redirect('/home/imobiliaria');
+            return redirect('/vistoriador');
         }
 
         // return view('home.vistoriador');

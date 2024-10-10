@@ -35,7 +35,7 @@ class LocadorLocatarioController extends Controller
 
         LocadorLocatario::create($dados);
 
-        return redirect('/layouts/app');
+        return redirect('/locloca/index');
     }
 
     /**
@@ -49,24 +49,37 @@ class LocadorLocatarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LocadorLocatario $locadorLocatario)
+    public function edit(string $id)
     {
-        //
+        $locloca = LocadorLocatario::find($id);
+
+        return view('locadorlocatario.edit', ['locloca'=> $locloca]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LocadorLocatario $locadorLocatario)
+    public function update(Request $request, string $id)
     {
-        //
+        $locloca = LocadorLocatario::find($id);
+
+        $locloca->update([
+            "name" => $request->name,
+            "telefone" => $request->telefone,
+            "rg" => $request->rg,
+            "cpf" => $request->cpf
+        ]);
+
+        return redirect('/locloca/index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LocadorLocatario $locadorLocatario)
+    public function destroy(string $id)
     {
-        //
+        LocadorLocatario::destroy($id);
+
+        return redirect('/locloca/index');
     }
 }

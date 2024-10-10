@@ -3,9 +3,17 @@
 @section('content')
 
 <div class="container">
+<div class="row gap-2 d-flex justify-content-between align-items-center">
+    <h1 class="text-center ml-4">Locador/Locatarios</h1>
+    <a class="btn btn-success mr-5" href="{{ route('locloca.create') }}">
+        <i class="bi bi-plus-lg"></i> Cadastrar
+    </a>
+</div>
 
-    <div class="table-responsive">
-        <table class="table table-hover">
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
             <thead class="thead-dark">
                 <tr>
                     <th>Nome</th>
@@ -25,8 +33,8 @@
                     <td>{{$locadorlocatario->rg}}</td>
                     <td>{{$locadorlocatario->cpf}}</td>
                     <td style="display: flex; flex-direction: row;">
-                        <a href="" class="btn btn-primary" style="margin-right: 5px;">Edit</a>
-                        <form action="" method="POST">
+                        <a href="{{route('locloca.edit', $locadorlocatario)}}" class="btn btn-primary" style="margin-right: 5px;">Edit</a>
+                        <form action="{{route('locloca.destroy', $locadorlocatario)}}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')">Delete</button>

@@ -65,7 +65,7 @@
                         @auth
                         @if (Auth::user()->permission == 'imobiliaria')
                         <li><a class="nav-link" href="{{route('imovel.create')}}">Imovel</a></li>
-                        <li><a class="nav-link" href="{{route('locloca.create')}}">Locador/Locatario</a></li>
+                        <li><a class="nav-link" href="{{route('locloca.index')}}">Locador/Locatario</a></li>
                         <li><a class="nav-link" href="{{route('vistoriadores.list')}}" >Vistoriador</a></li>
                         @endif
                         @endauth

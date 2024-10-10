@@ -63,6 +63,9 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
         Route::get('/locloca/index', [LocadorLocatarioController::class, 'index'])->name('locloca.index');
         Route::get('/locloca', [LocadorLocatarioController::class, 'create'])->name('locloca.create');
         Route::post('/locloca/store', [LocadorLocatarioController::class, 'store'])->name('locloca.store');
+        Route::get('/locloca/edit/{id}', [LocadorLocatarioController::class, 'edit'])->name('locloca.edit');
+        Route::put('/locloca/edit/{id}', [LocadorLocatarioController::class, 'update'])->name('locloca.update');
+        Route::delete('/locloca/delete/{id}', [LocadorLocatarioController::class, 'destroy'])->name('locloca.destroy');
 
         Route::get('/imovel', [ImovelController::class, 'create'])
         ->name('imovel.create');
