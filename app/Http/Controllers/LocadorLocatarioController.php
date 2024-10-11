@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LocadorLocatario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LocadorLocatarioController extends Controller
 {
@@ -12,7 +13,8 @@ class LocadorLocatarioController extends Controller
      */
     public function index()
     {
-        $locadorlocatarios = LocadorLocatario::all();
+
+        $locadorlocatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
 
         return view('locadorlocatario.index', ["locadorlocatarios" => $locadorlocatarios]);
 

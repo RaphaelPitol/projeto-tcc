@@ -15,6 +15,7 @@
 
                 <form action="{{route('locloca.store')}}" method="POST" class="mx-1 mx-md-4">
                 @csrf
+                <input type="text" name="id_imobiliaria" hidden value="{{Auth::user()->id}}">
                   <div class="d-flex flex-row align-items-center mb-2">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div data-mdb-input-init class="form-outline flex-fill mb-0">

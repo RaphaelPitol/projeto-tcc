@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\DescricaoPisoController;
-use App\Http\Controllers\ImovelController;
 use App\Http\Controllers\LocadorLocatarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ParedeController;
@@ -67,11 +66,7 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
         Route::put('/locloca/edit/{id}', [LocadorLocatarioController::class, 'update'])->name('locloca.update');
         Route::delete('/locloca/delete/{id}', [LocadorLocatarioController::class, 'destroy'])->name('locloca.destroy');
 
-        Route::get('/imovel', [ImovelController::class, 'create'])
-        ->name('imovel.create');
-        Route::post('/imovel', [ImovelController::class, 'store'])->name('imovel.store');
-
-        Route::get('/uservistoriador', function () {
+           Route::get('/uservistoriador', function () {
             return view('user.userVistoriador');
         })->name('vistoriador');
     });

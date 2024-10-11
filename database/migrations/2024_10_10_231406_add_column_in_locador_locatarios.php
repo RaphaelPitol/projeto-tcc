@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ambientes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->unsignedBigInteger('categoria_id');
-            $table->timestamps();
-
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+        Schema::table('locador_locatarios', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_imobiliaria')->nullable();
+            $table->foreign('id_imobiliaria')->references('id')->on('users')->onDelete('set null');
         });
     }
 
@@ -26,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ambientes');
+        Schema::table('locador_locatarios', function (Blueprint $table) {
+            //
+        });
     }
 };

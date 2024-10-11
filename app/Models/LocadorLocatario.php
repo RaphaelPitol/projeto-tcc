@@ -14,6 +14,7 @@ class LocadorLocatario extends Model
         'telefone',
         'rg',
         'cpf',
+        'id_imobiliaria',
     ];
 
     public function vistorias()
