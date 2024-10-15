@@ -81,8 +81,6 @@ Route::get('/form', function () {
     return view('ambiente.form3');
 })->name('quarto');
 
-Route::post('/quarto', [VistoriaController::class, 'store'])->name('vistoria.store');
-
 Route::get('/piso', [PisoController::class, 'index'])->name('piso.index');
 Route::post('/piso', [PisoController::class, 'store'])->name('piso.store');
 Route::delete('/piso/{id}', [PisoController::class, 'destroy'])->name('piso.destroy');
