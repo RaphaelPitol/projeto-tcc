@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ambiente;
 use Illuminate\Http\Request;
 
-class AmbienteController extends Controller
+class VistoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,14 +27,13 @@ class AmbienteController extends Controller
      */
     public function store(Request $request)
     {
-        $dados = $request->except('__token');
-        dd($dados);
+       
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Ambiente $ambiente)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +41,7 @@ class AmbienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ambiente $ambiente)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +49,7 @@ class AmbienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ambiente $ambiente)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +57,7 @@ class AmbienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ambiente $ambiente)
+    public function destroy(string $id)
     {
         //
     }

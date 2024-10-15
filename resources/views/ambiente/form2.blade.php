@@ -53,7 +53,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
     <div class="container mt-5">
         <h2>Cadastro de Ambiente</h2>
         <!-- Início do formulário com a rota definida para envio dos dados -->
-        <form action="{{route('vistoria.store')}}" method="POST" class="mx-1 mx-md-3 ">
+        <form action="{{route('ambiente.store')}}" method="POST" class="mx-1 mx-md-3 ">
         @csrf
 
 
@@ -401,7 +401,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
                     <div class="form-group">
                         <label for="descricao_porta">Descrição do Porta</label>
                         <select class="form-control" id="descricao_porta" name="descricao_porta">
-                            <option value="com furos, pequenas manchas">Abre e fecha bem</option>
+                            <option value="Abre e fecha bem">Abre e fecha bem</option>
                             <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
                             <option value="com furos, pequenas manchas">pequenas manchas</option>
                             <!-- Adicione outras opções conforme necessário -->

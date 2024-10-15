@@ -87,7 +87,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
         </li>
     </ul>
     <!-- Início do formulário com a rota definida para envio dos dados -->
-    <form action="{{route('vistoria.store')}}" method="POST">
+    <form action="{{route('ambiente.store')}}" method="POST">
 
         @csrf
 

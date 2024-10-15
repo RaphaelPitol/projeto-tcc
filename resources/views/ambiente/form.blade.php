@@ -37,7 +37,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
 <div class="container h-100 mt-5">
     <h2 class="mb-3">Cadastro de Ambiente</h2>
-    <form action="{{route('vistoria.store')}}" method="POST" class="mx-1 mx-md-3 ">
+    <form action="{{route('ambiente.store')}}" method="POST" class="mx-1 mx-md-3 ">
         @csrf
 
         <div class="form-group">
