@@ -36,12 +36,13 @@ class VistoriaController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $dados = $request->except('__token');
-        $dados['id_imobiliaria'] = Auth::user()->id_imobiliaria;
+        // $dados['id_imobiliaria'] = Auth::user()->id_imobiliaria;
 
         Vistoria::create($dados);
 
-        return redirect('/vistoria.index');
+        return view('home.imobiliaria');
     }
 
     /**

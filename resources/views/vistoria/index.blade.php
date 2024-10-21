@@ -15,7 +15,7 @@
 
                                 <form action="{{ route('vistoria.store') }}" method="POST">
                                     @csrf
-
+                                    <input type="text" name="id_imobiliaria" hidden value="{{Auth::user()->id}}">
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Locador</label>
