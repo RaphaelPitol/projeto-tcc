@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_vistoriador')->nullable();
             $table->boolean('status')->default(0);
             $table->string('nome', 55);
-            $table->string('cep', 55);
+            $table->string('cep', 8);
             $table->string('logradouro', 55);
             $table->string('numero', 6);
             $table->string('bairro', 50);

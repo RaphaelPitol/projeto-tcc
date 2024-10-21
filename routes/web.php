@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VistoriaController;
 use App\Models\DescricaoPiso;
 use App\Models\User;
+use App\Models\Vistoria;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -103,3 +104,5 @@ Route::put('/parede/{parede}', [ParedeController::class, 'update'])->name('pared
 Route::get('/vistoriadores', [UserController::class, 'listvistoriador'])->name('vistoriadores.list');
 Route::delete('/vistoriador/{id}', [UserController::class, 'destroy'])->name('destroy.vistoriador');
 
+Route::get('/vistoria', [VistoriaController::class, 'index'])->name('vistoria.index');
+Route::post('/vistoria', [VistoriaController::class, 'store'])->name('vistoria.store');
