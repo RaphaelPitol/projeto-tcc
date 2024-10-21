@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AmbienteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\DashbordController;
@@ -81,6 +82,8 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
 Route::get('/form', function () {
     return view('ambiente.form3');
 })->name('quarto');
+
+Route::post('/ambiente', [AmbienteController::class, 'store'])->name('ambiente.store');
 
 Route::get('/piso', [PisoController::class, 'index'])->name('piso.index');
 Route::post('/piso', [PisoController::class, 'store'])->name('piso.store');

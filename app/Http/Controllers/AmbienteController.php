@@ -28,7 +28,8 @@ class AmbienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = $request->except('__token');
+        dd($dados);
     }
 
     /**
