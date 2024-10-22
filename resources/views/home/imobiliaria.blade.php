@@ -28,8 +28,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @if (isset($realizadas))
+                            @foreach ($realizadas as $realizada)
                                 <tr>
-                                    <td>Apto-Fulano de Tal</td>
+                                <td><a href="">{{$realizada->nome}}-{{$realizada->locador->name}}</a></td>
                                     <td>
                                         <div class="d-flex justify-content-around">
                                             <button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
@@ -39,10 +41,8 @@
 
                                     </td>
                                 </tr>
-                                <tr>
-                                    <!-- <td>Dado 3</td>
-                                                <td>Dado 4</td> -->
-                                </tr>
+                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -64,13 +64,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (isset($dados))
-                                @foreach ($dados as $dado)
+                                @if (isset($pendentes))
+                                @foreach ($pendentes as $pendente)
                                 <tr>
-                                        <td><a href="">{{$dado->nome}}-{{$dado->locador->name}}</a></td>
+                                        <td><a href="">{{$pendente->nome}}-{{$pendente->locador->name}}</a></td>
                                     <td>
                                         <div class="d-flex justify-content-around">
                                             <button class="btn btn-outline-danger"><i class="bi bi-hourglass"></i></button>
+                                            <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                                         </div>
 
                                     </td>
