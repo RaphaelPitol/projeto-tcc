@@ -21,4 +21,14 @@ class LocadorLocatario extends Model
     {
         return $this->hasMany(Vistoria::class);
     }
+
+    public function vistoriasComoLocador()
+    {
+        return $this->hasMany(Vistoria::class, 'id_locador');
+    }
+
+    public function vistoriasComoLocatario()
+    {
+        return $this->hasMany(Vistoria::class, 'id_locatario');
+    }
 }

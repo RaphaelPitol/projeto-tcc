@@ -71,5 +71,9 @@ class User extends Authenticatable implements CanResetPassword
         return $this->hasMany(Vistoria::class);
     }
 
- 
+    public function vistoriasVistoriador()
+    {
+        return $this->hasMany(Vistoria::class, 'id_vistoriador');
+    }
+
 }

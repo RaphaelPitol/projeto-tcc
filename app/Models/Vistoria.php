@@ -23,4 +23,26 @@ class Vistoria extends Model
         'cidade',
         'data_prazo'
     ];
+
+    public function imobiliaria()
+    {
+        return $this->belongsTo(User::class, 'id_imobiliaria');
+    }
+
+    public function vistoriador()
+    {
+        return $this->belongsTo(User::class, 'id_vistoriador');
+    }
+
+    // Relacionamento com Locador e Locatário
+    public function locador()
+    {
+        return $this->belongsTo(LocadorLocatario::class, 'id_locador');
+    }
+
+    public function locatario()
+    {
+        return $this->belongsTo(LocadorLocatario::class, 'id_locatario');
+    }
+
 }

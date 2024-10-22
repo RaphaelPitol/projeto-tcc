@@ -58,13 +58,16 @@
                         <table class="table table-hover table-striped mb-0">
                             <thead class="table-primary">
                                 <tr>
+
                                     <th>Vistoria</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (isset($dados))
+                                @foreach ($dados as $dado)
                                 <tr>
-                                    <td>Apto-Fulano de Tal</td>
+                                        <td><a href="">{{$dado->nome}}-{{$dado->locador->name}}</a></td>
                                     <td>
                                         <div class="d-flex justify-content-around">
                                             <button class="btn btn-outline-danger"><i class="bi bi-hourglass"></i></button>
@@ -72,10 +75,10 @@
 
                                     </td>
                                 </tr>
-                                <tr>
-                                    <!-- <td>Dado C</td>
-                                                <td>Dado D</td> -->
-                                </tr>
+                                @endforeach
+                                @endif
+
+
                             </tbody>
                         </table>
                     </div>
