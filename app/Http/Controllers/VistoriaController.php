@@ -120,6 +120,11 @@ class VistoriaController extends Controller
         $vistoria->update([
             "status" => $request->status,
         ]);
+
+        if(Auth::user()->permission == 'vistoriador'){
+            return view('home.vistoriador');
+
+        }
         return view('home.imobiliaria');
     }
 }

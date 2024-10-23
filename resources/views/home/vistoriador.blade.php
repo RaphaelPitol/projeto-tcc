@@ -24,19 +24,22 @@
                             <thead class="table-primary">
                                 <tr>
                                     <th>Vistoria</th>
-                                    <!-- <th>Ações</th> -->
+                                    <th>Finalizada</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @if (isset($realizadas))
                             @foreach ($realizadas as $realizada)
                                 <tr>
-                                <td><a href="">{{$realizada->nome}}-{{$realizada->locador->name}}</a></td>
+                                <td><a href="">{{$realizada->nome}}-{{$realizada->locador->name}}</a>
+
+                                </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
-                                            <button class="btn btn-outline-secondary"><i class="bi bi-filetype-pdf"></i></button>
-                                            <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                        {{\Carbon\Carbon::parse( $realizada->updated_at)->format('d/m/Y') }}
+                                            <!-- <button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button> -->
+                                            <!-- <button class="btn btn-outline-secondary"><i class="bi bi-filetype-pdf"></i></button> -->
+                                            <!-- <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button> -->
                                         </div>
 
                                     </td>
@@ -59,6 +62,7 @@
                             <thead class="table-primary">
                                 <tr>
                                     <th>Vistoria</th>
+                                    <th>Prazo</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -67,10 +71,16 @@
                                 @foreach ($pendentes as $pendente)
                                 <tr>
                                         <td><a href="">{{$pendente->nome}}-{{$pendente->locador->name}}</a></td>
+                                        <td>{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <button class="btn btn-outline-danger"><i class="bi bi-hourglass"></i></button>
-                                            <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                        <form action="{{route('vistoria.status', $pendente)}}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="numer" name="status" value="1" hidden>
+                                                <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Realizada?')"><i class="bi bi-hourglass"></i></button>
+                                            </form>
+                                            <!-- <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button> -->
                                         </div>
 
                                     </td>
