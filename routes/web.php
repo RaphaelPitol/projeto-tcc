@@ -107,5 +107,8 @@ Route::put('/parede/{parede}', [ParedeController::class, 'update'])->name('pared
 Route::get('/vistoriadores', [UserController::class, 'listvistoriador'])->name('vistoriadores.list');
 Route::delete('/vistoriador/{id}', [UserController::class, 'destroy'])->name('destroy.vistoriador');
 
-Route::get('/vistoria', [VistoriaController::class, 'index'])->name('vistoria.index');
+Route::get('/vistoria', [VistoriaController::class, 'create'])->name('vistoria.create');
+Route::get('/vistoria/edit/{id}', [VistoriaController::class, 'edit'])->name('vistoria.edit');
 Route::post('/vistoria', [VistoriaController::class, 'store'])->name('vistoria.store');
+Route::put('/vistoria/{id}', [VistoriaController::class, "update"])->name('vistoria.update');
+Route::put('/vistoria/status/{id}', [VistoriaController::class, "status"])->name('vistoria.status');

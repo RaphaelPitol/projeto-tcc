@@ -6,7 +6,7 @@
 <h1 class="text-center mt-1">Vistorias</h1>
 <div class="container mt-5 text-right">
     <div class="d-grid gap-2">
-        <a class="btn btn-primary mr-3" href="{{ route('vistoria.index') }}">
+        <a class="btn btn-primary mr-3" href="{{ route('vistoria.create') }}">
             <i class="bi bi-plus-lg"></i> Vistoria
         </a>
     </div>
@@ -34,7 +34,12 @@
                                 <td><a href="">{{$realizada->nome}}-{{$realizada->locador->name}}</a></td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                                        <form action="{{route('vistoria.status', $realizada)}}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="numer" name="status" value="0" hidden>
+                                                <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Pendente?')"><i class="bi bi-hourglass"></i></button>
+                                            </form>
                                             <button class="btn btn-outline-secondary"><i class="bi bi-filetype-pdf"></i></button>
                                             <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                                         </div>
@@ -67,10 +72,17 @@
                                 @if (isset($pendentes))
                                 @foreach ($pendentes as $pendente)
                                 <tr>
-                                        <td><a href="">{{$pendente->nome}}-{{$pendente->locador->name}}</a></td>
+                                        <td><a href="">{{$pendente->nome}}-{{$pendente->locador->name}}</a>-{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
+
                                     <td>
-                                        <div class="d-flex justify-content-around">
-                                            <button class="btn btn-outline-danger"><i class="bi bi-hourglass"></i></button>
+                                        <div class="d-flex justify-content-around" >
+                                            <form action="{{route('vistoria.status', $pendente)}}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="numer" name="status" value="1" hidden>
+                                                <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Realizada?')"><i class="bi bi-hourglass"></i></button>
+                                            </form>
+                                            <a href="{{route('vistoria.edit', $pendente)}}" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
                                             <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                                         </div>
 

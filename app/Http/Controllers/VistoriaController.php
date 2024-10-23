@@ -13,22 +13,24 @@ class VistoriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $locadores = LocadorLocatario::all();
-        $locatarios = LocadorLocatario::all();
-        $vistorias = Vistoria::where('id_imobiliaria', Auth::user()->id)->get();
-        $vistoriadores = User::where('permission', 'vistoriador')->get();
-
-        return view('vistoria.index', ["locadores"=>$locadores, "locatarios"=>$locatarios, "vistorias"=> $vistorias,"vistoriadores"=>$vistoriadores]);
-    }
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('vistoria.create');
+        $locadores = LocadorLocatario::all();
+        $locatarios = LocadorLocatario::all();
+        $vistoriadores = User::where('permission', 'vistoriador')
+            ->where('id_imobiliaria', Auth::user()->id)
+            ->get();
+
+        return view('vistoria.create', [
+            "locadores" => $locadores,
+            "locatarios" => $locatarios,
+            "vistoriadores" => $vistoriadores
+        ]);
     }
 
     /**
@@ -58,9 +60,20 @@ class VistoriaController extends Controller
      */
     public function edit(string $id)
     {
+        $locadores = LocadorLocatario::all();
+        $locatarios = LocadorLocatario::all();
+        $vistoriadores = User::where('permission', 'vistoriador')
+            ->where('id_imobiliaria', Auth::user()->id)
+            ->get();
         $vistoria = Vistoria::find($id);
 
-        return view('vistorias.edit', ['vistoria'=> $vistoria]);
+        // dd($vistoria->id_locador);
+        return view('vistoria.edit', [
+            'vistoria' => $vistoria,
+            "locadores" => $locadores,
+            "locatarios" => $locatarios,
+            "vistoriadores" => $vistoriadores
+        ]);
     }
 
     /**
@@ -70,11 +83,12 @@ class VistoriaController extends Controller
     {
         $vistoria = Vistoria::find($id);
 
+        // dd($request);
+
         $vistoria->update([
-            "id_locador" => $request->name,
-            "id_locatario" => $request->name,
-            "id_vistoriador" => $request->nome,
-            "status" => $request->status,
+            "id_locador" => $request->id_locador,
+            "id_locatario" => $request->id_locatario,
+            "id_vistoriador" => $request->id_vistoriador,
             "nome" => $request->nome,
             "cep" => $request->cep,
             "logradouro" => $request->logradouro,
@@ -84,7 +98,7 @@ class VistoriaController extends Controller
             "data_prazo" => $request->data_prazo
         ]);
 
-        return redirect('/vistoria/index');
+        return view('home.imobiliaria');
     }
 
     /**
@@ -95,5 +109,16 @@ class VistoriaController extends Controller
         Vistoria::destroy($id);
 
         return redirect('/vistoria.index');
+    }
+
+    public function status(Request $request, string $id)
+    {
+        // dd($request);
+        $vistoria = Vistoria::find($id);
+
+        $vistoria->update([
+            "status" => $request->status,
+        ]);
+        return view('home.imobiliaria');
     }
 }

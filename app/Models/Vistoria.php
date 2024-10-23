@@ -24,6 +24,7 @@ class Vistoria extends Model
         'data_prazo'
     ];
 
+
     public function imobiliaria()
     {
         return $this->belongsTo(User::class, 'id_imobiliaria');
