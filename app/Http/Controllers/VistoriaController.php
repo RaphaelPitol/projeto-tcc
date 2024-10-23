@@ -106,9 +106,10 @@ class VistoriaController extends Controller
      */
     public function destroy(string $id)
     {
+        // dd($id);
         Vistoria::destroy($id);
 
-        return redirect('/vistoria.index');
+        return view('home.imobiliaria');
     }
 
     public function status(Request $request, string $id)

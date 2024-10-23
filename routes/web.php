@@ -111,4 +111,5 @@ Route::get('/vistoria', [VistoriaController::class, 'create'])->name('vistoria.c
 Route::get('/vistoria/edit/{id}', [VistoriaController::class, 'edit'])->name('vistoria.edit');
 Route::post('/vistoria', [VistoriaController::class, 'store'])->name('vistoria.store');
 Route::put('/vistoria/{id}', [VistoriaController::class, "update"])->name('vistoria.update');
+Route::delete('/vistoria/{id}', [VistoriaController::class, "destroy"])->name('vistoria.destroy');
 Route::put('/vistoria/status/{id}', [VistoriaController::class, "status"])->name('vistoria.status');

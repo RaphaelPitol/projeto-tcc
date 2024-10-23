@@ -83,7 +83,11 @@
                                                 <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Realizada?')"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <a href="{{route('vistoria.edit', $pendente)}}" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
-                                            <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                                            <form action="{{route('vistoria.destroy', $pendente)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Deseja Excluir a Vistoria?')"><i class="bi bi-trash-fill"></i></button>
+                                            </form>
                                         </div>
 
                                     </td>
