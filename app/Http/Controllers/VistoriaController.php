@@ -20,8 +20,8 @@ class VistoriaController extends Controller
      */
     public function create()
     {
-        $locadores = LocadorLocatario::all();
-        $locatarios = LocadorLocatario::all();
+        $locadores = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
+        $locatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
         $vistoriadores = User::where('permission', 'vistoriador')
             ->where('id_imobiliaria', Auth::user()->id)
             ->get();
@@ -60,8 +60,8 @@ class VistoriaController extends Controller
      */
     public function edit(string $id)
     {
-        $locadores = LocadorLocatario::all();
-        $locatarios = LocadorLocatario::all();
+        $locadores = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
+        $locatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
         $vistoriadores = User::where('permission', 'vistoriador')
             ->where('id_imobiliaria', Auth::user()->id)
             ->get();
