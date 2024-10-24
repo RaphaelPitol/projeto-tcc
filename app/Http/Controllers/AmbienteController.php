@@ -35,7 +35,7 @@ class AmbienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ambiente $ambiente)
+    public function show(string $id)
     {
         //
     }

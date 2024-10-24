@@ -50,10 +50,24 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
+                @auth
+                @if (Auth::user()->permission == 'vistoriador')
                 <a class="navbar-brand" href="{{route('vistoriador.home')}}">
                     {{ config('app.name', 'VistoriaPro') }}
-
                 </a>
+                @endif
+                @if (Auth::user()->permission == 'admin')
+                <a class="navbar-brand" href="{{route('admin.home')}}">
+                    {{ config('app.name', 'VistoriaPro') }}
+                </a>
+                @endif
+                @if (Auth::user()->permission == 'imobiliaria')
+                <a class="navbar-brand" href="{{route('imobiliaria.home')}}">
+                    {{ config('app.name', 'VistoriaPro') }}
+                </a>
+                @endif
+
+                @endauth
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -63,23 +77,79 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-
-                        <!-- <li><a class="nav-link" href="">Imovel</a></li>
-                        <li><a class="nav-link" href="">Locador/Locatario</a></li>
+                        @if (Auth::user()->permission == 'admin')
                         <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Vistoriador
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Gerenciamento
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">Cadastro Vistoriador</a>
-
-                                <a class="dropdown-item" href="">
-                                    Listagem
+                                <a class="dropdown-item" href="{{route(name: 'imobiliaria')}}">
+                                    Imobiliaria
                                 </a>
-                            </div> -->
 
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Piso
+                                        <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{route('piso.index')}}">Tipo de Piso</a></li>
+                                        <li><a class="dropdown-item" href="{{route('descricaoPiso.index')}}">Descrição de Piso</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Parede
+                                        <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{route('parede.index')}}">Tipo de Parede</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Parede</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Teto
+                                        <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Teto</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Teto</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Porta
+                                        <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Porta</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Porta</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Janela
+                                        <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Janela</a></li>
+                                        <li><a class="dropdown-item" href="#">Descrição de Janela</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Eletrica
+                                        <span class="dropdown-arrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tipo de Interruptor</a></li>
+                                        <li><a class="dropdown-item" href="#">Tipo de Tomada</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
+                        @endif
+
+                        @if (Auth::user()->permission == 'imobiliaria')
+                        <li><a class="nav-link" href="{{route('locloca.index')}}">Locador/Locatario</a></li>
+                        <li><a class="nav-link" href="{{route('vistoriadores.list')}}">Vistoriador</a></li>
+                        @endif
 
                         @endauth
                     </ul>

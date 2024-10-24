@@ -79,9 +79,7 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
     })->name('imobiliaria');
 });
 
-Route::get('/form', function () {
-    return view('ambiente.form3');
-})->name('quarto');
+Route::get('/form/{id}', [VistoriaController::class, 'show'])->name('vistoria.show');
 
 Route::post('/ambiente', [AmbienteController::class, 'store'])->name('ambiente.store');
 

@@ -1,4 +1,4 @@
-@extends('layouts.appimobiliaria')
+@extends('layouts.app')
 @section('title', 'Piso')
 @section('content')
 

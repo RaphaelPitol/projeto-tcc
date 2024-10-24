@@ -52,7 +52,12 @@ class VistoriaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $vistoria = Vistoria::find($id);
+        // dd($vistoria);
+
+        return view('ambiente.form3', [
+            "vistoria" => $vistoria,
+        ]);
     }
 
     /**

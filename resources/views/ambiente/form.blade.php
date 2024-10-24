@@ -34,7 +34,10 @@ $qtdinterruptoresdobanco = ["3", "4"];
 $interruptores = ["Simples", "Duplo", "Triplo", "Interruptor Paralelo", "Interruptor Intermediário"];
 $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 @endphp
+@php
 
+
+@endphp
 <div class="container h-100 mt-5">
     <h2 class="mb-3">Cadastro de Ambiente</h2>
     <form action="{{route('ambiente.store')}}" method="POST" class="mx-1 mx-md-3 ">
