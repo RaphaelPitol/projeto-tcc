@@ -25,6 +25,10 @@ class Vistoria extends Model
     ];
 
 
+    public function ambientes()
+    {
+        return $this->hasMany(Ambiente::class);
+    }
     public function imobiliaria()
     {
         return $this->belongsTo(User::class, 'id_imobiliaria');
