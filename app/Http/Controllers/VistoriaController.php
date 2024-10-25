@@ -55,7 +55,7 @@ class VistoriaController extends Controller
         $vistoria = Vistoria::find($id);
         // dd($vistoria);
 
-        return view('ambiente.form3', [
+        return view('vistoria.show', [
             "vistoria" => $vistoria,
         ]);
     }
