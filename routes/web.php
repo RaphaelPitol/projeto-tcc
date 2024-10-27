@@ -117,4 +117,4 @@ Route::put('/vistoria/{id}', [VistoriaController::class, "update"])->name('visto
 Route::delete('/vistoria/{id}', [VistoriaController::class, "destroy"])->name('vistoria.destroy');
 Route::put('/vistoria/status/{id}', [VistoriaController::class, "status"])->name('vistoria.status');
 
-Route::get('/pdf', [PDFController::class, 'generatePDF'])->name('pdf.generatePDF');
+Route::get('/pdf', [PDFController::class, 'geraPDF'])->name('pdf.geraPDF');

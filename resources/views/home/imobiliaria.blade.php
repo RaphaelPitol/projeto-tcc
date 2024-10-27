@@ -40,7 +40,7 @@
                                             <input type="numer" name="status" value="0" hidden>
                                                 <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Pendente?')"><i class="bi bi-hourglass"></i></button>
                                             </form>
-                                            <a href="{{route('pdf.generatePDF')}}" class="btn btn-outline-secondary" target="_blank"><i class="bi bi-filetype-pdf"></i></a>
+                                            <a href="{{route('pdf.geraPDF')}}" class="btn btn-outline-secondary" target="_blank"><i class="bi bi-filetype-pdf"></i></a>
                                             <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                                         </div>
 

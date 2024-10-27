@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
-    public function generatePDF()
+    public function geraPDF()
     {
+
 
         $pdf = Pdf::loadView('pdf.laudo');
 
