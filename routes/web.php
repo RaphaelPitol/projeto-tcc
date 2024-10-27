@@ -8,6 +8,7 @@ use App\Http\Controllers\DescricaoPisoController;
 use App\Http\Controllers\LocadorLocatarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ParedeController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PisoController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserController;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +33,8 @@ use Illuminate\Auth\Events\PasswordReset;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -111,3 +116,5 @@ Route::post('/vistoria', [VistoriaController::class, 'store'])->name('vistoria.s
 Route::put('/vistoria/{id}', [VistoriaController::class, "update"])->name('vistoria.update');
 Route::delete('/vistoria/{id}', [VistoriaController::class, "destroy"])->name('vistoria.destroy');
 Route::put('/vistoria/status/{id}', [VistoriaController::class, "status"])->name('vistoria.status');
+
+Route::get('/pdf', [PDFController::class, 'generatePDF'])->name('pdf.generatePDF');
