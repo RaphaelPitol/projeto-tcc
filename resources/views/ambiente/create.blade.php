@@ -42,16 +42,16 @@
 
 @php
 $dados = ["sem furos", "sem manchas", "com manchas"];
-// Simulando dados vindos do banco de dados para interruptores e tomadas
+
 $tomadasdobanco = ["Tomada 20A", "Tomada 10A dupla"];
-// Quantidade correspondente às tomadas
+
 $qtdtomadasdobanco = ["5", "2"];
 
 $interruptoresdobanco = ["Interruptor Paralelo", "Interruptor Intermediario"];
-// Quantidade correspondente aos interruptores
+
 $qtdinterruptoresdobanco = ["3", "4"];
 
-// Definindo as opções disponíveis para seleção nos campos do formulário
+
 $interruptores = ["Simples", "Duplo", "Triplo", "Interruptor Paralelo", "Interruptor Intermediário"];
 $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 @endphp
@@ -495,7 +495,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
             <div class="mb-3" id="formFim">
                 <div class="form-group">
                     <label for="observacoes">Observações</label>
-                    <textarea class="form-control" id="observacoes" name="obeservacoes" rows="3" placeholder="Digite observações adicionais"></textarea>
+                    <textarea class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Digite observações adicionais"></textarea>
                 </div>
 
                 <!-- Botão de envio do formulário -->

@@ -64,7 +64,7 @@ class AmbienteController extends Controller
             "cor_janela" => $request->cor_janela,
             "cons_pintura_janela" => $request->cons_pintura_janela,
             "observacao_janela" => $request->observacao_janela,
-            "obeservacoes" => $request->obeservacoes,
+            "observacoes" => $request->observacoes,
             'detalhes' => json_encode([
                 'tipoInterruptor' => $request->tipoInterruptor,
                 'quantidadeInterruptores' => $request->quantidadeInterruptores,
