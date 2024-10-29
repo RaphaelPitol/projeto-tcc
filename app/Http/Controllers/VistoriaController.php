@@ -22,9 +22,7 @@ class VistoriaController extends Controller
     {
         $locadores = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
         $locatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
-        $vistoriadores = User::where('permission', 'vistoriador')
-            ->where('id_imobiliaria', Auth::user()->id)
-            ->get();
+        $vistoriadores = User::where('permission', 'vistoriador')->where('id_imobiliaria', Auth::user()->id)->get();
 
         return view('vistoria.create', [
             "locadores" => $locadores,
@@ -40,7 +38,6 @@ class VistoriaController extends Controller
     {
         // dd($request);
         $dados = $request->except('__token');
-        // $dados['id_imobiliaria'] = Auth::user()->id_imobiliaria;
 
         Vistoria::create($dados);
 
@@ -89,7 +86,6 @@ class VistoriaController extends Controller
         $vistoria = Vistoria::find($id);
 
         // dd($request);
-
         $vistoria->update([
             "id_locador" => $request->id_locador,
             "id_locatario" => $request->id_locatario,

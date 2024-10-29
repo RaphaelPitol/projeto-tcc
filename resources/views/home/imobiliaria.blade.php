@@ -72,7 +72,7 @@
                                 @if (isset($pendentes))
                                 @foreach ($pendentes as $pendente)
                                 <tr>
-                                        <td><a href="">{{$pendente->nome}}-{{$pendente->locador->name}}</a>-{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
+                                        <td><a href="{{ route('ambiente.index', $pendente) }}">{{$pendente->nome}}-{{$pendente->locador->name}}</a>-{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
 
                                     <td>
                                         <div class="d-flex justify-content-around" >
