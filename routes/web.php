@@ -13,6 +13,7 @@ use App\Http\Controllers\PisoController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VistoriaController;
+use App\Models\Ambiente;
 use App\Models\DescricaoPiso;
 use App\Models\User;
 use App\Models\Vistoria;
@@ -84,10 +85,6 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
     })->name('imobiliaria');
 });
 
-Route::get('/form/{id}', [VistoriaController::class, 'show'])->name('vistoria.show');
-
-Route::post('/ambiente', [AmbienteController::class, 'store'])->name('ambiente.store');
-
 Route::get('/piso', [PisoController::class, 'index'])->name('piso.index');
 Route::post('/piso', [PisoController::class, 'store'])->name('piso.store');
 Route::delete('/piso/{id}', [PisoController::class, 'destroy'])->name('piso.destroy');
@@ -118,3 +115,10 @@ Route::delete('/vistoria/{id}', [VistoriaController::class, "destroy"])->name('v
 Route::put('/vistoria/status/{id}', [VistoriaController::class, "status"])->name('vistoria.status');
 
 Route::get('/pdf', [PDFController::class, 'geraPDF'])->name('pdf.geraPDF');
+
+Route::get('/form/{id}', [VistoriaController::class, 'show'])->name('vistoria.show');
+
+Route::get('/ambiente/index/{id}', [AmbienteController::class, 'index'])->name('ambiente.index');
+Route::get('/ambiente/{id}', [AmbienteController::class, 'create'])->name('ambiente.create');
+Route::post('/ambiente', [AmbienteController::class, 'store'])->name('ambiente.store');
+

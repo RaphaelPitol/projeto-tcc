@@ -90,6 +90,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
     <form action="{{route('ambiente.store')}}" method="POST">
 
         @csrf
+        <input type="text" name="vistoria_id" hidden value="{{$id}}">
         <label for="nome_ambiente">Nome Ambiente</label>
         <input type="text" class="form-control" name="nome_ambiente">
 
