@@ -47,7 +47,7 @@ $tomadasdobanco = ["Tomada 20A", "Tomada 10A dupla"];
 // Quantidade correspondente às tomadas
 $qtdtomadasdobanco = ["5", "2"];
 
-$interruptoresdobanco = ["Interruptor Paralelo", "Interruptor Intermediário"];
+$interruptoresdobanco = ["Interruptor Paralelo", "Interruptor Intermediario"];
 // Quantidade correspondente aos interruptores
 $qtdinterruptoresdobanco = ["3", "4"];
 
@@ -243,7 +243,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
                         <div class="form-group">
                             <label for="descricao_rodape">Descrição do Rodapé</label>
-                            <select class="form-control" id="descricao_rodape" name="descricao_rodape">
+                            <select class="form-control" id="descricao_rodape" name="descricao_rodape[]" multiple>
                                 <option value="em todo o contorno, inteiros">Em todo o contorno, inteiros</option>
                                 <option value="faltando em alguns pontos, rachados">Faltando em alguns pontos, rachados</option>
                             </select>
@@ -299,7 +299,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
                         <div class="form-group">
                             <label for="descricao_parede">Descrição da Parede</label>
-                            <select class="form-control" id="descricao_parede" name="descricao_parede">
+                            <select class="form-control" id="descricao_parede" name="descricao_parede[]" multiple>
                                 <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
                                 <option value="com furos, pequenas manchas">Com furos, pequenas manchas</option>
                             </select>
@@ -357,7 +357,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
                         <div class="form-group">
                             <label for="descricao_teto">Descrição do Teto</label>
-                            <select class="form-control" id="descricao_teto" name="descricao_teto">
+                            <select class="form-control" id="descricao_teto" name="descricao_teto[]" multiple>
                                 <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
                                 <option value="com furos, pequenas manchas">Com furos, pequenas manchas</option>
                                 <!-- Adicione outras opções conforme necessário -->
@@ -414,7 +414,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
                         <div class="form-group">
                             <label for="descricao_porta">Descrição do Porta</label>
-                            <select class="form-control" id="descricao_porta" name="descricao_porta">
+                            <select class="form-control" id="descricao_porta" name="descricao_porta[]" multiple>
                                 <option value="com furos, pequenas manchas">Abre e fecha bem</option>
                                 <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
                                 <option value="com furos, pequenas manchas">pequenas manchas</option>
@@ -474,7 +474,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
                         <div class="form-group">
                             <label for="descricao_janela">Descrição do Janela</label>
-                            <select class="form-control" id="descricao_janela" name="descricao_janela">
+                            <select class="form-control" id="descricao_janela" name="descricao_janela[]" multiple>
                                 <option value="com furos, pequenas manchas">Abre e fecha bem</option>
                                 <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
                                 <option value="com furos, pequenas manchas">pequenas manchas</option>
