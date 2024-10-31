@@ -58,8 +58,8 @@
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="name">CEP</label>
-                                            <input type="text" id="cep" name="cep" class="form-control" required />
+                                            <label class="form-label" for="cep">CEP</label>
+                                            <input type="text" id="cep" name="cep" class="form-control" required maxlength="10" placeholder="xx.xxx-xxx" />
                                         </div>
                                     </div>
 
@@ -109,6 +109,13 @@
                 </div>
 
                 <script>
+                    document.getElementById('cep').addEventListener('input', function(e) {
+                        let cep = e.target.value.replace(/\D/g, "");
+                        cep = cep.replace(/^(\d{2})(\d)/, "$1.$2");
+                        cep = cep.replace(/(\d{3})(\d{1,3})$/, "$1-$2");
+                        e.target.value = cep;
+                    });
+
                     document.getElementById('cep').addEventListener('blur', function() {
                         var cep = this.value.replace(/\D/g, '');
                         if (cep.length == 8) {
@@ -126,5 +133,6 @@
                         }
                     });
                 </script>
+
 
                 @endsection

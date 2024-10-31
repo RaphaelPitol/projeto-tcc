@@ -31,7 +31,7 @@
                             @if (isset($realizadas))
                             @foreach ($realizadas as $realizada)
                                 <tr>
-                                <td><a href="">{{$realizada->nome}}-{{$realizada->locador->name}}</a></td>
+                                <td>{{$realizada->nome}}-{{$realizada->locador->name}}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
                                         <form action="{{route('vistoria.status', $realizada)}}" method="post">
@@ -41,7 +41,6 @@
                                                 <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Pendente?')"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <a href="{{route('pdf.geraPDF', $realizada)}}" class="btn btn-outline-secondary" target="_blank"><i class="bi bi-filetype-pdf"></i></a>
-                                            <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                                         </div>
 
                                     </td>

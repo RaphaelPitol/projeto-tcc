@@ -64,7 +64,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="cep">CEP</label>
-                                            <input type="text" id="cep" name="cep" class="form-control" value="{{$vistoria->cep}}" required />
+                                            <input type="text" id="cep" name="cep" class="form-control" value="{{$vistoria->cep}}" required placeholder="xx.xxx-xxx"/>
                                         </div>
                                     </div>
 
@@ -112,24 +112,5 @@
                         </div>
                     </div>
                 </div>
-
-                <script>
-                    document.getElementById('cep').addEventListener('blur', function() {
-                        var cep = this.value.replace(/\D/g, '');
-                        if (cep.length == 8) {
-                            fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (!data.erro) {
-                                        document.getElementById('logradouro').value = data.logradouro;
-                                        document.getElementById('bairro').value = data.bairro;
-                                        document.getElementById('cidade').value = data.localidade;
-                                    } else {
-                                        alert('CEP não encontrado.');
-                                    }
-                                });
-                        }
-                    });
-                </script>
 
                 @endsection
