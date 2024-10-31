@@ -93,8 +93,8 @@
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="name">Data Prazo</label>
-                                            <input type="date" id="data_prazo" name="data_prazo" class="form-control" required />
+                                            <label class="form-label" for="data_prazo">Data Prazo</label>
+                                            <input type="date" id="data_prazo" name="data_prazo" class="form-control" required min="{{ date('Y-m-d') }}" />
                                         </div>
                                     </div>
 
@@ -122,8 +122,7 @@
                                     } else {
                                         alert('CEP não encontrado.');
                                     }
-                                }
-                            );
+                                });
                         }
                     });
                 </script>
