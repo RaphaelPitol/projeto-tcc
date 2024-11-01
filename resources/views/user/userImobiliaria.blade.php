@@ -88,10 +88,14 @@
                                                 <input type="email" id="email" name="email" class="form-control" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="password">Senha</label>
-                                                <input type="password" id="password" name="password" class="form-control" required />
+                                        <div data-mdb-input-init class="form-outline col-md-6">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <label class="form-label" for="password">Senha</label>
+                                            <div class="input-group">
+                                                <input type="password" name="password" id="form3Example4" class="form-control" placeholder="Digite a sua senha" />
+                                                <span class="input-group-text" onclick="togglePasswordVisibility()">
+                                                    <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

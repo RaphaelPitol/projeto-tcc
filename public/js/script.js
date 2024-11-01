@@ -48,7 +48,14 @@ document.querySelectorAll(".dropdown-submenu > a").forEach(function (element) {
         parentEl.classList.toggle("show");
     });
 });
-
+//função para colocar a mascara no CPF
+document.getElementById("cpf").addEventListener("input", function (e) {
+    let cpf = e.target.value.replace(/\D/g, "");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    e.target.value = cpf;
+});
 //função para colocar a mascara no cep
 document.getElementById("cep").addEventListener("input", function (e) {
     let cep = e.target.value.replace(/\D/g, "");
@@ -123,7 +130,7 @@ document.getElementById("cnpj").addEventListener("blur", function () {
     }
 });
 
-
+//Abre e fecha o olho do input password
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById("form3Example4");
     const toggleIcon = document.getElementById("togglePasswordIcon");

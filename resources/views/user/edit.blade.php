@@ -16,20 +16,21 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="name">Nome</label>
                                             <input type="text" id="name" name="name" class="form-control" value="{{$user->name}}" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="email">Email</label>
                                             <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                         </div>
                                     </div>
                                     <div data-mdb-input-init class="form-outline mb-3">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <label class="form-label" for="password">Senha</label>
                                         <div class="input-group">
                                             <input type="password" name="password" id="form3Example4" class="form-control" placeholder="Digite a sua senha" />
@@ -39,8 +40,8 @@
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="permission">Permissões</label>
                                             <select class="form-control" name="permission">
                                                 <option value="{{$user->permission}}">{{$user->permission}}</option>
