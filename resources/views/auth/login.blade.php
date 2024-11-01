@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Document</title>
     <style>
         .divider:after,
@@ -44,16 +45,16 @@
                         </div>
 
                         @if ($mensagem = Session::get('erro'))
-                           <p class="link-danger">{{$mensagem}}</p>
-                           @endif
-                           @if ($errors->any())
-                           @foreach ($errors->all() as $erro )
-                           <p class="link-danger"> {{$erro}}</p>
-                            @endforeach
+                        <p class="link-danger">{{$mensagem}}</p>
+                        @endif
+                        @if ($errors->any())
+                        @foreach ($errors->all() as $erro )
+                        <p class="link-danger"> {{$erro}}</p>
+                        @endforeach
                         @endif
 
                         @if (session()->has('status'))
-                            <span class="text text-success">{{session()->get('status')}}</span>
+                        <span class="text text-success">{{session()->get('status')}}</span>
                         @endif
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
@@ -64,23 +65,28 @@
                         <!-- Password input -->
                         <div data-mdb-input-init class="form-outline mb-3">
                             <label class="form-label" for="password">Senha</label>
-                            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg" placeholder="Digite a sua senha" />
+                            <div class="input-group">
+                                <input type="password" name="password" id="form3Example4" class="form-control form-control-lg" placeholder="Digite a sua senha" />
+                                <span class="input-group-text" onclick="togglePasswordVisibility()">
+                                    <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                </span>
+                            </div>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Checkbox -->
                             <div class="form-check mb-0">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                                <!-- <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
                                 <label class="form-check-label" for="form2Example3">
                                     Lembrar-me
-                                </label>
+                                </label> -->
                             </div>
                             <a href="{{route('password.request')}}" class="text-body">Esqueceu sua senha?</a>
                         </div>
 
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Entrar</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Não tem uma conta? <a href="{{route('create.user')}}" class="link-danger">Cadastre-se</a></p>
+                            <!-- <p class="small fw-bold mt-2 pt-1 mb-0">Não tem uma conta? <a href="{{route('create.user')}}" class="link-danger">Cadastre-se</a></p> -->
                         </div>
 
                     </form>
@@ -117,5 +123,21 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById("form3Example4");
+        const toggleIcon = document.getElementById("togglePasswordIcon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+        }
+    }
+</script>
 
 </html>

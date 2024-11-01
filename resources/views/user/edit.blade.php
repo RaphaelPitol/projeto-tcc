@@ -29,11 +29,13 @@
                                             <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="password">Senha</label>
-                                            <input type="password" id="password" name="password" class="form-control" required />
+                                    <div data-mdb-input-init class="form-outline mb-3">
+                                        <label class="form-label" for="password">Senha</label>
+                                        <div class="input-group">
+                                            <input type="password" name="password" id="form3Example4" class="form-control" placeholder="Digite a sua senha" />
+                                            <span class="input-group-text" onclick="togglePasswordVisibility()">
+                                                <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">

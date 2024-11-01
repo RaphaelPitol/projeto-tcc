@@ -31,7 +31,7 @@
                             @if (isset($realizadas))
                             @foreach ($realizadas as $realizada)
                                 <tr>
-                                <td><a href="">{{$realizada->nome}}-{{$realizada->locador->name}}</a>
+                                <td><a href="{{route('pdf.geraPDF', $realizada)}}" target="_blank">{{$realizada->nome}}-{{$realizada->locador->name}}</a>
 
                                 </td>
                                     <td>
