@@ -122,3 +122,4 @@ Route::get('/ambiente/index/{id}', [AmbienteController::class, 'index'])->name('
 Route::get('/ambiente/{id}', [AmbienteController::class, 'create'])->name('ambiente.create');
 Route::post('/ambiente', [AmbienteController::class, 'store'])->name('ambiente.store');
 
+

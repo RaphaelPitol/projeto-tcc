@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Vistoria;
@@ -41,6 +42,12 @@ class ViewServiceProvider extends ServiceProvider
                 ->with('locador')
                 ->get();
             $view->with('pendentes', $pendentes);
+        });
+
+        View::composer('home.admin', function($view){
+            $imobiliarias = User::where('permission', 'imobiliaria')->get();
+
+            $view->with('imobiliarias', $imobiliarias);
         });
     }
 

@@ -31,6 +31,7 @@ class User extends Authenticatable implements CanResetPassword
         'razao_social',
         'cpf',
         'cnpj',
+        'cep',
         'telefone',
         'logradouro',
         'numero',
