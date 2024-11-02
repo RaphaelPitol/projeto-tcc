@@ -33,11 +33,11 @@
                     <td>{{$locadorlocatario->rg}}</td>
                     <td>{{$locadorlocatario->cpf}}</td>
                     <td style="display: flex; flex-direction: row;">
-                        <a href="{{route('locloca.edit', $locadorlocatario)}}" class="btn btn-primary" style="margin-right: 5px;">Edit</a>
+                        <a href="{{route('locloca.edit', $locadorlocatario)}}" class="btn btn-primary" style="margin-right: 5px;"><i class="bi bi-pencil-fill"></i></a>
                         <form action="{{route('locloca.destroy', $locadorlocatario)}}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')">Delete</button>
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')"><i class="bi bi-trash-fill"></i></button>
                         </form>
                     </td>
                 </tr>

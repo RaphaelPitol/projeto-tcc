@@ -80,12 +80,28 @@ class AmbienteController extends Controller
         ];
         // dd($dados);
 
-        Ambiente::create($dados);
+        // Ambiente::create($dados);
+
+        try {
+            Ambiente::create($dados);
+            $message = [
+                'type' => 'success',
+                'text' => 'Ambiente cadastrado com sucesso!'
+            ];
+        } catch (\Exception $e) {
+            $message = [
+                'type' => 'error',
+                'text' => 'Erro ao cadastrar o ambiente: '
+            ];
+        }
+
+
         $ambientes = Ambiente::where('vistoria_id',  $request->input('vistoria_id'))->get();
 
         return view('ambiente.index', [
+            'message' => $message,
             'id' => $request->input('vistoria_id'),
-            'ambientes' => $ambientes
+            'ambientes' => $ambientes,
         ]);
     }
 

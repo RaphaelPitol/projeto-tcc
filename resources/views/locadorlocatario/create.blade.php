@@ -17,30 +17,30 @@
                 @csrf
                 <input type="text" name="id_imobiliaria" hidden value="{{Auth::user()->id}}">
                   <div class="d-flex flex-row align-items-center mb-2">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                      <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <label class="form-label" for="name">Nome Completo</label>
                       <input type="text" id="name"  name="name" class="form-control"/>
                     </div>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="telefone">Telefone</label>
+                      <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                          <i class="bi bi-telephone fa-lg me-3 fa-fw"></i>
+                          <label class="form-label" for="telefone">Telefone</label>
                       <input type="tel" id="telefone" name="telefone" class="form-control"/>
                     </div>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <!-- <i class="fas fa-lock fa-lg me-3 fa-fw"></i> -->
                     <div data-mdb-input-init class="form-outline flex-fill mb-0">
                         <label class="form-label" for="rg" >RG</label>
                       <input type="text" id="rg" name="rg" class="form-control" required/>
                     </div>
                   </div>
                   <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <!-- <i class="fas fa-lock fa-lg me-3 fa-fw"></i> -->
                     <div data-mdb-input-init class="form-outline flex-fill mb-0">
                         <label class="form-label" for="cpf" >CPF</label>
                       <input type="text" id="cpf" name="cpf" class="form-control" required/>

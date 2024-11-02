@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .divider:after,
         .divider:before {
@@ -43,16 +44,41 @@
                         </div>
 
                         @if ($mensagem = Session::get('erro'))
-                        <p class="link-danger">{{$mensagem}}</p>
-                        @endif
-                        @if ($errors->any())
-                        @foreach ($errors->all() as $erro )
-                        <p class="link-danger"> {{$erro}}</p>
-                        @endforeach
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erro',
+                                    text: '{{ $mensagem }}'
+                                });
+                            });
+                        </script>
                         @endif
 
+                        <!-- Erros de validação -->
+                        @if ($errors->any())
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erros de validação',
+                                    text: "{{ implode(', ', $errors->all()) }}"
+                                });
+                            });
+                        </script>
+                        @endif
+
+                        <!-- Status de sucesso -->
                         @if (session()->has('status'))
-                        <span class="text text-success">{{session()->get('status')}}</span>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sucesso',
+                                    text: "{{ session()->get('status') }}"
+                                });
+                            });
+                        </script>
                         @endif
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">

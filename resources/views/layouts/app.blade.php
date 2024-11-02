@@ -37,14 +37,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Swal.fire({
+                title: "Sem permissão",
+                text: "{{ session('error') }}",
+                icon: "erro"
+            });
+        })
+    </script>
     @endif
 
     <div id="app">
@@ -181,7 +188,7 @@
             </div>
         </nav>
 
-        <main class="py-4 container mt-3">
+        <main  class="py-4 container mt-3">
             @yield('content')
         </main>
     </div>
@@ -208,6 +215,7 @@
         } else {
             console.error("Service workers are not supported.");
         }
+
     </script>
 </body>
 
