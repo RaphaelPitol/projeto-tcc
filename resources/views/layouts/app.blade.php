@@ -176,11 +176,9 @@
                                 <a class="dropdown-item" href="{{route('edit.user', Auth::user())}}">
                                     {{ __('Editar') }}
                                 </a>
-                                <a class="dropdown-item" href="{{route('login.logout')}}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="#" onclick="confirmLogout(event)">
                                     {{ __('Sair') }}
                                 </a>
-
                             </div>
                         </li>
                     </ul>
@@ -188,7 +186,7 @@
             </div>
         </nav>
 
-        <main  class="py-4 container mt-3">
+        <main class="py-4 container mt-3">
             @yield('content')
         </main>
     </div>
@@ -216,6 +214,21 @@
             console.error("Service workers are not supported.");
         }
 
+        function confirmLogout(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+
+            Swal.fire({
+                title: 'Deseja realmente sair?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, sair',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
     </script>
 </body>
 

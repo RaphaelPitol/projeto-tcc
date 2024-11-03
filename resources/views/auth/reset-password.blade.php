@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .divider:after,
         .divider:before {
@@ -39,20 +40,7 @@
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form action="{{route('password.update')}}" method="POST">
                         @csrf
-                        <!-- <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                        </div> -->
+                       
                         <input type="hidden" name="token" value="{{$token}}">
 
                         <div class="divider d-flex align-items-center my-4">
@@ -60,12 +48,26 @@
                         </div>
 
                         @if ($mensagem = Session::get('erro'))
-                        <p class="link-danger">{{$mensagem}}</p>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erro',
+                                    text: '{{ $mensagem }}'
+                                });
+                            });
+                        </script>
                         @endif
                         @if ($errors->any())
-                        @foreach ($errors->all() as $erro )
-                        <p class="link-danger"> {{$erro}}</p>
-                        @endforeach
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erros de validação',
+                                    text: "{{ implode(', ', $errors->all()) }}"
+                                });
+                            });
+                        </script>
                         @endif
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
