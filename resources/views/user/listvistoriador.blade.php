@@ -34,7 +34,7 @@
                             <form action="{{route('destroy.vistoriador', $vistoriador)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')"><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-danger"  onclick="excluirVisto(event)"><i class="bi bi-trash-fill"></i></button>
                             </form>
 
                     </td>
@@ -45,7 +45,25 @@
     </div>
 </div>
 
+<script>
+    function excluirVisto(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
 
+            Swal.fire({
+                title: 'Deseja Excluir o Vistoriador?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-locloca').submit();
+                }
+            });
+        }
+</script>
 
 
 

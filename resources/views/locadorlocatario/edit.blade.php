@@ -44,12 +44,12 @@
                                         <!-- <i class="fas fa-lock fa-lg me-3 fa-fw"></i> -->
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="cpf">CPF</label>
-                                            <input type="text" id="cpf" name="cpf" maxlength="14" class="form-control" required value="{{$locloca->cpf}}" />
+                                            <input type="text" id="cpf" name="cpf" maxlength="14" class="form-control" required value="{{$locloca->cpf}}" placeholder="000.000.000-00"/>
                                         </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Cadastrar</button>
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Editar</button>
                                     </div>
 
                                 </form>
@@ -63,5 +63,16 @@
         </div>
     </div>
 </section>
+
+<script>
+    //função para colocar a mascara no CPF
+document.getElementById("cpf").addEventListener("input", function (e) {
+    let cpf = e.target.value.replace(/\D/g, "");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    e.target.value = cpf;
+});
+</script>
 
 @endsection

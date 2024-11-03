@@ -43,7 +43,7 @@
                     <!-- <i class="fas fa-lock fa-lg me-3 fa-fw"></i> -->
                     <div data-mdb-input-init class="form-outline flex-fill mb-0">
                         <label class="form-label" for="cpf" >CPF</label>
-                      <input type="text" id="cpf" name="cpf" class="form-control" required/>
+                      <input type="text" id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00" class="form-control" required/>
                     </div>
                   </div>
 
@@ -62,5 +62,16 @@
     </div>
   </div>
 </section>
+
+<script>
+    //função para colocar a mascara no CPF
+document.getElementById("cpf").addEventListener("input", function (e) {
+    let cpf = e.target.value.replace(/\D/g, "");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    e.target.value = cpf;
+});
+</script>
 
 @endsection

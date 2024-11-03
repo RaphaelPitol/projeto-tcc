@@ -34,10 +34,10 @@
                     <td>{{$locadorlocatario->cpf}}</td>
                     <td style="display: flex; flex-direction: row;">
                         <a href="{{route('locloca.edit', $locadorlocatario)}}" class="btn btn-primary" style="margin-right: 5px;"><i class="bi bi-pencil-fill"></i></a>
-                        <form action="{{route('locloca.destroy', $locadorlocatario)}}" method="POST">
+                        <form id="form-locloca" action="{{route('locloca.destroy', $locadorlocatario)}}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')"><i class="bi bi-trash-fill"></i></button>
+                            <button class="btn btn-danger" onclick= "excluirLocLoca(event)"><i class="bi bi-trash-fill"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -46,4 +46,23 @@
         </table>
     </div>
 </div>
+<script>
+    function excluirLocLoca(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+
+            Swal.fire({
+                title: 'Deseja Excluir Locador/Locatario?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-locloca').submit();
+                }
+            });
+        }
+</script>
 @endsection

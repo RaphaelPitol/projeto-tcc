@@ -28,17 +28,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if (isset($realizadas))
-                            @foreach ($realizadas as $realizada)
+                                @if (isset($realizadas))
+                                @foreach ($realizadas as $realizada)
                                 <tr>
-                                <td>{{$realizada->nome}}-{{$realizada->locador->name}}</td>
+                                    <td>{{$realizada->nome}}-{{$realizada->locador->name}}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                        <form action="{{route('vistoria.status', $realizada)}}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="numer" name="status" value="0" hidden>
-                                                <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Pendente?')"><i class="bi bi-hourglass"></i></button>
+                                            <form id="form-realizada" action="{{route('vistoria.status', $realizada)}}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="numer" name="status" value="0" hidden>
+                                                <button class="btn btn-outline-danger" onclick="confirm(event, 'form-realizada')"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <a href="{{route('pdf.geraPDF', $realizada)}}" class="btn btn-outline-secondary" target="_blank"><i class="bi bi-filetype-pdf"></i></a>
                                         </div>
@@ -71,21 +71,21 @@
                                 @if (isset($pendentes))
                                 @foreach ($pendentes as $pendente)
                                 <tr>
-                                        <td><a href="{{ route('ambiente.index', $pendente) }}">{{$pendente->nome}}-{{$pendente->locador->name}}</a>-{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
+                                    <td><a href="{{ route('ambiente.index', $pendente) }}">{{$pendente->nome}}-{{$pendente->locador->name}}</a>-{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
 
                                     <td>
-                                        <div class="d-flex justify-content-around" >
-                                            <form action="{{route('vistoria.status', $pendente)}}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="numer" name="status" value="1" hidden>
-                                                <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Realizada?')"><i class="bi bi-hourglass"></i></button>
+                                        <div class="d-flex justify-content-around">
+                                            <form id="form-pendente" action="{{route('vistoria.status', $pendente)}}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="numer" name="status" value="1" hidden>
+                                                <button class="btn btn-outline-danger" onclick="confirm(event, 'form-pendente')"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <a href="{{route('vistoria.edit', $pendente)}}" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
-                                            <form action="{{route('vistoria.destroy', $pendente)}}" method="POST">
+                                            <form id="form-pendente-excluir" action="{{route('vistoria.destroy', $pendente)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Deseja Excluir a Vistoria?')"><i class="bi bi-trash-fill"></i></button>
+                                                <button class="btn btn-outline-danger" onclick="excluir(event)"><i class="bi bi-trash-fill"></i></button>
                                             </form>
                                         </div>
 
@@ -102,5 +102,41 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function confirm(event, formId) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+
+            Swal.fire({
+                title: 'Deseja mudar o Status?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+            });
+        }
+
+        function excluir(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+
+            Swal.fire({
+                title: 'Deseja Excluira Vistoria?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-pendente-excluir').submit();
+                }
+            });
+        }
+    </script>
 
     @endsection

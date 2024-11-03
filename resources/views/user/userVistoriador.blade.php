@@ -85,4 +85,15 @@
     </div>
 </section>
 
+<script>
+    //função para colocar a mascara no CPF
+document.getElementById("cpf").addEventListener("input", function (e) {
+    let cpf = e.target.value.replace(/\D/g, "");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    e.target.value = cpf;
+});
+</script>
+
 @endsection
