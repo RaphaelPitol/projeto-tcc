@@ -15,19 +15,23 @@
             <thead class="thead-dark">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Nome</th>
-                        <th>Ações</th>
+                        <th class="col-9">Nome</th>
+                        <th class="col-3">Ações</th>
                     </tr>
                 </thead>
             <tbody>
                 <tr>
                     @foreach($ambientes as $ambiente)
                     <th>{{$ambiente->nome_ambiente}}</th>
-                    <th>
-                        <a href="" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
+                    <td style="display: flex; flex-direction: row;">
+                        <a href="{{route('ambiente.edit', $ambiente)}}" class="btn btn-primary" style="margin-right: 5px;">Edit</a>
 
-                        <a type="submit" class="btn btn-outline-danger" onclick="return confirm('Deseja Excluir a Vistoria?')"><i class="bi bi-trash-fill"></i></a>
-                    </th>
+                        <form action="{{route('ambiente.destroy', $ambiente)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja excluir Ambiente?')">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
