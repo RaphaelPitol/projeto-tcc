@@ -98,6 +98,58 @@ $descricao_piso = [
 'Desgaste nas Bordas',
 'Defeitos de Instalação'
 ];
+$rodapes = [
+    'MDF',
+    'PVC',
+    'Cerâmica',
+    'Porcelanato',
+    'Madeira',
+    'Poliestireno',
+    'Embutido',
+    'Alumínio',
+    'Pedra',
+    'Pintado',
+    'Inox',
+    'Granito',
+    'Mármore',
+    'Vinílico',
+    'Curvo'
+];
+$estado_rodapes = [
+    'Novo',
+    'Bom',
+    'Regular',
+    'Desgastado',
+    'Rachado',
+    'Descolado',
+    'Quebrado',
+    'Manchado',
+    'Envelhecido',
+    'Solto',
+    'Danificado',
+    'Riscado',
+    'Desbotado'
+];
+$descricao_rodapes = [
+    'Com marcas de arranhões',
+    'Desgastado nas extremidades',
+    'Desbotado pela exposição ao sol',
+    'Com manchas de umidade',
+    'Rachado em alguns pontos',
+    'Solto em algumas partes',
+    'Com presença de mofo',
+    'Descolado da parede',
+    'Com lascas ou quebras',
+    'Aparência envelhecida',
+    'Reparado recentemente',
+    'Com pintura descascada',
+    'Marcas de impacto visíveis',
+    'Dificuldade de fixação',
+    'Com tonalidade irregular'
+];
+
+
+
 $dados = ["sem furos", "sem manchas", "com manchas"];
 
 $tomadasdobanco = ["Tomada 20A", "Tomada 10A dupla"];
@@ -297,33 +349,39 @@ $detalhes = json_decode($ambientes->detalhes);
                         <legend>Cadastro de Roda-pé</legend>
                         <div class="form-group">
                             <label for="rodape">Tipo de Rodapé</label>
-                            <select class="form-control" id="rodape" name="rodape" value="{{$ambientes->rodape}}">
-                                <option value="ceramica">Cerâmica</option>
-                                <option value="porcelanato">Porcelanato</option>
-                                <option value="madeira">Madeira</option>
+                            <select class="form-control" id="rodape" name="rodape" >
+                            <option value=""></option>
+                                @foreach ($rodapes as $rodape )
+                                <option value="{{$rodape}}" {{ $rodape == $ambientes->rodape ? 'selected' : '' }}>{{$rodape}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_rodape">Estado de Conservação do Rodapé</label>
                             <select class="form-control" id="cons_rodape" name="cons_rodape" value="{{$ambientes->cons_rodape}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                                <option value=""></option>
+                                @foreach ($estado_rodapes as $estado_rodape)
+                                <option value="{{$estado_rodape}}" {{$estado_rodape == $ambientes->cons_rodape ? 'selected' : ''}}>{{$estado_rodape}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="descricao_rodape">Descrição do Rodapé</label>
-                            <select class="form-control" id="descricao_rodape" name="descricao_rodape[]" multiple value="{{$ambiente->detalhes['descricao_rodape'] ?? ''}}">
-                                <option value="em todo o contorno, inteiros">Em todo o contorno, inteiros</option>
-                                <option value="faltando em alguns pontos, rachados">Faltando em alguns pontos, rachados</option>
+                            <select class="form-control" id="descricao_rodape" name="descricao_rodape[]" multiple>
+                            @foreach ($descricao_rodapes as $descricao_rodape)
+                                <option value="{{ $descricao_rodape }}"
+                                    {{ isset($detalhes->descricao_rodape) && in_array($descricao_rodape, $detalhes->descricao_rodape ?? []) ? 'selected' : '' }}>
+                                    {{ $descricao_rodape }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="observacao_rodape">Observação do Rodapé</label>
-                            <textarea class="form-control" id="observacao_rodape" name="observacao_rodape" rows="3" value="{{$ambientes->observacao_rodape}}"></textarea>
+                            <textarea class="form-control" id="observacao_rodape" name="observacao_rodape" rows="3">{{$ambientes->observacao_rodape}}</textarea>
                         </div>
                     </fieldset>
                 </div>
