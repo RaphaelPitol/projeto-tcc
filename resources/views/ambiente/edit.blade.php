@@ -169,6 +169,20 @@ $tipos_paredes = [
     'Ladrilho hidráulico',
     'Painel de madeira'
 ];
+$estado_conservacao_paredes = [
+    'Novo',
+    'Bom',
+    'Regular',
+    'Desgastado',
+    'Trincado',
+    'Manchado',
+    'Descascando',
+    'Com infiltração',
+    'Com mofo',
+    'Rachado',
+    'Desbotado',
+    'Requer reparo'
+];
 
 
 
@@ -425,10 +439,13 @@ $detalhes = json_decode($ambientes->detalhes);
 
                         <div class="form-group">
                             <label for="cons_parede">Estado de Conservação do Parede</label>
-                            <select class="form-control" id="cons_parede" name="cons_parede" value="{{$ambientes->cons_parede}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                            <select class="form-control" id="cons_parede" name="cons_parede">
+                                <option value=""></option>
+                                @foreach ($estado_conservacao_paredes as $estado_conservacao_parede)
+                                <option value="{{$estado_conservacao_parede}}" {{$estado_conservacao_parede == $ambientes->cons_parede ? 'selected' : ''}}>{{$estado_conservacao_parede}}</option>
+
+                                @endforeach
+
                             </select>
                         </div>
 
@@ -439,6 +456,7 @@ $detalhes = json_decode($ambientes->detalhes);
                                 <option value="preto">Preto</option>
                                 <option value="roxo">Roxo</option>
                             </select>
+                            
                         </div>
 
                         <div class="form-group">
