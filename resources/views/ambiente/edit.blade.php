@@ -147,6 +147,29 @@ $descricao_rodapes = [
     'Dificuldade de fixação',
     'Com tonalidade irregular'
 ];
+$tipos_paredes = [
+    'Alvenaria',
+    'Gesso',
+    'Drywall',
+    'Madeira',
+    'Concreto',
+    'Marmorite',
+    'Cerâmica',
+    'Tijolo aparente',
+    'Pedra natural',
+    'PVC',
+    'Fibrocimento',
+    'Vidro',
+    'Metal',
+    'Cobogó',
+    'Papel de parede',
+    'Textura',
+    'Revestimento 3D',
+    'Azulejo',
+    'Ladrilho hidráulico',
+    'Painel de madeira'
+];
+
 
 
 
@@ -393,10 +416,10 @@ $detalhes = json_decode($ambientes->detalhes);
                         <div class="form-group">
                             <label for="parede">Tipo de Parede</label>
                             <select class="form-control" id="parede" name="parede" value="{{$ambientes->parede}}">
-                                <option value="alvenaria">Alvenaria</option>
-                                <option value="ceramica">Cerâmica</option>
-                                <option value="porcelanato">Porcelanato</option>
-                                <option value="madeira">Madeira</option>
+                                <option value=""></option>
+                               @foreach ($tipos_paredes as $tipos_parede)
+                                <option value="{{$tipos_parede}}" {{$tipos_parede == $ambientes->parede ? 'selected' : ''}}>{{$tipos_parede}}</option>
+                               @endforeach
                             </select>
                         </div>
 

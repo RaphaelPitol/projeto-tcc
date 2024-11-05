@@ -62,7 +62,7 @@ class User extends Authenticatable implements CanResetPassword
 
     public function sendPasswordResetNotification($token): void
     {
-        $url = 'http://localhost:8000/reset-password/' . $token;
+        $url = env('APP_URL') . $token;
 
         $this->notify(new PasswordRestNotification($url));
     }
