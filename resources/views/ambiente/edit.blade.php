@@ -61,11 +61,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 $detalhes = json_decode($ambientes->detalhes);
 @endphp
 
-@if (isset($detalhes->tipoInterruptor))
-                @foreach($detalhes->tipoInterruptor as $index => $tipo)
-                    <p><span>Interruptor:</span> {{$tipo}}, <span>Quantidade:</span> {{$detalhes->quantidadeInterruptores[$index]}}</p>
-                @endforeach
-            @endif
+
 
 <div class="container h-100 mt-5">
     <h2>Edição de Ambiente</h2>
@@ -121,12 +117,16 @@ $detalhes = json_decode($ambientes->detalhes);
                                 <!-- Campo de seleção do tipo de interruptor -->
                                 <div class="col-md-5">
                                     <label for="tipoInterruptor">Tipo de Interruptor</label>
-                                    <select class="form-control" name="tipoInterruptor[]" value="{{$ambientes->detalhes['tipoInterruptor'] ?? ''}}">
+                                    <select class="form-control" name="tipoInterruptor[]">
                                         <!-- Loop para criar as opções do dropdown -->
+
                                         @foreach ($interruptores as $opcao)
-                                        <!-- Verifica se a opção deve ser selecionada com base no dado do banco -->
-                                        <option value="{{ $opcao }}" {{ $opcao == $interruptor ? 'selected' : '' }}>{{ $opcao }}</option>
+                                        @foreach($detalhes->tipoInterruptor as $index => $tipo)
+
+                                        <option value="{{ $opcao }}" {{ $opcao == $tipo ? 'selected' : '' }}>{{ $opcao }}</option>
                                         @endforeach
+                                        @endforeach
+                                       
                                     </select>
                                 </div>
                                 <!-- Campo de entrada para a quantidade de interruptores -->
