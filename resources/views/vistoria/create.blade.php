@@ -107,5 +107,35 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    document.getElementById("cep").addEventListener("input", function (e) {
+    let cep = e.target.value.replace(/\D/g, "");
+    cep = cep.replace(/^(\d{2})(\d)/, "$1.$2");
+    cep = cep.replace(/(\d{3})(\d{1,3})$/, "$1-$2");
+    e.target.value = cep;
+});
 
-                @endsection
+//Busca os cep na API viacep e preenche o formulario
+document.getElementById("cep").addEventListener("blur", function () {
+    var cep = this.value.replace(/\D/g, "");
+    if (cep.length == 8) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (!data.erro) {
+                    document.getElementById("logradouro").value =
+                        data.logradouro;
+                    document.getElementById("bairro").value = data.bairro;
+                    document.getElementById("cidade").value = data.localidade;
+                } else {
+                    alert("CEP não encontrado.");
+                }
+            });
+    }
+});
+</script>
+@endsection

@@ -57,6 +57,15 @@ $interruptores = ["Simples", "Duplo", "Triplo", "Interruptor Paralelo", "Interru
 $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 @endphp
 
+@php
+$detalhes = json_decode($ambientes->detalhes);
+@endphp
+
+@if (isset($detalhes->tipoInterruptor))
+                @foreach($detalhes->tipoInterruptor as $index => $tipo)
+                    <p><span>Interruptor:</span> {{$tipo}}, <span>Quantidade:</span> {{$detalhes->quantidadeInterruptores[$index]}}</p>
+                @endforeach
+            @endif
 
 <div class="container h-100 mt-5">
     <h2>Edição de Ambiente</h2>
@@ -88,7 +97,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
         </li>
     </ul>
 
-    <form action="{{route('ambiente.update', $id, $ambientes)}}" method="POST">
+    <form action="{{route('ambiente.update', $ambientes)}}" method="POST">
 
         @csrf
         @method('PUT')
@@ -112,7 +121,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
                                 <!-- Campo de seleção do tipo de interruptor -->
                                 <div class="col-md-5">
                                     <label for="tipoInterruptor">Tipo de Interruptor</label>
-                                    <select class="form-control" name="tipoInterruptor[]" value="{{$ambientes->detalhes['tipoInterruptor'] ?? ''}}" >
+                                    <select class="form-control" name="tipoInterruptor[]" value="{{$ambientes->detalhes['tipoInterruptor'] ?? ''}}">
                                         <!-- Loop para criar as opções do dropdown -->
                                         @foreach ($interruptores as $opcao)
                                         <!-- Verifica se a opção deve ser selecionada com base no dado do banco -->
@@ -416,7 +425,7 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 
                         <div class="form-group">
                             <label for="descricao_porta">Descrição do Porta</label>
-                            <select class="form-control" id="descricao_porta" name="descricao_porta[]" multiple value="{{$ambientes->detalhes['descricao_porta'] ?? ''}}"> 
+                            <select class="form-control" id="descricao_porta" name="descricao_porta[]" multiple value="{{$ambientes->detalhes['descricao_porta'] ?? ''}}">
                                 <option value="com furos, pequenas manchas">Abre e fecha bem</option>
                                 <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
                                 <option value="com furos, pequenas manchas">pequenas manchas</option>

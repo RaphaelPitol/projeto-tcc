@@ -37,14 +37,14 @@
                     @foreach($ambientes as $ambiente)
                     <th>{{$ambiente->nome_ambiente}}</th>
                     <td style="display: flex; flex-direction: row;">
-                        <a href="{{route('ambiente.edit', $ambiente)}}" class="btn btn-primary" style="margin-right: 5px;">Edit</a>
+                        <a href="{{route('ambiente.edit', $ambiente)}}" class="btn btn-primary" style="margin-right: 5px;"><i class="bi bi-pencil-fill"></i></a>
 
-                        <a type="submit" class="btn btn-outline-danger" onclick= delet()><i class="bi bi-trash-fill"></i></a>
-                    </th>
+
+
                         <form action="{{route('ambiente.destroy', $ambiente)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja excluir Ambiente?')">Delete</button>
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja excluir Ambiente?')"><i class="bi bi-trash-fill"></i></button>
                         </form>
                     </td>
                 </tr>

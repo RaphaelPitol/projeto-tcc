@@ -119,9 +119,9 @@ Route::get('/pdf/{id}', [PDFController::class, 'geraPDF'])->name('pdf.geraPDF');
 Route::get('/form/{id}', [VistoriaController::class, 'show'])->name('vistoria.show');
 
 Route::get('/ambiente/index/{id}', [AmbienteController::class, 'index'])->name('ambiente.index');
-Route::get('/ambiente/{id}', [AmbienteController::class, 'create'])->name('ambiente.create');
 Route::post('/ambiente', [AmbienteController::class, 'store'])->name('ambiente.store');
 
 Route::get('/ambiente/edit/{id}', [AmbienteController::class, 'edit'])->name('ambiente.edit');
 Route::put('/ambiente/{id}', [AmbienteController::class, "update"])->name('ambiente.update');
+Route::get('/ambiente/{id}', [AmbienteController::class, 'create'])->name('ambiente.create');
 Route::delete('/ambiente/{id}', [AmbienteController::class, "destroy"])->name('ambiente.destroy');

@@ -12,7 +12,7 @@ class AmbienteController extends Controller
      */
     public function index(string $id)
     {
-        //dd($id);
+        // dd($id);
         $ambientes = Ambiente::where('vistoria_id', $id)->get();
         return view('ambiente.index', ['ambientes' => $ambientes, 'id' => $id]);
     }
@@ -118,9 +118,9 @@ class AmbienteController extends Controller
         $detalhes = json_decode($ambientes->detalhes ?? '', true);
 
         return view('ambiente.edit', [
-            'id'=> $id,
-            'ambientes'=> $ambientes, 
-            'detalhes'=> $detalhes
+
+            'ambientes'=> $ambientes,
+            // 'detalhes'=> $detalhes
         ]);
     }
 
@@ -130,6 +130,8 @@ class AmbienteController extends Controller
     public function update(Request $request, string $id)
     {
         $ambientes = Ambiente::find($id);
+
+        // dd($ambientes);
 
         $ambientes->update([
             "vistoria_id" => $request->vistoria_id,
@@ -174,9 +176,12 @@ class AmbienteController extends Controller
                 "descricao_janela" => $request->descricao_janela
             ]),
         ]);
-        
+
         $ambientes = Ambiente::where('vistoria_id', $request->vistoria_id)->get();
-        return view('ambiente.index', ['ambientes' => $ambientes, 'id' => $request->vistoria_id]);
+        // dd($ambientes);
+
+        return redirect()->route('ambiente.index', ['id' => $request->vistoria_id]);
+
     }
 
     /**
@@ -185,12 +190,11 @@ class AmbienteController extends Controller
     public function destroy(string $id)
     {
         $ambientes = Ambiente::find($id);
-    
+
         $vistoria_id = $ambientes->vistoria_id;
         // dd($id);
         Ambiente::destroy($id);
 
-        $ambientes = Ambiente::where('vistoria_id', $vistoria_id)->get();
-        return view('ambiente.index', ['ambientes' => $ambientes, 'id' => $vistoria_id]);
+        return redirect()->route('ambiente.index', ['id' => $vistoria_id]);
     }
 }
