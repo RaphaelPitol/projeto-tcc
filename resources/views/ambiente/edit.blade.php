@@ -42,6 +42,62 @@
 </style>
 
 @php
+$pisos = [
+'Cerâmica',
+'Porcelanato',
+'Madeira',
+'Laminado',
+'Vinílico',
+'Cimento Queimado',
+'Granito',
+'Mármore',
+'Carpete',
+'Epóxi',
+'Piso Elevado',
+'Piso Térmico',
+'Pedra São Tomé',
+'Ardósia',
+'Bambu',
+'Ladrilho Hidráulico',
+'Piso de Borracha',
+'Piso de Resina',
+'Piso de Taco',
+'Piso de Concreto'
+];
+$estado = [
+'Novo',
+'Usado',
+'Bom',
+'Regular',
+'Desgastado',
+'Danificado',
+'Em Reforma',
+'Necessita Reparos',
+'Restaurado',
+'Inutilizável'
+];
+$descricao_piso = [
+'Rachaduras',
+'Desgaste',
+'Manchas',
+'Infiltração',
+'Desnivelamento',
+'Descolamento',
+'Arranhões',
+'Falta de Brilho',
+'Afundamento',
+'Quebras',
+'Danos por Umidade',
+'Desbotamento',
+'Desgaste nas Juntas',
+'Avarias por Termitas',
+'Desgaste por Produtos Químicos',
+'Danos por Impacto',
+'Revestimento Solto',
+'Trincas',
+'Desgaste nas Bordas',
+'Defeitos de Instalação'
+];
 $dados = ["sem furos", "sem manchas", "com manchas"];
 
 $tomadasdobanco = ["Tomada 20A", "Tomada 10A dupla"];
@@ -60,7 +116,6 @@ $tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
 @php
 $detalhes = json_decode($ambientes->detalhes);
 @endphp
-
 
 
 <div class="container h-100 mt-5">
@@ -119,14 +174,14 @@ $detalhes = json_decode($ambientes->detalhes);
                                     <label for="tipoInterruptor">Tipo de Interruptor</label>
                                     <select class="form-control" name="tipoInterruptor[]">
                                         <!-- Loop para criar as opções do dropdown -->
-
+                                        @if (isset($detalhes->tipoInterruptor))
                                         @foreach ($interruptores as $opcao)
                                         @foreach($detalhes->tipoInterruptor as $index => $tipo)
 
                                         <option value="{{ $opcao }}" {{ $opcao == $tipo ? 'selected' : '' }}>{{ $opcao }}</option>
                                         @endforeach
                                         @endforeach
-                                       
+                                        @endif
                                     </select>
                                 </div>
                                 <!-- Campo de entrada para a quantidade de interruptores -->
@@ -196,27 +251,33 @@ $detalhes = json_decode($ambientes->detalhes);
                         <legend>Cadastro de Piso</legend>
                         <div class="form-group">
                             <label for="piso">Tipo de Piso</label>
-                            <select class="form-control" id="piso" name="piso" value="{{$ambientes->piso}}">
-                                <option value="ceramica">Cerâmica</option>
-                                <option value="porcelanato">Porcelanato</option>
-                                <option value="madeira">Madeira</option>
+                            <select class="form-control" id="piso" name="piso">
+                                <option value=""></option>
+                                @foreach ($pisos as $piso )
+                                <option value="{{$piso}}" {{ $piso == $ambientes->piso ? 'selected' : '' }}>{{$piso}}</option>
+                                @endforeach
+
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_piso">Estado de Conservação do Piso</label>
-                            <select class="form-control" id="cons_piso" name="cons_piso" value="{{$ambientes->cons_piso}}">
+                            <select class="form-control" id="cons_piso" name="cons_piso">
                                 <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                                @foreach ($estado as $cons )
+                                <option value="{{$cons}}" {{ $cons == $ambientes->cons_piso ? 'selected' : $cons }}>{{$cons}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="descricao_piso">Descrição do Piso</label>
-                            <select class="form-control" id="descricao_piso" name="descricao_piso" multiple value="{{$ambientes->detalhes['descricao_piso'] ?? ''}}">
-                                @foreach ($dados as $dado )
-                                <option value="{{$dado}}">{{$dado}}</option>
+                            <select class="form-control" id="descricao_piso" name="descricao_piso[]" multiple>
+                                @foreach ($descricao_piso as $dado)
+                                <option value="{{ $dado }}"
+                                    {{ isset($detalhes->descricao_piso) && in_array($dado, $detalhes->descricao_piso ?? []) ? 'selected' : '' }}>
+                                    {{ $dado }}
+                                </option>
                                 @endforeach
                             </select>
 
@@ -224,7 +285,7 @@ $detalhes = json_decode($ambientes->detalhes);
 
                         <div class="form-group">
                             <label for="observacao_piso">Observação do Piso</label>
-                            <textarea class="form-control" id="observacao_piso" name="observacao_piso" rows="3" value="{{$ambientes->observacao_piso}}"></textarea>
+                            <textarea class="form-control" id="observacao_piso" name="observacao_piso" rows="3">{{$ambientes->observacao_piso}}</textarea>
                         </div>
                     </fieldset>
                 </div>
