@@ -99,110 +99,416 @@ $descricao_piso = [
 'Defeitos de Instalação'
 ];
 $rodapes = [
-    'MDF',
-    'PVC',
-    'Cerâmica',
-    'Porcelanato',
-    'Madeira',
-    'Poliestireno',
-    'Embutido',
-    'Alumínio',
-    'Pedra',
-    'Pintado',
-    'Inox',
-    'Granito',
-    'Mármore',
-    'Vinílico',
-    'Curvo'
+'MDF',
+'PVC',
+'Cerâmica',
+'Porcelanato',
+'Madeira',
+'Poliestireno',
+'Embutido',
+'Alumínio',
+'Pedra',
+'Pintado',
+'Inox',
+'Granito',
+'Mármore',
+'Vinílico',
+'Curvo'
 ];
 $estado_rodapes = [
-    'Novo',
-    'Bom',
-    'Regular',
-    'Desgastado',
-    'Rachado',
-    'Descolado',
-    'Quebrado',
-    'Manchado',
-    'Envelhecido',
-    'Solto',
-    'Danificado',
-    'Riscado',
-    'Desbotado'
+'Novo',
+'Bom',
+'Regular',
+'Desgastado',
+'Rachado',
+'Descolado',
+'Quebrado',
+'Manchado',
+'Envelhecido',
+'Solto',
+'Danificado',
+'Riscado',
+'Desbotado'
 ];
 $descricao_rodapes = [
-    'Com marcas de arranhões',
-    'Desgastado nas extremidades',
-    'Desbotado pela exposição ao sol',
-    'Com manchas de umidade',
-    'Rachado em alguns pontos',
-    'Solto em algumas partes',
-    'Com presença de mofo',
-    'Descolado da parede',
-    'Com lascas ou quebras',
-    'Aparência envelhecida',
-    'Reparado recentemente',
-    'Com pintura descascada',
-    'Marcas de impacto visíveis',
-    'Dificuldade de fixação',
-    'Com tonalidade irregular'
+'Com marcas de arranhões',
+'Desgastado nas extremidades',
+'Desbotado pela exposição ao sol',
+'Com manchas de umidade',
+'Rachado em alguns pontos',
+'Solto em algumas partes',
+'Com presença de mofo',
+'Descolado da parede',
+'Com lascas ou quebras',
+'Aparência envelhecida',
+'Reparado recentemente',
+'Com pintura descascada',
+'Marcas de impacto visíveis',
+'Dificuldade de fixação',
+'Com tonalidade irregular'
 ];
 $tipos_paredes = [
-    'Alvenaria',
-    'Gesso',
-    'Drywall',
-    'Madeira',
-    'Concreto',
-    'Marmorite',
-    'Cerâmica',
-    'Tijolo aparente',
-    'Pedra natural',
-    'PVC',
-    'Fibrocimento',
-    'Vidro',
-    'Metal',
-    'Cobogó',
-    'Papel de parede',
-    'Textura',
-    'Revestimento 3D',
-    'Azulejo',
-    'Ladrilho hidráulico',
-    'Painel de madeira'
+'Alvenaria',
+'Gesso',
+'Drywall',
+'Madeira',
+'Concreto',
+'Marmorite',
+'Cerâmica',
+'Tijolo aparente',
+'Pedra natural',
+'PVC',
+'Fibrocimento',
+'Vidro',
+'Metal',
+'Cobogó',
+'Papel de parede',
+'Textura',
+'Revestimento 3D',
+'Azulejo',
+'Ladrilho hidráulico',
+'Painel de madeira'
 ];
 $estado_conservacao_paredes = [
-    'Novo',
-    'Bom',
+'Novo',
+'Bom',
+'Regular',
+'Desgastado',
+'Trincado',
+'Manchado',
+'Descascando',
+'Com infiltração',
+'Com mofo',
+'Rachado',
+'Desbotado',
+'Requer reparo'
+];
+$estado_pintura = [
+'Nova',
+'Boa',
+'Regular',
+'Desgastada',
+'Com manchas',
+'Descascando',
+'Com bolhas',
+'Desbotada',
+'Com infiltração',
+'Com mofo',
+'Rachada',
+'Requer repintura'
+];
+$descricao_parede = [
+'Rachaduras',
+'Infiltração',
+'Manchas de umidade',
+'Desgaste na pintura',
+'Furos de pregos ou parafusos',
+'Desbotamento',
+'Revestimento danificado',
+'Pintura nova',
+'Mofo',
+'Desnível',
+'Sujidade',
+'Marcas de batidas',
+'Trincas',
+'Reboco solto',
+'Descoloração',
+'Textura áspera',
+'Acabamento fino',
+'Reparo recente',
+'Isolamento acústico',
+'Isolamento térmico'
+];
+$tipos_tetos = [
+'Gesso liso',
+'Forro de PVC',
+'Laje de concreto',
+'Madeira',
+'Gesso rebaixado',
+'Forro acústico',
+'Forro mineral',
+'Teto de estuque',
+'Forro de drywall',
+'Fibrocimento',
+'Forro modular',
+'Forro metálico',
+'Teto pintado',
+'Teto texturizado',
+'Teto com sancas',
+'Teto com iluminação embutida',
+'Teto com moldura',
+'Teto em bambu',
+'Teto de palha',
+'Laje aparente'
+];
+$estado_conservacao_teto = [
+'Novo',
+'Bom',
+'Regular',
+'Desgastado',
+'Com manchas',
+'Rachado',
+'Com infiltrações',
+'Com trincas',
+'Desbotado',
+'Sujo',
+'Com mofo',
+'Com fissuras',
+'Com necessidade de pintura',
+'Com bolhas',
+'Com descolamento',
+'Descascado',
+'Com avarias',
+'Com umidade',
+'Com ferrugem',
+'Danificado'
+];
+$cores = [
+'Branco',
+'Bege',
+'Cinza claro',
+'Cinza médio',
+'Amarelo claro',
+'Verde claro',
+'Azul claro',
+'Pêssego',
+'Marfim',
+'Off-white',
+'Creme',
+'Areia',
+'Terracota',
+'Azul escuro',
+'Verde escuro',
+'Vinho',
+'Grafite',
+'Marrom claro',
+'Salmão',
+'Lavanda',
+'Rosa claro',
+'Preto',
+'Verde militar',
+'Tijolo',
+'Laranja suave'
+];
+$descricao_teto = [
+'Manchas de umidade',
+'Rachaduras visíveis',
+'Fissuras leves',
+'Pintura descascando',
+'Teto com bolhas de pintura',
+'Desnível perceptível',
+'Sinais de infiltração',
+'Marcas de mofo',
+'Desgaste natural',
+'Trincas estruturais',
+'Pintura recente',
+'Sem avarias visíveis',
+'Gesso danificado',
+'Reboco solto',
+'Acabamento malfeito',
+'Sujeira acumulada',
+'Teto rebaixado intacto',
+'Riscos leves',
+'Falta de isolamento térmico',
+'Presença de teias de aranha',
+];
+$portas = [
+'Porta de madeira',
+'Porta de vidro',
+'Porta de alumínio',
+'Porta de ferro',
+'Porta de PVC',
+'Porta de correr',
+'Porta pivotante',
+'Porta sanfonada',
+'Porta de abrir',
+'Porta de aço',
+'Porta laminada',
+'Porta acústica',
+'Porta com veneziana',
+'Porta frisada',
+'Porta com visor',
+'Porta maciça',
+'Porta semi-sólida',
+'Porta laqueada',
+'Porta de duas folhas',
+'Porta de correr embutida',
+];
+$conservacao_porta = [
+'Nova - sem uso, em perfeitas condições',
+'Excelente - sem desgastes ou danos visíveis',
+'Boa - leve desgaste natural, sem danos estruturais',
+'Regular - sinais de desgaste moderado, mas funcional',
+'Desgastada - desgaste evidente, mas ainda utilizável',
+'Danificada - com danos superficiais, como arranhões ou lascas',
+'Precisa de pequenos reparos - desgastes leves ou ferragens soltas',
+'Precisa de reparo - danos significativos que afetam a funcionalidade',
+'Precisa de substituição - danos severos e comprometimento estrutural',
+'Riscos visíveis - arranhões ou marcas superficiais',
+'Amassada - danos causados por impactos',
+'Com ferrugem - sinais de corrosão, especialmente em áreas metálicas',
+'Com pintura descascando - desgastes de acabamento, necessitando repintura',
+'Desalinhada - dificuldade de fechamento adequado',
+'Fechadura danificada - trava ou fechadura com problemas de funcionamento',
+'Infiltração ou umidade - áreas com sinais de mofo ou umidade',
+];
+$cores_portas_janelas = [
+'Branco',
+'Preto',
+'Madeira (natural)',
+'Madeira escura (mogno, marfim, etc.)',
+'Cinza',
+'Bege',
+'Azul',
+'Vermelho',
+'Verde',
+'Amarelo',
+'Marrom',
+'Off-white (branco sujo)',
+'Branco gelo',
+'Avelã',
+'Nogueira',
+'Carvalho',
+'Imbuia',
+'Pinho',
+'Branco fosco',
+'Preto fosco',
+'Bronze',
+'Cobre',
+];
+$descricao_porta = [
+'Porta de madeira, com alguns arranhões superficiais',
+'Porta de madeira com vidro, vidro quebrado em um dos painéis',
+'Porta de vidro temperado, sem danos aparentes, mas com sujeira acumulada',
+'Porta de alumínio, com leves amassados e necessidade de pintura',
+'Porta de aço, com ferrugem visível nas extremidades',
+'Porta de PVC, sem danos, mas com manchas de umidade',
+'Porta de correr, funcionando corretamente, mas com trilho sujo',
+'Porta pivotante, com acabamento desgastado e tinta descascada',
+'Porta camarão, funcionando com dificuldades, com danos nas dobradiças',
+'Porta de correr de vidro, com adesivos de proteção ainda aplicados',
+'Porta de segurança, com tranca de alta qualidade, sem danos visíveis',
+'Porta de madeira envelhecida, com desgastes naturais e riscos de uso',
+'Porta de metal com design moderno, sem nenhum defeito',
+'Porta blindada, sem danos estruturais, com sinais de uso',
+'Porta de correr com trilho superior, funcionando, mas com trilho arranhado',
+'Porta de ferro, com ferrugem em algumas partes, precisa de reparo',
+'Porta de vidro laminado, sem rachaduras, mas com acúmulo de poeira',
+'Porta acústica, bem conservada, sem falhas na vedação',
+'Porta com pintura esmalte, com desgaste de tinta em áreas específicas',
+'Porta com acabamento fosco, sem arranhões ou marcas de uso'
+];
+$tipos_janelas = [
+'Correr',
+'Abrir (bate-bate)',
+'Guilhotina',
+'Veneziana',
+'Basculante',
+'Fixa',
+'Pivotante',
+'Alumínio',
+'Vidro temperado',
+'PVC',
+'Madeira',
+'Aço',
+'Panorâmica',
+'Vidro refratário',
+'Vidro laminado',
+'Persiana embutida',
+'Vidro jateado'
+];
+$conservacao_janela = [
+    'Excelente',
+    'Boa',
     'Regular',
-    'Desgastado',
-    'Trincado',
-    'Manchado',
-    'Descascando',
-    'Com infiltração',
-    'Com mofo',
-    'Rachado',
-    'Desbotado',
-    'Requer reparo'
+    'Ruim',
+    'Precisa de reparos',
+    'Péssima',
+    'Nova',
+    'Reformada',
+    'Desgastada'
+];
+$descricao_janela = [
+    'Vidro trincado',
+    'Vidro quebrado',
+    'Vidro transparente',
+    'Vidro fosco',
+    'Vidro temperado',
+    'Vidro com película',
+    'Com veneziana',
+    'Com cortina',
+    'Com tela de proteção',
+    'Com persiana',
+    'Com pintura descascada',
+    'Com pintura nova',
+    'Com ferrugem',
+    'Com vedação em bom estado',
+    'Com vedação deteriorada',
+    'Com abertura de correr',
+    'Com abertura de batente',
+    'Com acabamento de madeira',
+    'Com acabamento de alumínio',
+    'Com acabamento de PVC',
+    'Com marca de uso',
+    'Com acabamentos danificados'
+];
+$tomadas = [
+    'Tomada 2 pinos',
+    'Tomada 3 pinos',
+    'Tomada Tipo N (10A)',
+    'Tomada Tipo N (20A)',
+    'Tomada Tipo C (2 pinos redondos)',
+    'Tomada Tipo A (2 pinos planos)',
+    'Tomada Tipo B (2 pinos planos + aterramento)',
+    'Tomada tipo Schuko',
+    'Tomada USB',
+    'Tomada tripolar',
+    'Tomada de força',
+    'Tomada de uso geral',
+    'Tomada para ar-condicionado',
+    'Tomada para equipamentos industriais',
+    'Tomada dupla (2 tomadas em uma caixa)',
+    'Tomada tripla (3 tomadas em uma caixa)',
+    'Tomada com interruptor (para ligar/desligar a luz)',
+    'Tomada para interruptor (com a função de ligar/desligar equipamentos)',
+    'Tomada embutida',
+    'Tomada externa (para áreas externas, resistente à água)',
+    'Tomada de superfície (montada na parede sem embutir)',
+    'Tomada de rede (para internet, Ethernet)',
+    'Tomada de TV (para antena)',
+    'Tomada para áudio (para aparelhos de som)'
+];
+$interruptores = [
+    'Interruptor simples (1 via)',
+    'Interruptor duplo (2 vias)',
+    'Interruptor triplo (3 vias)',
+    'Interruptor paralelo',
+    'Interruptor de cruzamento',
+    'Interruptor de pressão',
+    'Interruptor de luz (com botão luminoso)',
+    'Interruptor com dimmer (para ajustar intensidade de luz)',
+    'Interruptor de toque (sensível ao toque)',
+    'Interruptor de efeito (com LED)',
+    'Interruptor de espelho',
+    'Interruptor de comando remoto',
+    'Interruptor com temporizador (para desligamento automático)',
+    'Interruptor inteligente (controlado por app ou Wi-Fi)',
+    'Interruptor com tomada (combinado, tipo de interruptor e tomada na mesma caixa)',
+    'Interruptor com tomada dupla (combinado com 2 tomadas)',
+    'Interruptor com tomada tripla (combinado com 3 tomadas)',
+    'Interruptor com tomada USB (comporta dispositivos USB)',
+    'Interruptor de comando de ventilador (para controlar a velocidade)',
+    'Interruptor para cortinas (automático ou manual)',
+    'Interruptor de campainha',
+    'Interruptor de alarme',
+    'Interruptor de passagem (utilizado para controle em diferentes pontos)',
+    'Interruptor de segurança (com travamento, usado em locais de risco)',
+    'Interruptor de emergência (com luz de sinalização)',
+    'Interruptor com controle remoto',
+    'Interruptor de proteção (tipo fusível, para segurança adicional)'
 ];
 
 
-
-
-$dados = ["sem furos", "sem manchas", "com manchas"];
-
-$tomadasdobanco = ["Tomada 20A", "Tomada 10A dupla"];
-
-$qtdtomadasdobanco = ["5", "2"];
-
-$interruptoresdobanco = ["Interruptor Paralelo", "Interruptor Intermediario"];
-
-$qtdinterruptoresdobanco = ["3", "4"];
-
-
-$interruptores = ["Simples", "Duplo", "Triplo", "Interruptor Paralelo", "Interruptor Intermediário"];
-$tomadas = ["Simples", "Duplo", "Triplo", "Tomada 20A", "Tomada 10A dupla"];
-@endphp
-
-@php
 $detalhes = json_decode($ambientes->detalhes);
 @endphp
 
@@ -254,9 +560,9 @@ $detalhes = json_decode($ambientes->detalhes);
                         <div id="interruptores-section">
                             <h4>Interruptores</h4>
                             <!-- Loop para exibir os interruptores já cadastrados vindos do banco -->
-                            @if (isset($interruptoresdobanco))
+                            @if (isset($detalhes->tipoInterruptor))
 
-                            @foreach($interruptoresdobanco as $index => $interruptor)
+                            @foreach($detalhes->tipoInterruptor as $index => $interruptor)
                             <div class="form-group row">
                                 <!-- Campo de seleção do tipo de interruptor -->
                                 <div class="col-md-5">
@@ -276,7 +582,7 @@ $detalhes = json_decode($ambientes->detalhes);
                                 <!-- Campo de entrada para a quantidade de interruptores -->
                                 <div class="col-md-5">
                                     <label for="quantidadeInterruptores">Quantidade de Interruptores</label>
-                                    <input type="number" class="form-control" name="quantidadeInterruptores[]" value="{{ $qtdinterruptoresdobanco[$index] }}" placeholder="Digite a quantidade de interruptores">
+                                    <input type="number" class="form-control" name="quantidadeInterruptores[]" value="{{ $detalhes->quantidadeInterruptores[$index] }}" placeholder="Digite a quantidade de interruptores">
                                 </div>
                                 <!-- Botão para remover o interruptor -->
                                 <div class="col-md-2 d-flex align-items-center">
@@ -296,14 +602,14 @@ $detalhes = json_decode($ambientes->detalhes);
                             <h4>Tomadas</h4>
                             <!-- Loop para exibir as tomadas já cadastradas vindas do banco -->
 
-                            @if (isset($tomadasdobanco))
+                            @if (isset($detalhes->tipoTomada))
 
-                            @foreach($tomadasdobanco as $index => $tomada)
+                            @foreach($detalhes->tipoTomada as $index => $tomada)
                             <div class="form-group row">
                                 <!-- Campo de seleção do tipo de tomada -->
                                 <div class="col-md-5">
                                     <label for="tipoTomada">Tipo de Tomada</label>
-                                    <select class="form-control" name="tipoTomada[]" value="{{$ambientes->detalhes['tipoTomada'] ?? ''}}">
+                                    <select class="form-control" name="tipoTomada[]">
                                         <!-- Loop para criar as opções do dropdown -->
                                         @foreach ($tomadas as $opcao)
                                         <!-- Verifica se a opção deve ser selecionada com base no dado do banco -->
@@ -314,7 +620,7 @@ $detalhes = json_decode($ambientes->detalhes);
                                 <!-- Campo de entrada para a quantidade de tomadas -->
                                 <div class="col-md-5">
                                     <label for="quantidadeTomadas">Quantidade de Tomadas</label>
-                                    <input type="number" class="form-control" name="quantidadeTomadas[]" value="{{ $qtdtomadasdobanco[$index] }}" placeholder="Digite a quantidade de tomadas">
+                                    <input type="number" class="form-control" name="quantidadeTomadas[]" value="{{ $detalhes->quantidadeTomadas[$index] }}" placeholder="Digite a quantidade de tomadas">
                                 </div>
                                 <!-- Botão para remover a tomada -->
                                 <div class="col-md-2 d-flex align-items-center">
@@ -386,8 +692,8 @@ $detalhes = json_decode($ambientes->detalhes);
                         <legend>Cadastro de Roda-pé</legend>
                         <div class="form-group">
                             <label for="rodape">Tipo de Rodapé</label>
-                            <select class="form-control" id="rodape" name="rodape" >
-                            <option value=""></option>
+                            <select class="form-control" id="rodape" name="rodape">
+                                <option value=""></option>
                                 @foreach ($rodapes as $rodape )
                                 <option value="{{$rodape}}" {{ $rodape == $ambientes->rodape ? 'selected' : '' }}>{{$rodape}}</option>
                                 @endforeach
@@ -407,7 +713,7 @@ $detalhes = json_decode($ambientes->detalhes);
                         <div class="form-group">
                             <label for="descricao_rodape">Descrição do Rodapé</label>
                             <select class="form-control" id="descricao_rodape" name="descricao_rodape[]" multiple>
-                            @foreach ($descricao_rodapes as $descricao_rodape)
+                                @foreach ($descricao_rodapes as $descricao_rodape)
                                 <option value="{{ $descricao_rodape }}"
                                     {{ isset($detalhes->descricao_rodape) && in_array($descricao_rodape, $detalhes->descricao_rodape ?? []) ? 'selected' : '' }}>
                                     {{ $descricao_rodape }}
@@ -431,9 +737,9 @@ $detalhes = json_decode($ambientes->detalhes);
                             <label for="parede">Tipo de Parede</label>
                             <select class="form-control" id="parede" name="parede" value="{{$ambientes->parede}}">
                                 <option value=""></option>
-                               @foreach ($tipos_paredes as $tipos_parede)
+                                @foreach ($tipos_paredes as $tipos_parede)
                                 <option value="{{$tipos_parede}}" {{$tipos_parede == $ambientes->parede ? 'selected' : ''}}>{{$tipos_parede}}</option>
-                               @endforeach
+                                @endforeach
                             </select>
                         </div>
 
@@ -451,34 +757,43 @@ $detalhes = json_decode($ambientes->detalhes);
 
                         <div class="form-group">
                             <label for="cor_parede">Pintura</label>
-                            <select class="form-control" id="cor_parede" name="cor_parede" value="{{$ambientes->cor_parede}}">
-                                <option value="branco">Branco</option>
-                                <option value="preto">Preto</option>
-                                <option value="roxo">Roxo</option>
+                            <select class="form-control" id="cor_parede" name="cor_parede">
+                                <option value=""></option>
+                                @foreach ( $cores as $cor)
+                                <option value="{{$cor}}" {{$cor == $ambientes->cor_parede ? 'selected' : ''}}>{{$cor}}</option>
+                                @endforeach
                             </select>
-                            
                         </div>
 
                         <div class="form-group">
                             <label for="cons_pintura_parede">Conservação da Pintura</label>
-                            <select class="form-control" id="cons_pintura_parede" name="cons_pintura_parede" value="{{$ambientes->cons_pintura_parede}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                            <select class="form-control" id="cons_pintura_parede" name="cons_pintura_parede">
+                                <option value=""></option>
+                                @foreach ($estado_pintura as $estado_pint)
+                                <option value="{{$estado_pint}}" {{$estado_pint == $ambientes->cons_pintura_parede ? 'selected' : ''}}>{{$estado_pint}}</option>
+
+                                @endforeach
+
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="descricao_parede">Descrição da Parede</label>
                             <select class="form-control" id="descricao_parede" name="descricao_parede[]" multiple value="{{$ambientes->detalhes['descricao_parede'] ?? ''}}">
-                                <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
-                                <option value="com furos, pequenas manchas">Com furos, pequenas manchas</option>
+                                <option value=""></option>
+                                @foreach ($descricao_parede as $descricao_pared)
+                                <option value="{{$descricao_pared}}"
+                                    {{ isset($detalhes->descricao_parede) && in_array($descricao_pared, $detalhes->descricao_parede ?? []) ? 'selected' : '' }}>
+                                    {{ $descricao_pared}}
+                                </option>
+
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="observacao_parede">Observação da Parede</label>
-                            <textarea class="form-control" id="observacao_parede" name="observacao_parede" rows="3" value="{{$ambientes->observacao_parede}}"></textarea>
+                            <textarea class="form-control" id="observacao_parede" name="observacao_parede" rows="3">{{$ambientes->observacao_parede}}</textarea>
                         </div>
                     </fieldset>
                 </div>
@@ -492,52 +807,64 @@ $detalhes = json_decode($ambientes->detalhes);
                         <div class="form-group">
                             <label for="teto">Tipo de Teto</label>
                             <select class="form-control" id="teto" name="teto" value="{{$ambientes->teto}}">
-                                <option value="ceramica">Laje</option>
-                                <option value="ceramica">Forro</option>
-                                <option value="porcelanato">Gesso</option>
-                                <option value="madeira">Madeira</option>
-                                <!-- Adicione outras opções conforme necessário -->
+                                <option value=""></option>
+                                @foreach ($tipos_tetos as $tipos_teto)
+
+                                <option value="{{$tipos_teto}}" {{$tipos_teto == $ambientes->teto ? 'selected' : ''}}>{{$tipos_teto}}</option>
+                                @endforeach
+
+
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_teto">Estado de Conservação do Teto</label>
-                            <select class="form-control" id="cons_teto" name="cons_teto" value="{{$ambientes->cons_teto}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                            <select class="form-control" id="cons_teto" name="cons_teto">
+
+                                <option value=""></option>
+                                @foreach ( $estado_conservacao_teto as $conservacao_teto)
+                                <option value="{{$conservacao_teto}}" {{$conservacao_teto == $ambientes->cons_teto ? 'selected' : ''}}>{{$conservacao_teto}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="cor_teto">Pintura</label>
-                            <select class="form-control" id="cor_teto" name="cor_teto" value="{{$ambientes->cor_teto}}">
-                                <option value="branco">Branco</option>
-                                <option value="preto">Preto</option>
-                                <option value="roxo">Roxo</option>
+                            <select class="form-control" id="cor_teto" name="cor_teto">
+                                <option value=""></option>
+                                @foreach ( $cores as $cor)
+                                <option value="{{$cor}}" {{$cor == $ambientes->cor_teto ? 'selected' : ''}}>{{$cor}}</option>
+                                @endforeach
+                            </select>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_pintura_teto">Conservação Pintura</label>
-                            <select class="form-control" id="cons_pintura_teto" name="cons_pintura_teto" value="{{$ambientes->cons_pintura_teto}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                            <select class="form-control" id="cons_pintura_teto" name="cons_pintura_teto">
+                                <option value=""></option>
+                                @foreach ($estado_pintura as $estado_pint)
+                                <option value="{{$estado_pint}}" {{$estado_pint == $ambientes->cons_pintura_teto ? 'selected' : ''}}>{{$estado_pint}}</option>
+
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="descricao_teto">Descrição do Teto</label>
-                            <select class="form-control" id="descricao_teto" name="descricao_teto[]" multiple value="{{$ambientes->detalhes['descricao_teto'] ?? ''}}">
-                                <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
-                                <option value="com furos, pequenas manchas">Com furos, pequenas manchas</option>
+                            <select class="form-control" id="descricao_teto" name="descricao_teto[]" multiple>
+                                <option value=""></option>
+                                @foreach ($descricao_teto as $descricao_teto)
+                                <option value="{{$descricao_teto}}"
+                                    {{ isset($detalhes->descricao_teto) && in_array($descricao_teto, $detalhes->descricao_teto ?? []) ? 'selected' : '' }}>{{$descricao_teto}}</option>
+
+                                @endforeach
                                 <!-- Adicione outras opções conforme necessário -->
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="observacao_teto">Observação do Teto</label>
-                            <textarea class="form-control" id="observacao_teto" name="observacao_teto" rows="3" value="{{$ambientes->observacao_teto}}"></textarea>
+                            <textarea class="form-control" id="observacao_teto" name="observacao_teto" rows="3">{{$ambientes->observacao_teto}}</textarea>
                         </div>
                     </fieldset>
                 </div>
@@ -551,51 +878,62 @@ $detalhes = json_decode($ambientes->detalhes);
                         <div class="form-group">
                             <label for="porta">Tipo de Porta</label>
                             <select class="form-control" id="porta" name="porta" value="{{$ambientes->porta}}">
-                                <option value="Vidro de correr">Vidro de correr</option>
-                                <option value="Madeira de corre">Madeira de corre</option>
+                                <option value=""></option>
+                                @foreach ($portas as $porta)
+                                <option value="{{$porta}}" {{$porta == $ambientes->porta ? 'selected' : ''}}>{{$porta}}</option>
+                                @endforeach
                                 <!-- Adicione outras opções conforme necessário -->
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_porta">Estado de Conservação da Porta</label>
-                            <select class="form-control" id="cons_porta" name="cons_porta" value="{{$ambientes->cons_porta}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                            <select class="form-control" id="cons_porta" name="cons_porta">
+                                <option value=""></option>
+                                @foreach ($conservacao_porta as $conservacao)
+                                <option value="{{$conservacao}}" {{$conservacao == $ambientes->cons_porta ? 'selected' : ''}}>
+                                    {{$conservacao}}
+                                </option>
+                                @endforeach
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="cor_porta">Pintura</label>
                             <select class="form-control" id="cor_porta" name="cor_porta" value="{{$ambientes->cor_porta}}">
-                                <option value="branco">Branco</option>
-                                <option value="preto">Preto</option>
-                                <option value="roxo">Roxo</option>
+                                <option value=""></option>
+                                @foreach ($cores_portas_janelas as $cores_portas_janela)
+                                <option value="{{$cores_portas_janela}}" {{$cores_portas_janela == $ambientes->cor_porta ? 'selected' : ''}}>{{$cores_portas_janela}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_pintura_porta">Conservação Pintura</label>
                             <select class="form-control" id="cons_pintura_porta" name="cons_pintura_porta" value="{{$ambientes->cons_pintura_porta}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                                <option value=""></option>
+                                @foreach ($estado_pintura as $estado_pint)
+                                <option value="{{$estado_pint}}" {{$estado_pint == $ambientes->cons_pintura_porta ? 'selected' : ''}}>{{$estado_pint}}</option>
+                                @endforeach
+
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="descricao_porta">Descrição do Porta</label>
-                            <select class="form-control" id="descricao_porta" name="descricao_porta[]" multiple value="{{$ambientes->detalhes['descricao_porta'] ?? ''}}">
-                                <option value="com furos, pequenas manchas">Abre e fecha bem</option>
-                                <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
-                                <option value="com furos, pequenas manchas">pequenas manchas</option>
+                            <select class="form-control" id="descricao_porta" name="descricao_porta[]" multiple>
+                                @foreach ( $descricao_porta as $descricao_port)
+                                <option value="{{$descricao_port}}"
+                                    {{ isset($detalhes->descricao_porta) && in_array($descricao_port, $detalhes->descricao_porta ?? []) ? 'selected' : '' }}>{{$descricao_port}}</option>
+
+                                @endforeach
                                 <!-- Adicione outras opções conforme necessário -->
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="observacao_porta">Observação do Porta</label>
-                            <textarea class="form-control" id="observacao_porta" name="observacao_porta" rows="3" value="{{$ambientes->observacao_porta}}"></textarea>
+                            <textarea class="form-control" id="observacao_porta" name="observacao_porta" rows="3">{{$ambientes->observacao_porta}}</textarea>
                         </div>
                     </fieldset>
                 </div>
@@ -610,52 +948,65 @@ $detalhes = json_decode($ambientes->detalhes);
 
                         <div class="form-group">
                             <label for="janela">Tipo de Janela</label>
-                            <select class="form-control" id="janela" name="janela" value="{{$ambientes->janela}}">
-                                <option value="ceramica">Vidro de correr</option>
-                                <option value="ceramica">Madeira de corre</option>
-                                <!-- Adicione outras opções conforme necessário -->
+                            <select class="form-control" id="janela" name="janela">
+                                <option value=""></option>
+                                @foreach ($tipos_janelas as $tipos_janela)
+                                <option value="{{$tipos_janela}}" {{$tipos_janela == $ambientes->janela ? 'selected' : ''}}>
+                                    {{$tipos_janela}}
+                                </option>
+
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_janela">Estado de Conservação da Janela</label>
-                            <select class="form-control" id="cons_janela" name="cons_janela" value="{{$ambientes->cons_janela}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                            <select class="form-control" id="cons_janela" name="cons_janela" >
+                                <option value=""></option>
+                                @foreach ($conservacao_janela as $conservacao)
+                                <option value="{{$conservacao}}" {{$conservacao == $ambientes->cons_janela ? 'selected' : ''}}>
+                                    {{$conservacao}}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="cor_janela">Pintura</label>
-                            <select class="form-control" id="cor_janela" name="cor_janela" value="{{$ambientes->cor_janela}}">
-                                <option value="branco">Branco</option>
-                                <option value="preto">Preto</option>
-                                <option value="roxo">Roxo</option>
+                            <select class="form-control" id="cor_janela" name="cor_janela">
+                            <option value=""></option>
+                                @foreach ($cores_portas_janelas as $cores_portas_janela)
+                                <option value="{{$cores_portas_janela}}" {{$cores_portas_janela == $ambientes->cor_janela ? 'selected' : ''}}>{{$cores_portas_janela}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_pintura_janela">Conservação Pintura</label>
-                            <select class="form-control" id="cons_pintura_janela" name="cons_pintura_janela" value="{{$ambientes->cons_pintura_janela}}">
-                                <option value="bom">Bom</option>
-                                <option value="regular">Regular</option>
-                                <option value="ruim">Ruim</option>
+                            <select class="form-control" id="cons_pintura_janela" name="cons_pintura_janela" >
+                            <option value=""></option>
+                                @foreach ($estado_pintura as $estado_pint)
+                                <option value="{{$estado_pint}}" {{$estado_pint == $ambientes->cons_pintura_janela ? 'selected' : ''}}>{{$estado_pint}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="descricao_janela">Descrição do Janela</label>
-                            <select class="form-control" id="descricao_janela" name="descricao_janela[]" multiple value="{{$ambientes->detalhes['descricao_janela'] ?? ''}}">
-                                <option value="com furos, pequenas manchas">Abre e fecha bem</option>
-                                <option value="sem furos, sem manchas">Sem furos, sem manchas</option>
-                                <option value="com furos, pequenas manchas">pequenas manchas</option>
+                            <select class="form-control" id="descricao_janela" name="descricao_janela[]" multiple >
+                            @foreach ( $descricao_janela as $descricao)
+                                <option value="{{$descricao}}"
+                                    {{ isset($detalhes->descricao_porta) && in_array($descricao, $detalhes->descricao_janela ?? []) ? 'selected' : '' }}>
+                                    {{$descricao}}
+                                </option>
+
+                                @endforeach
                                 <!-- Adicione outras opções conforme necessário -->
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="observacao_janela">Observação do Janelas</label>
-                            <textarea class="form-control" id="observacao_janela" name="observacao_janela" rows="3" value="{{$ambientes->obesrvacao_janela}}"></textarea>
+                            <textarea class="form-control" id="observacao_janela" name="observacao_janela" rows="3">{{$ambientes->observacao_janela}}</textarea>
                         </div>
                     </fieldset>
                 </div>
@@ -666,7 +1017,7 @@ $detalhes = json_decode($ambientes->detalhes);
             <div class="mb-3" id="formFim">
                 <div class="form-group">
                     <label for="observacoes">Observações</label>
-                    <textarea class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Digite observações adicionais" value="{{$ambientes->observacao}}"></textarea>
+                    <textarea class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Digite observações adicionais">{{$ambientes->observacao}}</textarea>
                 </div>
 
                 <!-- Botão de envio do formulário -->
