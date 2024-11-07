@@ -19,7 +19,8 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Locador</label>
-                                            <select name="id_locador" class="form-control">
+                                            <select id="id_locador" name="id_locador" class="form-control" required onchange="validate()">
+                                                <option value="">Selecione o Locador</option>
                                                 @foreach($locadores as $locador)
                                                 <option value="{{ $locador->id }}">{{ $locador->name }}</option>
                                                 @endforeach
@@ -30,7 +31,8 @@
                                     <div class="d-flex flex-row align-items-center mb-2">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Locatário</label>
-                                            <select name="id_locatario" class="form-control">
+                                            <select id="id_locatario" name="id_locatario" class="form-control" required onchange="validate()">
+                                                <option value="">Selecione o Locatário</option>
                                                 @foreach($locatarios as $locatario)
                                                 <option value="{{ $locatario->id }}">{{ $locatario->name }}</option>
                                                 @endforeach
@@ -41,7 +43,8 @@
                                     <div class="d-flex flex-row align-items-center mb-2">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Vistoriador</label>
-                                            <select name="id_vistoriador" class="form-control">
+                                            <select name="id_vistoriador" class="form-control" required>
+                                            <option value="">Selecione o Vistoriador</option>
                                                 @foreach($vistoriadores as $vistoriador)
                                                 <option value="{{ $vistoriador->id }}">{{ $vistoriador->name }}</option>
                                                 @endforeach
@@ -51,8 +54,8 @@
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="name">Nome</label>
-                                            <input type="text" id="nome" name="nome" class="form-control" required />
+                                            <label class="form-label" for="name" >Nome</label>
+                                            <input type="text" id="nome" name="nome" class="form-control" required placeholder="Ex: Apto, Casa, Sobrado..."/>
                                         </div>
                                     </div>
 
@@ -112,30 +115,46 @@
     </div>
 </section>
 <script>
-    document.getElementById("cep").addEventListener("input", function (e) {
-    let cep = e.target.value.replace(/\D/g, "");
-    cep = cep.replace(/^(\d{2})(\d)/, "$1.$2");
-    cep = cep.replace(/(\d{3})(\d{1,3})$/, "$1-$2");
-    e.target.value = cep;
-});
+    document.getElementById("cep").addEventListener("input", function(e) {
+        let cep = e.target.value.replace(/\D/g, "");
+        cep = cep.replace(/^(\d{2})(\d)/, "$1.$2");
+        cep = cep.replace(/(\d{3})(\d{1,3})$/, "$1-$2");
+        e.target.value = cep;
+    });
 
-//Busca os cep na API viacep e preenche o formulario
-document.getElementById("cep").addEventListener("blur", function () {
-    var cep = this.value.replace(/\D/g, "");
-    if (cep.length == 8) {
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then((response) => response.json())
-            .then((data) => {
-                if (!data.erro) {
-                    document.getElementById("logradouro").value =
-                        data.logradouro;
-                    document.getElementById("bairro").value = data.bairro;
-                    document.getElementById("cidade").value = data.localidade;
-                } else {
-                    alert("CEP não encontrado.");
-                }
+    //Busca os cep na API viacep e preenche o formulario
+    document.getElementById("cep").addEventListener("blur", function() {
+        var cep = this.value.replace(/\D/g, "");
+        if (cep.length == 8) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (!data.erro) {
+                        document.getElementById("logradouro").value =
+                            data.logradouro;
+                        document.getElementById("bairro").value = data.bairro;
+                        document.getElementById("cidade").value = data.localidade+"-"+data.uf;
+                    } else {
+                        alert("CEP não encontrado.");
+                    }
+                });
+        }
+    });
+
+    function validate() {
+        const locadorSelect = document.getElementById('id_locador');
+        const locatarioSelect = document.getElementById('id_locatario');
+        if (locadorSelect.value && locadorSelect.value === locatarioSelect.value) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "O Locador e Locatario não podem ser a mesma pessoa!",
             });
+            locadorSelect.selectedIndex = 0;
+            locatarioSelect.selectedIndex = 0;
+        } else {
+            errorMessage.style.display = 'none';
+        }
     }
-});
 </script>
 @endsection

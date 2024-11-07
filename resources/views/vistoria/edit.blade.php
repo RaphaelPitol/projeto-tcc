@@ -20,7 +20,8 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Locador</label>
-                                            <select name="id_locador" class="form-control">
+                                            <select id="id_locador" name="id_locador" class="form-control" required onchange="validateSelection()">
+                                                <option value="">Selecione o Locador</option>
                                                 @foreach($locadores as $locador)
                                                 <option value="{{ $locador->id }}" {{$locador->id == $vistoria->id_locador ? 'selected' : '' }}>{{ $locador->name }}</option>
                                                 @endforeach
@@ -31,7 +32,8 @@
                                     <div class="d-flex flex-row align-items-center mb-2">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Locatário</label>
-                                            <select name="id_locatario" class="form-control">
+                                            <select id="id_locatario" name="id_locatario" class="form-control" required onchange="validateSelection()">
+                                                <option value="">Selecione o Locatário</option>
                                                 @foreach($locatarios as $locatario)
                                                 <option value="{{ $locatario->id }}" {{$locatario->id == $vistoria->id_locatario ? 'selected' : '' }}>
                                                     {{ $locatario->name }}
@@ -44,7 +46,8 @@
                                     <div class="d-flex flex-row align-items-center mb-2">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Vistoriador</label>
-                                            <select name="id_vistoriador" class="form-control">
+                                            <select name="id_vistoriador" class="form-control" required>
+                                                <option value="">Selecione o Vistoriador</option>
                                                 @foreach($vistoriadores as $vistoriador)
                                                 <option value="{{ $vistoriador->id }}" {{$vistoriador->id == $vistoria->id_vistoriador ? 'selected' : '' }}>
                                                     {{ $vistoriador->name }}
@@ -64,7 +67,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="cep">CEP</label>
-                                            <input type="text" id="cep" name="cep" class="form-control" value="{{$vistoria->cep}}" required placeholder="xx.xxx-xxx"/>
+                                            <input type="text" id="cep" name="cep" class="form-control" value="{{$vistoria->cep}}" required placeholder="xx.xxx-xxx" />
                                         </div>
                                     </div>
 
@@ -104,7 +107,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Cadastrar</button>
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Editar</button>
                                     </div>
 
                                 </form>
@@ -112,5 +115,52 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                @endsection
+<script>
+    document.getElementById("cep").addEventListener("input", function(e) {
+        let cep = e.target.value.replace(/\D/g, "");
+        cep = cep.replace(/^(\d{2})(\d)/, "$1.$2");
+        cep = cep.replace(/(\d{3})(\d{1,3})$/, "$1-$2");
+        e.target.value = cep;
+    });
+
+    //Busca os cep na API viacep e preenche o formulario
+    document.getElementById("cep").addEventListener("blur", function() {
+        var cep = this.value.replace(/\D/g, "");
+        if (cep.length == 8) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (!data.erro) {
+                        document.getElementById("logradouro").value =
+                            data.logradouro;
+                        document.getElementById("bairro").value = data.bairro;
+                        document.getElementById("cidade").value = data.localidade + "-" + data.uf;
+                    } else {
+                        alert("CEP não encontrado.");
+                    }
+                });
+        }
+    });
+
+    function validateSelection() {
+        const locadorSelect = document.getElementById('id_locador');
+        const locatarioSelect = document.getElementById('id_locatario');
+        if (locadorSelect.value && locadorSelect.value === locatarioSelect.value) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "O Locador e Locatario não podem ser a mesma pessoa!",
+            });
+            locadorSelect.selectedIndex = 0;
+            locatarioSelect.selectedIndex = 0;
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    }
+</script>
+@endsection
