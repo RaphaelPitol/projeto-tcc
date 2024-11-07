@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Validador\Validador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         // dd($request);
+
+        
         $dados = $request->except('_token');
 
         User::create($dados);
@@ -39,7 +43,7 @@ class UserController extends Controller
         }
 
         if (Auth::user()->permission == 'imobiliaria') {
-            return redirect('/vistoriador');
+            return redirect('/vistoriadores');
         }
 
         // return view('home.vistoriador');

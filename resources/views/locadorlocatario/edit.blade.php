@@ -64,6 +64,18 @@
     </div>
 </section>
 
+@if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erros de validação',
+            text: "{{ implode(', ', $errors->all()) }}"
+        });
+    });
+</script>
+@endif
+
 <script>
     //função para colocar a mascara no CPF
 document.getElementById("cpf").addEventListener("input", function (e) {

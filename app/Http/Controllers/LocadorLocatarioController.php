@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Validador\Validador;
 use App\Models\LocadorLocatario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class LocadorLocatarioController extends Controller
 {
@@ -17,7 +19,6 @@ class LocadorLocatarioController extends Controller
         $locadorlocatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
 
         return view('locadorlocatario.index', ["locadorlocatarios" => $locadorlocatarios]);
-
     }
 
     /**
@@ -33,11 +34,21 @@ class LocadorLocatarioController extends Controller
      */
     public function store(Request $request)
     {
-        $dados = $request->except('_token');
+        $validador = new Validador();
+        if (!$validador->validarCPF($request->cpf)) {
+            return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
+        }
 
+        $isCpfDuplicado = LocadorLocatario::where('cpf', $request->cpf)->exists();
+        if ($isCpfDuplicado) {
+            return redirect()->back()->withErrors(['cpf' => 'CPF já cadastrado.'])->withInput();
+        }
+
+
+        $dados = $request->except('_token');
         LocadorLocatario::create($dados);
 
-        return redirect('/locloca/index');
+        return redirect('/locloca/index')->with('success', 'Cadastro realizado com sucesso.');
     }
 
     /**
@@ -55,7 +66,7 @@ class LocadorLocatarioController extends Controller
     {
         $locloca = LocadorLocatario::find($id);
 
-        return view('locadorlocatario.edit', ['locloca'=> $locloca]);
+        return view('locadorlocatario.edit', ['locloca' => $locloca]);
     }
 
     /**
@@ -63,16 +74,31 @@ class LocadorLocatarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $locloca = LocadorLocatario::find($id);
+        $validador = new Validador();
 
-        $locloca->update([
+
+        if (!$validador->validarCPF($request->cpf)) {
+            return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
+        }
+
+        $isCpfDuplicado = LocadorLocatario::where('cpf', $request->cpf)
+            ->where('id', '!=', $id)
+            ->exists();
+
+        if ($isCpfDuplicado) {
+            return redirect()->back()->withErrors(['cpf' => 'CPF já cadastrado em outro registro.'])->withInput();
+        }
+
+
+        $dados = LocadorLocatario::find($id);
+        $dados->update([
             "name" => $request->name,
             "telefone" => $request->telefone,
             "rg" => $request->rg,
             "cpf" => $request->cpf
         ]);
 
-        return redirect('/locloca/index');
+        return redirect('/locloca/index')->with('success', 'Edição realizada com sucesso.');
     }
 
     /**
