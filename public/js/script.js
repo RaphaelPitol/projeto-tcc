@@ -52,7 +52,7 @@ document.querySelectorAll(".dropdown-submenu > a").forEach(function (element) {
 
 //Abre e fecha o olho do input password
 function togglePasswordVisibility() {
-    const passwordInput = document.getElementById("form3Example4");
+    const passwordInput = document.getElementById("form-password");
     const toggleIcon = document.getElementById("togglePasswordIcon");
 
     if (passwordInput.type === "password") {

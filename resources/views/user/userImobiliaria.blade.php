@@ -88,11 +88,14 @@
                                                 <input type="email" id="email" name="email" class="form-control" />
                                             </div>
                                         </div>
-                                        <div data-mdb-input-init class="form-outline col-md-6">
+                                        <div data-mdb-input-init class="form-outline mb-3">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="password">Senha</label>
                                             <div class="input-group">
-                                                <input type="password" name="password" id="form3Example4" class="form-control" placeholder="Digite a sua senha" />
+                                                <input type="password" name="password" id="form-password" class="form-control"
+                                                    required placeholder="Digite a sua senha"
+                                                    pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
+                                                    title="A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
                                                 <span class="input-group-text" onclick="togglePasswordVisibility()">
                                                     <i class="fa fa-eye" id="togglePasswordIcon"></i>
                                                 </span>
@@ -128,6 +131,19 @@
 </section>
 
 <script>
+    function validatePassword() {
+        const passwordInput = document.getElementById("form-password");
+        const password = passwordInput.value;
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+
+        if (!regex.test(password)) {
+            alert("A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*.");
+            return false; // Evita o envio do formulário
+        }
+        return true; // Permite o envio do formulário
+    }
+
+    document.querySelector("form").onsubmit = validatePassword;
     //função para colocar a mascara no cep
     document.getElementById("cep").addEventListener("input", function(e) {
         let cep = e.target.value.replace(/\D/g, "");
@@ -191,23 +207,23 @@
                         document.getElementById("telefone").value = data.telefone || "";
                     } else {
                         Swal.fire({
-                        title: "CNPJ não encontrado.",
-                        icon: "warning",
-                        showClass: {
-                            popup: `
+                            title: "CNPJ não encontrado.",
+                            icon: "warning",
+                            showClass: {
+                                popup: `
                                 animate__animated
                                 animate__fadeInUp
                                 animate__faster
                                 `
-                        },
-                        hideClass: {
-                            popup: `
+                            },
+                            hideClass: {
+                                popup: `
                                 animate__animated
                                 animate__fadeOutDown
                                 animate__faster
                                 `
-                        }
-                    });
+                            }
+                        });
 
                     }
                 })
@@ -235,23 +251,23 @@
                 });
         } else {
             Swal.fire({
-                        title: "Por favor, insira um CNPJ válido.",
-                        icon: "warning",
-                        showClass: {
-                            popup: `
+                title: "Por favor, insira um CNPJ válido.",
+                icon: "warning",
+                showClass: {
+                    popup: `
                                 animate__animated
                                 animate__fadeInUp
                                 animate__faster
                                 `
-                        },
-                        hideClass: {
-                            popup: `
+                },
+                hideClass: {
+                    popup: `
                                 animate__animated
                                 animate__fadeOutDown
                                 animate__faster
                                 `
-                        }
-                    });
+                }
+            });
 
 
         }

@@ -99,9 +99,14 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validador = new Validador();
+
+        // dd($validador->validarSenha($request->password));
+        if (!$validador->validarSenha($request->password)){
+            return redirect()->back()->withErrors(['Senha' => 'Senha Invalida! Verifique os padroes exigidos.'])->withInput();
+        }
         // dd($request->permission);
         if (Auth::user()->permission === 'imobiliaria' && $request->permission === 'vistoriador') {
-            $validador = new Validador();
             if (!$validador->validarCPF($request->cpf)) {
                 return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
             }

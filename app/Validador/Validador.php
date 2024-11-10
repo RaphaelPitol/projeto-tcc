@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Validador;
-class Validador{
+
+class Validador
+{
 
 
-     /**
+    /**
      * Valida um CPF.
-     *
      * @param string $cpf
      * @return bool
      */
@@ -49,5 +51,18 @@ class Validador{
         }
 
         return true;
+    }
+
+    /**
+     *  @param string $password
+     * @return bool
+     */
+    public static function validarSenha($password)
+    {
+        // Expressão regular para validar a senha
+        $pattern = '/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/';
+
+        // Retorna true se a senha corresponder ao padrão, caso contrário, false
+        return preg_match($pattern, $password) === 1;
     }
 }

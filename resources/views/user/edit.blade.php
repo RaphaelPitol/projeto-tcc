@@ -26,7 +26,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="cnpj">CNPJ</label>
                                                 <input type="text" id="cnpj" name="cnpj" class="form-control" maxlength="18" value="{{$user->cnpj}}"
-                                                 required placeholder="00.000.000/0000-00" />
+                                                    required placeholder="00.000.000/0000-00" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -42,7 +42,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="razao_social">Razão Social</label>
-                                                <input type="text" id="razao_social" name="razao_social" class="form-control" value="{{$user->razao_social}}"/>
+                                                <input type="text" id="razao_social" name="razao_social" class="form-control" value="{{$user->razao_social}}" />
                                             </div>
                                         </div>
 
@@ -50,8 +50,8 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="cep">CEP</label>
                                                 <input type="text" id="cep" name="cep" maxlength="10" class="form-control"
-                                                value="{{$user->cep}}"
-                                                 placeholder="xx.xxx-xxx" />
+                                                    value="{{$user->cep}}"
+                                                    placeholder="xx.xxx-xxx" />
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="logradouro">Logradouro</label>
                                                 <input type="text" id="logradouro" name="logradouro" class="form-control"
-                                                required value="{{$user->logradouro}}" />
+                                                    required value="{{$user->logradouro}}" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -91,19 +91,22 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="email">E-mail</label>
-                                                <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}"/>
+                                                <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                             </div>
                                         </div>
-                                        <div data-mdb-input-init class="form-outline col-md-6">
-                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                            <label class="form-label" for="password">Senha</label>
-                                            <div class="input-group">
-                                                <input type="password" name="password" id="form3Example4" class="form-control" required placeholder="Digite a sua senha" />
-                                                <span class="input-group-text" onclick="togglePasswordVisibility()">
-                                                    <i class="fa fa-eye" id="togglePasswordIcon"></i>
-                                                </span>
-                                            </div>
+                                        <div data-mdb-input-init class="form-outline mb-3">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <label class="form-label" for="password">Senha</label>
+                                        <div class="input-group">
+                                            <input type="password" name="password" id="form-password" class="form-control"
+                                                required placeholder="Digite a sua senha"
+                                                pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
+                                                title="A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
+                                            <span class="input-group-text" onclick="togglePasswordVisibility()">
+                                                <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                            </span>
                                         </div>
+                                    </div>
                                     </div>
 
                                     <input type="hidden" name="permission" value="imobiliaria">
@@ -169,7 +172,7 @@
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="cpf">CPF</label>
                                             <input type="text" id="cpf" name="cpf" maxlength="14" class="form-control" readonly
-                                             value="{{$user->cpf}}" required placeholder="000.000.000-00"/>
+                                                value="{{$user->cpf}}" required placeholder="000.000.000-00" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -183,7 +186,10 @@
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <label class="form-label" for="password">Senha</label>
                                         <div class="input-group">
-                                            <input type="password" name="password" id="form3Example4" class="form-control" required placeholder="Digite a sua senha" />
+                                            <input type="password" name="password" id="form-password" class="form-control"
+                                                required placeholder="Digite a sua senha"
+                                                pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
+                                                title="A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
                                             <span class="input-group-text" onclick="togglePasswordVisibility()">
                                                 <i class="fa fa-eye" id="togglePasswordIcon"></i>
                                             </span>
@@ -299,23 +305,23 @@
                         document.getElementById("telefone").value = data.telefone || "";
                     } else {
                         Swal.fire({
-                        title: "CNPJ não encontrado.",
-                        icon: "warning",
-                        showClass: {
-                            popup: `
+                            title: "CNPJ não encontrado.",
+                            icon: "warning",
+                            showClass: {
+                                popup: `
                                 animate__animated
                                 animate__fadeInUp
                                 animate__faster
                                 `
-                        },
-                        hideClass: {
-                            popup: `
+                            },
+                            hideClass: {
+                                popup: `
                                 animate__animated
                                 animate__fadeOutDown
                                 animate__faster
                                 `
-                        }
-                    });
+                            }
+                        });
 
                     }
                 })
@@ -343,27 +349,41 @@
                 });
         } else {
             Swal.fire({
-                        title: "Por favor, insira um CNPJ válido.",
-                        icon: "warning",
-                        showClass: {
-                            popup: `
+                title: "Por favor, insira um CNPJ válido.",
+                icon: "warning",
+                showClass: {
+                    popup: `
                                 animate__animated
                                 animate__fadeInUp
                                 animate__faster
                                 `
-                        },
-                        hideClass: {
-                            popup: `
+                },
+                hideClass: {
+                    popup: `
                                 animate__animated
                                 animate__fadeOutDown
                                 animate__faster
                                 `
-                        }
-                    });
+                }
+            });
 
 
         }
     });
 </script>
+<script>
+    function validatePassword() {
+        const passwordInput = document.getElementById("form-password");
+        const password = passwordInput.value;
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
 
+        if (!regex.test(password)) {
+            alert("A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*.");
+            return false; // Evita o envio do formulário
+        }
+        return true; // Permite o envio do formulário
+    }
+
+    document.querySelector("form").onsubmit = validatePassword;
+</script>
 @endsection

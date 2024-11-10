@@ -34,7 +34,7 @@
                                         <!-- <i class="fas fa-lock fa-lg me-3 fa-fw"></i> -->
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="cpf">CPF</label>
-                                            <input type="text" id="cpf" name="cpf" maxlength="14" class="form-control" required placeholder="000.000.000-00"/>
+                                            <input type="text" id="cpf" name="cpf" maxlength="14" class="form-control" required placeholder="000.000.000-00" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -48,7 +48,10 @@
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <label class="form-label" for="password">Senha</label>
                                         <div class="input-group">
-                                            <input type="password" name="password" id="form3Example4" class="form-control" placeholder="Digite a sua senha" />
+                                            <input type="password" name="password" id="form-password" class="form-control"
+                                                required placeholder="Digite a sua senha"
+                                                pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
+                                                title="A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
                                             <span class="input-group-text" onclick="togglePasswordVisibility()">
                                                 <i class="fa fa-eye" id="togglePasswordIcon"></i>
                                             </span>
@@ -98,14 +101,27 @@
 @endif
 
 <script>
+    function validatePassword() {
+        const passwordInput = document.getElementById("form-password");
+        const password = passwordInput.value;
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+
+        if (!regex.test(password)) {
+            alert("A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*.");
+            return false; // Evita o envio do formulário
+        }
+        return true; // Permite o envio do formulário
+    }
+
+    document.querySelector("form").onsubmit = validatePassword;
     //função para colocar a mascara no CPF
-document.getElementById("cpf").addEventListener("input", function (e) {
-    let cpf = e.target.value.replace(/\D/g, "");
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-    e.target.value = cpf;
-});
+    document.getElementById("cpf").addEventListener("input", function(e) {
+        let cpf = e.target.value.replace(/\D/g, "");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        e.target.value = cpf;
+    });
 </script>
 
 @endsection

@@ -35,14 +35,14 @@
                                         <!-- <i class="fas fa-lock fa-lg me-3 fa-fw"></i> -->
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="cpf">CPF</label>
-                                            <input type="text" id="cpf" name="cpf" maxlength="14" class="form-control" value="{{$user->cpf}}" required placeholder="000.000.000-00"/>
+                                            <input type="text" id="cpf" name="cpf" maxlength="14" class="form-control" value="{{$user->cpf}}" required placeholder="000.000.000-00" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="email">E-mail</label>
-                                            <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}"/>
+                                            <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                         </div>
                                     </div>
 
@@ -91,13 +91,15 @@
 
 <script>
     //função para colocar a mascara no CPF
-document.getElementById("cpf").addEventListener("input", function (e) {
-    let cpf = e.target.value.replace(/\D/g, "");
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-    e.target.value = cpf;
-});
+    document.getElementById("cpf").addEventListener("input", function(e) {
+        let cpf = e.target.value.replace(/\D/g, "");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        e.target.value = cpf;
+    });
 </script>
+
+
 
 @endsection
