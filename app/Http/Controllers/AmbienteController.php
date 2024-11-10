@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ambiente;
+use App\Models\Vistoria;
 use Illuminate\Http\Request;
 
 class AmbienteController extends Controller
@@ -12,9 +13,18 @@ class AmbienteController extends Controller
      */
     public function index(string $id)
     {
-        // dd($id);
+        $dadosVistoria = Vistoria::where('id', $id)->with('locador')->get();
+        $dados = '';
+        foreach($dadosVistoria as $dado){
+           $dados = $dado->nome ."-" .$dado->locador->name;
+        }
+
         $ambientes = Ambiente::where('vistoria_id', $id)->get();
-        return view('ambiente.index', ['ambientes' => $ambientes, 'id' => $id]);
+        return view('ambiente.index', [
+            'ambientes' => $ambientes,
+            'id' => $id,
+            'dados' => $dados
+        ]);
     }
 
     /**
@@ -93,11 +103,17 @@ class AmbienteController extends Controller
 
 
         $ambientes = Ambiente::where('vistoria_id',  $request->input('vistoria_id'))->get();
+        $dadosVistoria = Vistoria::where('id', $request->input('vistoria_id'))->with('locador')->get();
+        $dados = '';
+        foreach($dadosVistoria as $dado){
+           $dados = $dado->nome ."-" .$dado->locador->name;
+        }
 
         return view('ambiente.index', [
             'message' => $message,
             'id' => $request->input('vistoria_id'),
             'ambientes' => $ambientes,
+            'dados' => $dados
         ]);
     }
 

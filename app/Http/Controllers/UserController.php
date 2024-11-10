@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Vistoria;
 use App\Validador\Validador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,9 +33,13 @@ class UserController extends Controller
     {
 
         $validador = new Validador();
-        if (!$validador->validarCPF($request->cpf)) {
-            return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
+
+        if(!$request->cpf == null){
+            if (!$validador->validarCPF($request->cpf)) {
+                return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
+            }
         }
+        // dd($request);
 
         $isCpfDuplicado = User::where('cpf', $request->cpf)
             ->where('permission', 'vistoriador')
@@ -137,6 +142,13 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        $temVistoriador = Vistoria::where('id_vistoriador', $id)
+        ->where('status', 1)
+        ->exists();
+
+        if($temVistoriador){
+            return redirect()->back()->withErrors(['Locador' => 'Esse Vistoriador tem Vistoria finalizadas! Não é possivel Excluir.'])->withInput();
+        }
         User::destroy($id);
 
         return redirect()->back()->with('success', 'Excluido com sucesso.');

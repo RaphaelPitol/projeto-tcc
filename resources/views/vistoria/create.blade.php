@@ -44,7 +44,7 @@
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label>Vistoriador</label>
                                             <select name="id_vistoriador" class="form-control" required>
-                                            <option value="">Selecione o Vistoriador</option>
+                                                <option value="">Selecione o Vistoriador</option>
                                                 @foreach($vistoriadores as $vistoriador)
                                                 <option value="{{ $vistoriador->id }}">{{ $vistoriador->name }}</option>
                                                 @endforeach
@@ -54,8 +54,8 @@
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="name" >Nome</label>
-                                            <input type="text" id="nome" name="nome" class="form-control" required placeholder="Ex: Apto, Casa, Sobrado..."/>
+                                            <label class="form-label" for="name">Nome</label>
+                                            <input type="text" id="nome" name="nome" class="form-control" required placeholder="Ex: Apto, Casa, Sobrado..." />
                                         </div>
                                     </div>
 
@@ -133,9 +133,13 @@
                         document.getElementById("logradouro").value =
                             data.logradouro;
                         document.getElementById("bairro").value = data.bairro;
-                        document.getElementById("cidade").value = data.localidade+"-"+data.uf;
+                        document.getElementById("cidade").value = data.localidade + "-" + data.uf;
                     } else {
-                        alert("CEP não encontrado.");
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Oops...",
+                            text: "Cep Não Encontrado",
+                        });
                     }
                 });
         }

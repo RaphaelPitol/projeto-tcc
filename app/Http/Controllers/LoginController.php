@@ -28,15 +28,15 @@ class LoginController extends Controller
             // dd(Auth::user()->permission);
             if(Auth::user()->permission == 'admin')
             {
-                return view('home.admin');
+                return redirect('home/admin');
 
             }
             if(Auth::user()->permission == 'imobiliaria')
             {
-                return view('home.imobiliaria');
+                return redirect('home/imobiliaria');
             }
 
-            return view('home.vistoriador');
+            return redirect('home/vistoriador');
         } else {
             return redirect()->back()->with('erro', 'Email ou senha invalidos.');
         }

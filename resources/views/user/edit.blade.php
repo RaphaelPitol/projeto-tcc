@@ -263,7 +263,11 @@
                         document.getElementById("bairro").value = data.bairro;
                         document.getElementById("cidade").value = data.localidade;
                     } else {
-                        alert("CEP não encontrado.");
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Oops...",
+                            text: "Cep Não Encontrado",
+                        });
                     }
                 });
         }

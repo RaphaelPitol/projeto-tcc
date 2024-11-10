@@ -59,7 +59,17 @@
         });
     });
 </script>
-
+@endif
+@if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erros',
+            text: "{{ implode(', ', $errors->all()) }}"
+        });
+    });
+</script>
 @endif
 <script>
     function excluirLocLoca(event) {

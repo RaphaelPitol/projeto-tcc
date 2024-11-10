@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Validador\Validador;
 use App\Models\LocadorLocatario;
+use App\Models\Vistoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,8 +107,21 @@ class LocadorLocatarioController extends Controller
      */
     public function destroy(string $id)
     {
+        $temVistLocador = Vistoria::where('id_locador', $id)
+        ->where('status', 1)
+        ->exists();
+        $temVistLocatario = Vistoria::where('id_locatario', $id)
+        ->where('status', 1)
+        ->exists();
+        if($temVistLocador){
+            return redirect()->back()->withErrors(['Locador' => 'Esse Locador tem Vistoria finalizadas! Não é possivel Excluir.'])->withInput();
+        }
+        if($temVistLocatario){
+            return redirect()->back()->withErrors(['Locatario' => 'Esse Locatario tem Vistoria finalizadas! Não é possivel Excluir.'])->withInput();
+        }
+
         LocadorLocatario::destroy($id);
 
-        return redirect('/locloca/index')->with('success', 'Excluido com sucesso.');;
+        return redirect('/locloca/index')->with('success', 'Excluido com sucesso.');
     }
 }

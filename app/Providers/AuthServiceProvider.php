@@ -28,5 +28,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('imobiliaria', function (User $user) {
             return $user->permission === 'imobiliaria';
         });
+
+        Gate::define('vistoriador', function(User $user) {
+            return $user->permission === 'vistoriador';
+        });
+
+        Gate::define('admin', function(User $user) {
+            return $user->permission === 'admin';
+        });
+
+
     }
 }

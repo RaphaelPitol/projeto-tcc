@@ -57,6 +57,17 @@
     });
 </script>
 @endif
+@if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erros',
+            text: "{{ implode(', ', $errors->all()) }}"
+        });
+    });
+</script>
+@endif
 <script>
     function excluirVisto(event) {
         event.preventDefault(); // Previne o comportamento padrão do link
