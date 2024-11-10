@@ -31,23 +31,41 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request);
+        $validador = new Validador();
+        if (!$validador->validarCPF($request->cpf)) {
+            return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
+        }
 
-        
+        $isCpfDuplicado = User::where('cpf', $request->cpf)
+            ->where('permission', 'vistoriador')
+            ->where('id_imobiliaria', $request->id_imobiliaria)
+            ->exists();
+
+        if ($isCpfDuplicado) {
+            return redirect()->back()->withErrors(['cpf' => 'Já existe um vistoriador cadastrado com este CPF para esta imobiliária.'])->withInput();
+        }
+
+
+        $isEmailDuplicado = User::where('email', $request->email)->exists();
+
+        if ($isEmailDuplicado) {
+            return redirect()->back()->withErrors(['email' => 'Este e-mail já está cadastrado.'])->withInput();
+        }
+
         $dados = $request->except('_token');
 
         User::create($dados);
 
         if (Auth::user()->permission == 'admin') {
-            return redirect('/home/admin');
+            return redirect('/home/admin')->with('success', 'Cadastrado com sucesso.');
         }
 
         if (Auth::user()->permission == 'imobiliaria') {
-            return redirect('/vistoriadores');
+            return redirect('/vistoriadores')->with('success', 'Cadastrado com sucesso.');
         }
 
         // return view('home.vistoriador');
-        return redirect('/home/vistoriador');
+        return redirect('/home/vistoriador')->with('success', 'Cadastrado com sucesso.');
     }
 
     /**
@@ -65,6 +83,12 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
+        if (Auth::user()->permission === 'imobiliaria' && $user->permission === 'vistoriador') {
+
+            return view('user.editVistoriador', [
+                "user" => $user
+            ]);
+        }
         return view('user.edit', [
             "user" => $user
         ]);
@@ -75,24 +99,32 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request->permission);
+        if (Auth::user()->permission === 'imobiliaria' && $request->permission === 'vistoriador') {
+            $validador = new Validador();
+            if (!$validador->validarCPF($request->cpf)) {
+                return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
+            }
+            $dados = $request->except('_token');
+            $user = User::find($id);
+            $user->update($dados);
+            return redirect('/vistoriadores')->with('success', 'Edição realizada com sucesso.');
+        }
+
+        $dados = $request->except('_token');
         $user = User::find($id);
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-            'permission' => $request->permission
-        ]);
+        $user->update($dados);
 
         if (Auth::user()->permission == 'admin') {
-            return redirect('/home/admin');
+            return redirect('/home/admin')->with('success', 'Edição realizada com sucesso.');
         }
 
         if (Auth::user()->permission == 'imobiliaria') {
-            return redirect('/home/imobiliaria');
+            return redirect('/home/imobiliaria')->with('success', 'Edição realizada com sucesso.');
         }
 
         // return view('home.vistoriador');
-        return redirect('/home/vistoriador');
+        return redirect('/home/vistoriador')->with('success', 'Edição realizada com sucesso.');
     }
 
     /**
@@ -102,7 +134,7 @@ class UserController extends Controller
     {
         User::destroy($id);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Excluido com sucesso.');
     }
 
     public function listvistoriador()

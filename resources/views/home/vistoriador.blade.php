@@ -28,15 +28,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if (isset($realizadas))
-                            @foreach ($realizadas as $realizada)
+                                @if (isset($realizadas))
+                                @foreach ($realizadas as $realizada)
                                 <tr>
-                                <td><a href="{{route('pdf.geraPDF', $realizada)}}" target="_blank">{{$realizada->nome}}-{{$realizada->locador->name}}</a>
+                                    <td><a href="{{route('pdf.geraPDF', $realizada)}}" target="_blank">{{$realizada->nome}}-{{$realizada->locador->name}}</a>
 
-                                </td>
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                        {{\Carbon\Carbon::parse( $realizada->updated_at)->format('d/m/Y') }}
+                                            {{\Carbon\Carbon::parse( $realizada->updated_at)->format('d/m/Y') }}
                                             <!-- <button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button> -->
                                             <!-- <button class="btn btn-outline-secondary"><i class="bi bi-filetype-pdf"></i></button> -->
                                             <!-- <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button> -->
@@ -70,14 +70,14 @@
                                 @if (isset($pendentes))
                                 @foreach ($pendentes as $pendente)
                                 <tr>
-                                        <td><a href="{{route('vistoria.show', $pendente)}}" type="submit">{{$pendente->nome}}-{{$pendente->locador->name}}</a></td>
-                                        <td>{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
+                                    <td><a href="{{ route('ambiente.index', $pendente) }}" type="submit">{{$pendente->nome}}-{{$pendente->locador->name}}</a></td>
+                                    <td>{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                        <form action="{{route('vistoria.status', $pendente)}}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="numer" name="status" value="1" hidden>
+                                            <form action="{{route('vistoria.status', $pendente)}}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="numer" name="status" value="1" hidden>
                                                 <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Realizada?')"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <!-- <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button> -->
@@ -96,5 +96,18 @@
             </div>
         </div>
     </div>
+    @if (session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+    </script>
+    @endif
 
     @endsection

@@ -108,6 +108,6 @@ class LocadorLocatarioController extends Controller
     {
         LocadorLocatario::destroy($id);
 
-        return redirect('/locloca/index');
+        return redirect('/locloca/index')->with('success', 'Excluido com sucesso.');;
     }
 }
