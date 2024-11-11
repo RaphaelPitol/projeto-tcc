@@ -33,6 +33,7 @@ class AmbienteController extends Controller
     public function create(string $id)
     {
         //dd($id);
+        
         return view('ambiente.create', ['id' => $id]);
     }
 

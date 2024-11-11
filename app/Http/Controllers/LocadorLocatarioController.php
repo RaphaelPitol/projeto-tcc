@@ -108,16 +108,14 @@ class LocadorLocatarioController extends Controller
     public function destroy(string $id)
     {
         $temVistLocador = Vistoria::where('id_locador', $id)
-        ->where('status', 1)
         ->exists();
         $temVistLocatario = Vistoria::where('id_locatario', $id)
-        ->where('status', 1)
         ->exists();
         if($temVistLocador){
-            return redirect()->back()->withErrors(['Locador' => 'Esse Locador tem Vistoria finalizadas! Não é possivel Excluir.'])->withInput();
+            return redirect()->back()->withErrors(['Locador' => 'Esse Locador possui uma ou mais Vistorias! Não é possivel Excluir.'])->withInput();
         }
         if($temVistLocatario){
-            return redirect()->back()->withErrors(['Locatario' => 'Esse Locatario tem Vistoria finalizadas! Não é possivel Excluir.'])->withInput();
+            return redirect()->back()->withErrors(['Locatario' => 'Esse Locatario possui uma ou mais Vistorias! Não é possivel Excluir.'])->withInput();
         }
 
         LocadorLocatario::destroy($id);
