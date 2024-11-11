@@ -106,9 +106,10 @@ class UserController extends Controller
     {
         $validador = new Validador();
 
-        // dd($validador->validarSenha($request->password));
-        if (!$validador->validarSenha($request->password)){
-            return redirect()->back()->withErrors(['Senha' => 'Senha Invalida! Verifique os padroes exigidos.'])->withInput();
+        if (!$request->password == null){
+            if (!$validador->validarSenha($request->password)){
+                return redirect()->back()->withErrors(['Senha' => 'Senha Invalida! Verifique os padroes exigidos.'])->withInput();
+            }
         }
         // dd($request->permission);
         if (Auth::user()->permission === 'imobiliaria' && $request->permission === 'vistoriador') {

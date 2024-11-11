@@ -74,11 +74,11 @@
                                     <td>{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <form action="{{route('vistoria.status', $pendente)}}" method="post">
+                                        <form id="form-pendente-status-{{$pendente->id}}" action="{{route('vistoria.status', $pendente)}}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="numer" name="status" value="1" hidden>
-                                                <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Deseja alterar o status par Realizada?')"><i class="bi bi-hourglass"></i></button>
+                                                <button class="btn btn-outline-danger" data-id="{{$pendente->id}}" onclick="confirm(event)"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <!-- <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button> -->
                                         </div>
@@ -109,5 +109,30 @@
         });
     </script>
     @endif
+
+    <script>
+        function confirm(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+            const id = event.currentTarget.getAttribute('data-id');
+
+            Swal.fire({
+                title: 'Deseja mudar o Status?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = document.getElementById('form-pendente-status-' + id);
+                    console.log(form);
+                    if (form) {
+                        form.submit();
+                    } else {
+                        console.error("Formulário não encontrado: ", 'form-pendente-status-' + id);
+                    }
+                }
+            });
+        }
+    </script>
 
     @endsection

@@ -48,7 +48,7 @@
             Swal.fire({
                 title: "Sem permissão",
                 text: "{{ session('error') }}",
-                icon: "erro"
+                icon: "error"
             });
         })
     </script>

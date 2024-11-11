@@ -34,11 +34,11 @@
                                     <td>{{$realizada->nome}}-{{$realizada->locador->name}}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <form id="form-realizada" action="{{route('vistoria.status', $realizada)}}" method="post">
+                                            <form  id="form-status-{{$realizada->id}}" action="{{route('vistoria.status', $realizada)}}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="numer" name="status" value="0" hidden>
-                                                <button class="btn btn-outline-danger" onclick="confirm(event, 'form-realizada')"><i class="bi bi-hourglass"></i></button>
+                                                <button class="btn btn-outline-danger" data-id="{{$realizada->id}}" onclick="confirm(event)"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <a href="{{route('pdf.geraPDF', $realizada)}}" class="btn btn-outline-secondary" target="_blank"><i class="bi bi-filetype-pdf"></i></a>
                                         </div>
@@ -75,17 +75,17 @@
 
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <form id="form-pendente" action="{{route('vistoria.status', $pendente)}}" method="post">
+                                            <form id="form-status-{{$pendente->id}}" action="{{route('vistoria.status', $pendente)}}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="numer" name="status" value="1" hidden>
-                                                <button class="btn btn-outline-danger" onclick="confirm(event, 'form-pendente')"><i class="bi bi-hourglass"></i></button>
+                                                <button class="btn btn-outline-danger" data-id="{{$pendente->id}}" onclick="confirm(event)"><i class="bi bi-hourglass"></i></button>
                                             </form>
                                             <a href="{{route('vistoria.edit', $pendente)}}" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
-                                            <form id="form-pendente-excluir" action="{{route('vistoria.destroy', $pendente)}}" method="POST">
+                                            <form id="form-pendente-excluir-{{$pendente->id}}" action="{{route('vistoria.destroy', $pendente)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-outline-danger" onclick="excluir(event)"><i class="bi bi-trash-fill"></i></button>
+                                                <button class="btn btn-outline-danger" data-id="{{$pendente->id}}" onclick="excluir(event)"><i class="bi bi-trash-fill"></i></button>
                                             </form>
                                         </div>
 
@@ -118,8 +118,9 @@
     @endif
 
     <script>
-        function confirm(event, formId) {
+        function confirm(event) {
             event.preventDefault(); // Previne o comportamento padrão do link
+            const id = event.currentTarget.getAttribute('data-id');
 
             Swal.fire({
                 title: 'Deseja mudar o Status?',
@@ -129,13 +130,20 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById(formId).submit();
+                const form = document.getElementById('form-status-' + id);
+                console.log(form);
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error("Formulário não encontrado: ", 'form-status-' + id);
                 }
+            }
             });
         }
 
         function excluir(event) {
             event.preventDefault(); // Previne o comportamento padrão do link
+            const id = event.currentTarget.getAttribute('data-id');
 
             Swal.fire({
                 title: 'Deseja Excluira Vistoria?',
@@ -147,8 +155,13 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('form-pendente-excluir').submit();
+                const form = document.getElementById('form-pendente-excluir-' + id);
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error("Formulário não encontrado: ", 'form-pendente-excluir-' + id);
                 }
+            }
             });
         }
     </script>
