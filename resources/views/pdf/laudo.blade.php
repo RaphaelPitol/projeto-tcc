@@ -15,7 +15,8 @@
         line-height: 1.5;
     }
 
-    .header, .footer {
+    .header,
+    .footer {
         text-align: center;
         margin-bottom: 20px;
     }
@@ -124,62 +125,91 @@ $indice = 0;
         <h3 class="title">Ambiente {{$indice}}: {{$ambiente->nome_ambiente}}</h3>
 
         <div class="ambiente-info">
-            <p><span>Piso:</span> {{$ambiente->piso}}, <span>Estado de Conservação:</span> {{$ambiente->cons_piso}}, <span>Descrição:</span>
-            @if (isset($detalhes->descricao_piso))
+            <p>
+                @if(!empty($ambiente->piso))<span>Piso:</span> {{$ambiente->piso}},@endif
+                @if(!empty($ambiente->cons_piso))<span>Estado de Conservação:</span> {{$ambiente->cons_piso}},@endif
+                @if(!empty($detalhes->descricao_piso))<span>Descrição:</span>
                 @foreach ($detalhes->descricao_piso as $descricao_piso){{$descricao_piso}}, @endforeach
-            @endif
-            <span>Observação:</span> {{$ambiente->observacao_piso}}</p>
+                @endif
+                @if(!empty($ambiente->observacao_piso))<span>Observação:</span> {{$ambiente->observacao_piso}}. @endif
+            </p>
 
-            <p><span>Roda-pé:</span> {{$ambiente->rodape}}, <span>Estado de Conservação:</span> {{$ambiente->cons_rodape}}, <span>Descrição:</span>
-            @if (isset($detalhes->descricao_rodape))
+            <p>
+                @if(!empty($ambiente->rodape))<span>Roda-pé:</span> {{$ambiente->rodape}},@endif
+                @if(!empty($ambiente->cons_rodape))<span>Estado de Conservação:</span> {{$ambiente->cons_rodape}},@endif
+                @if(!empty($detalhes->descricao_rodape))<span>Descrição:</span>
+
                 @foreach ($detalhes->descricao_rodape as $descricao_rodape){{$descricao_rodape}}, @endforeach
-            @endif
-            <span>Observação:</span> {{$ambiente->observacao_rodape}}</p>
+                @endif
+                @if(!empty($ambiente->observacao_rodape))<span>Observação:</span> {{$ambiente->observacao_rodape}}.@endif
+            </p>
 
-            <p><span>Parede:</span> {{$ambiente->parede}}, <span>Estado de Conservação:</span> {{$ambiente->cons_parede}}, <span>Cor da Pintura:</span> {{$ambiente->cor_parede}}, <span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_parede}}, <span>Descrição:</span>
-            @if (isset($detalhes->descricao_parede))
+            <p>
+                @if(!empty($ambiente->parede))<span>Parede:</span> {{$ambiente->parede}},@endif
+                @if(!empty($ambiente->cons_parede))<span>Estado de Conservação:</span> {{$ambiente->cons_parede}},@endif
+                @if(!empty($ambiente->cor_parede))<span>Cor da Pintura:</span> {{$ambiente->cor_parede}},@endif
+                @if(!empty($ambiente->cons_pintura_parede))<span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_parede}},@endif
+                @if(!empty($detalhes->descricao_parede))<span>Descrição:</span>
                 @foreach ($detalhes->descricao_parede as $descricao_parede){{$descricao_parede}}, @endforeach
-            @endif
-            <span>Observação:</span> {{$ambiente->observacao_parede}}</p>
+                @endif
+                @if(!empty($ambiente->observacao_parede))<span>Observação:</span> {{$ambiente->observacao_parede}}. @endif
+            </p>
 
-            <p><span>Teto:</span> {{$ambiente->teto}}, <span>Estado de Conservação:</span> {{$ambiente->cons_teto}}, <span>Cor da Pintura:</span> {{$ambiente->cor_teto}}, <span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_teto}}, <span>Descrição:</span>
-            @if (isset($detalhes->descricao_teto))
+            <p>
+                @if(!empty($ambiente->teto))<span>Teto:</span> {{$ambiente->teto}},@endif
+                @if(!empty($ambiente->cons_teto))<span>Estado de Conservação:</span> {{$ambiente->cons_teto}},@endif
+                @if(!empty($ambiente->cor_teto))<span>Cor da Pintura:</span> {{$ambiente->cor_teto}},@endif
+                @if(!empty($ambiente->cons_pintura_teto))<span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_teto}},@endif
+                @if(!empty($detalhes->descricao_teto))<span>Descrição:</span>
                 @foreach ($detalhes->descricao_teto as $descricao_teto){{$descricao_teto}}, @endforeach
-            @endif
-            <span>Observação:</span> {{$ambiente->observacao_teto}}</p>
+                @endif
+                @if(!empty($ambiente->observacao_teto))<span>Observação:</span> {{$ambiente->observacao_teto}}.@endif
+            </p>
 
-            <p><span>Porta:</span> {{$ambiente->porta}}, <span>Estado de Conservação:</span> {{$ambiente->cons_porta}}, <span>Cor da Pintura:</span> {{$ambiente->cor_porta}}, <span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_porta}}, <span>Descrição:</span>
-            @if (isset($detalhes->descricao_porta))
+            <p>
+                @if(!empty($ambiente->porta))<span>Porta:</span> {{$ambiente->porta}},@endif
+                @if(!empty($ambiente->cons_porta))<span>Estado de Conservação:</span> {{$ambiente->cons_porta}},@endif
+                @if(!empty($ambiente->cor_porta))<span>Cor da Pintura:</span> {{$ambiente->cor_porta}},@endif
+                @if(!empty($ambiente->cons_pintura_porta))<span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_porta}},@endif
+                @if (!empty($detalhes->descricao_porta))
+                <span>Descrição:</span>
                 @foreach ($detalhes->descricao_porta as $descricao_porta){{$descricao_porta}}, @endforeach
-            @endif
-            <span>Observação:</span> {{$ambiente->observacao_porta}}</p>
+                @endif
+                @if(!empty($ambiente->observacao_porta))<span>Observação:</span> {{$ambiente->observacao_porta}}.@endif
+            </p>
 
-            <p><span>Janela:</span> {{$ambiente->janela}}, <span>Estado de Conservação:</span> {{$ambiente->cons_janela}}, <span>Cor da Pintura:</span> {{$ambiente->cor_janela}}, <span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_janela}}, <span>Descrição:</span>
-            @if (isset($detalhes->descricao_janela))
+            <p>
+                @if(!empty($ambiente->janela))<span>Janela:</span> {{$ambiente->janela}},@endif
+                @if(!empty($ambiente->cons_janela))<span>Estado de Conservação:</span> {{$ambiente->cons_janela}},@endif
+                @if(!empty($ambiente->cor_janela))<span>Cor da Pintura:</span> {{$ambiente->cor_janela}},@endif
+                @if(!empty($ambiente->cons_pintura_janela))<span>Conservação da Pintura:</span> {{$ambiente->cons_pintura_janela}},@endif
+                @if (!empty($detalhes->descricao_janela))
+                <span>Descrição:</span>
                 @foreach ($detalhes->descricao_janela as $descricao_janela){{$descricao_janela}}, @endforeach
-            @endif
-            <span>Observação:</span> {{$ambiente->observacao_janela}}</p>
+                @endif
+                @if(!empty($ambiente->observacao_janela))<span>Observação:</span> {{$ambiente->observacao_janela}}.@endif
+            </p>
 
             @if (isset($detalhes->tipoTomada))
-                @foreach($detalhes->tipoTomada as $index => $tipo)
-                    <p><span>Tomada:</span> {{$tipo}}, <span>Quantidade:</span> {{$detalhes->quantidadeTomadas[$index]}}</p>
-                @endforeach
+            @foreach($detalhes->tipoTomada as $index => $tipo)
+            <p><span>Tomada:</span> {{$tipo}}, <span>Quantidade:</span> {{$detalhes->quantidadeTomadas[$index]}}</p>
+            @endforeach
             @endif
 
             @if (isset($detalhes->tipoInterruptor))
-                @foreach($detalhes->tipoInterruptor as $index => $tipo)
-                    <p><span>Interruptor:</span> {{$tipo}}, <span>Quantidade:</span> {{$detalhes->quantidadeInterruptores[$index]}}</p>
-                @endforeach
+            @foreach($detalhes->tipoInterruptor as $index => $tipo)
+            <p><span>Interruptor:</span> {{$tipo}}, <span>Quantidade:</span> {{$detalhes->quantidadeInterruptores[$index]}}</p>
+            @endforeach
             @endif
 
-            <p><span>Observações Gerais do Ambiente:</span> {{$ambiente->observacoes}}</p>
+            @if(!empty($ambiente->observacoes))<p><span>Observações Gerais do Ambiente:</span> {{$ambiente->observacoes}}</p>.@endif
         </div>
         <hr>
         @endforeach
     </div>
 
     <div class="date-location">
-    <p>Umuarama - PR, {{ $v->updated_at->locale('pt_BR')->isoFormat('D [de] MMMM [de] YYYY') }}</p>
+        <p>Umuarama - PR, {{ $v->updated_at->locale('pt_BR')->isoFormat('D [de] MMMM [de] YYYY') }}</p>
     </div>
 
     <!-- Sessão de Assinaturas -->
@@ -206,6 +236,3 @@ $indice = 0;
 </body>
 
 </html>
-
-
-

@@ -57,6 +57,12 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['email' => 'Este e-mail já está cadastrado.'])->withInput();
         }
 
+
+        $isCnpjDuplicado = User::where('cnpj', $request->cnpj)->exists();
+        if ($isCnpjDuplicado){
+            return redirect()->back()->withErrors(['cnpj' => 'Este cnpj já está cadastrado.'])->withInput();
+        }
+
         $dados = $request->except('_token');
 
         User::create($dados);

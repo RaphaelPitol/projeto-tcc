@@ -28,7 +28,7 @@
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <i class="bi bi-telephone fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="telefone">Telefone</label>
-                                            <input type="tel" id="telefone" name="telefone" class="form-control" />
+                                            <input type="text" id="telefone" name="telefone" class="form-control" />
                                         </div>
                                     </div>
 
@@ -36,7 +36,9 @@
                                         <!-- <i class="fas fa-lock fa-lg me-3 fa-fw"></i> -->
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="rg">RG</label>
-                                            <input type="text" id="rg" name="rg" class="form-control" required />
+                                            <input type="text" id="rg" name="rg" class="form-control"
+                                                pattern="^[0-9.\-]+$" title="Digite apenas números, pontos e hífen." required
+                                                oninput="this.value = this.value.replace(/[^0-9.-]/g, '')" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -83,6 +85,21 @@
         cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
         cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
         e.target.value = cpf;
+    });
+
+    $(document).ready(function() {
+        // Define a máscara padrão para celulares
+        $('#telefone').mask('(00) 00000-0000');
+
+        // Altera a máscara ao terminar a digitação
+        $('#telefone').on('blur', function() {
+            var val = $(this).val().replace(/\D/g, ''); // Remove caracteres não numéricos
+            if (val.length === 10) {
+                $(this).mask('(00) 0000-0000'); // Telefone fixo
+            } else if (val.length === 11) {
+                $(this).mask('(00) 00000-0000'); // Celular
+            }
+        });
     });
 </script>
 

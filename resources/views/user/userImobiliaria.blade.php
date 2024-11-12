@@ -108,7 +108,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="telefone">Telefone</label>
-                                                <input type="telefone" id="telefone" name="telefone" class="form-control" />
+                                                <input type="text" id="telefone" name="telefone" class="form-control" />
                                             </div>
                                         </div>
 
@@ -129,6 +129,17 @@
     </div>
 
 </section>
+@if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erros de validação',
+            text: "{{ implode(', ', $errors->all()) }}"
+        });
+    });
+</script>
+@endif
 
 <script>
     function validatePassword() {
@@ -275,6 +286,21 @@
 
 
         }
+    });
+
+     $(document).ready(function(){
+        // Define a máscara padrão para celulares
+        $('#telefone').mask('(00) 00000-0000');
+
+        // Altera a máscara ao terminar a digitação
+        $('#telefone').on('blur', function () {
+            var val = $(this).val().replace(/\D/g, ''); // Remove caracteres não numéricos
+            if (val.length === 10) {
+                $(this).mask('(00) 0000-0000'); // Telefone fixo
+            } else if (val.length === 11) {
+                $(this).mask('(00) 00000-0000'); // Celular
+            }
+        });
     });
 </script>
 

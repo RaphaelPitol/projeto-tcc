@@ -94,7 +94,7 @@
                                                 <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                             </div>
                                         </div>
-                                        <div data-mdb-input-init class="form-outline mb-3">
+                                        <div data-mdb-input-init class="form-outline col-md-6">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <label class="form-label" for="password">Senha</label>
                                         <div class="input-group">
