@@ -24,19 +24,22 @@
             </thead>
             <tbody>
                 @foreach($vistoriadores as $vistoriador)
-                <tr>
+                <tr class="{{ $vistoriador->ativo ? '' : 'bg-secondary text-white' }}">
                     <td>{{$vistoriador->name}}</td>
                     <th>{{$vistoriador->sobreNome}}</th>
                     <td>{{$vistoriador->email}}</td>
-                    <td style="display: flex; flex-direction: row;">
-
+                    <td>
+                    <div style="display: flex; justify-content:center;">
                         <a href="{{route('edit.user', $vistoriador)}}" class="btn btn-primary" style="margin-right: 5px;"><i class="bi bi-pencil-fill"></i></a>
-                        <form id="vistoriador-{{$vistoriador->id}}" action="{{route('destroy.vistoriador', $vistoriador)}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger" data-id="{{$vistoriador->id}}" onclick="excluirVisto(event)"><i class="bi bi-trash-fill"></i></button>
-                        </form>
-
+                        <form id="form-inativa-{{$vistoriador->id}}" action="{{ route('vistoriador.ativo', $vistoriador) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="numer" name="ativo" value="{{ $vistoriador->ativo ? 0 : 1 }}" hidden>
+                                <button class="btn btn-danger" data-id="{{$vistoriador->id}}" onclick="inativar(event)">
+                                    <i class="bi {{ $vistoriador->ativo ? 'bi-toggle-off' : 'bi-toggle-on' }}"></i>
+                                </button>
+                            </form>
+                    </div>
                     </td>
                 </tr>
                 @endforeach
@@ -69,12 +72,12 @@
 </script>
 @endif
 <script>
-    function excluirVisto(event) {
-        event.preventDefault(); // Previne o comportamento padrão do link
+     function inativar(event) {
+        event.preventDefault();
         const id = event.currentTarget.getAttribute('data-id');
-
+        // console.log("Form ID:", 'form-locloca-' + id);
         Swal.fire({
-            title: 'Deseja Excluir o Vistoriador?',
+            title: 'Deseja Ativar ou Inativar o Vistoriador?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -83,11 +86,11 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                const form = document.getElementById('vistoriador-' + id);
+                const form = document.getElementById('form-inativa-' + id);
                 if (form) {
                     form.submit();
                 } else {
-                    console.error("Formulário não encontrado: ", 'form-locloca-' + id);
+                    console.error("Formulário não encontrado: ", 'form-inativa-' + id);
                 }
             }
         });

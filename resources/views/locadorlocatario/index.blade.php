@@ -32,13 +32,15 @@
                     </td>
                     <td>{{$locadorlocatario->rg}}</td>
                     <td>{{$locadorlocatario->cpf}}</td>
-                    <td style="display: flex; flex-direction: row;">
-                        <a href="{{route('locloca.edit', $locadorlocatario)}}" class="btn btn-primary" style="margin-right: 5px;"><i class="bi bi-pencil-fill"></i></a>
-                        <form id="form-locloca-{{$locadorlocatario->id}}" action="{{route('locloca.destroy', $locadorlocatario)}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger" data-id="{{$locadorlocatario->id}}" onclick="excluirLocLoca(event)"><i class="bi bi-trash-fill"></i></button>
-                        </form>
+                    <td>
+                        <div style="display: flex; justify-content:center;">
+                            <a href="{{route('locloca.edit', $locadorlocatario)}}" class="btn btn-primary" style="margin-right: 5px;"><i class="bi bi-pencil-fill"></i></a>
+                            <form id="form-locloca-{{$locadorlocatario->id}}" action="{{route('locloca.destroy', $locadorlocatario)}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger" data-id="{{$locadorlocatario->id}}" onclick="excluirLocLoca(event)"><i class="bi bi-trash-fill"></i></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

@@ -66,29 +66,39 @@
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @if (isset($pendentes))
-                                @foreach ($pendentes as $pendente)
-                                <tr>
-                                    <td><a href="{{ route('ambiente.index', $pendente) }}" type="submit">{{$pendente->nome}}-{{$pendente->locador->name}}</a></td>
-                                    <td>{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
-                                    <td>
-                                        <div class="d-flex justify-content-around">
-                                        <form id="form-pendente-status-{{$pendente->id}}" action="{{route('vistoria.status', $pendente)}}" method="post">
+                            @if (isset($pendentes))
+                            @foreach ($pendentes as $pendente)
+                            <tr>
+                                <td>
+                                    <a href="{{ route('ambiente.index', $pendente) }}" type="submit">
+                                        {{$pendente->nome}} - {{$pendente->locador->name}}
+                                    </a>
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($pendente->data_prazo)->format('d/m/Y') }}</td>
+                                <td>
+                                    <div class="row w-100 mx-0 text-center align-items-center">
+                                        <!-- Ícone de Localização -->
+                                        <div class="col-auto p-2">
+                                            <a href="#" onclick="buscarRota('{{$pendente->logradouro}}', '{{$pendente->numero}}', '{{$pendente->cidade}}')" title="Ver rota no Google Maps" class="btn btn-light p-0">
+                                            <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
+                                            </a>
+                                        </div>
+                                        <!-- Botão de Status -->
+                                        <div class="col-auto p-2">
+                                            <form id="form-pendente-status-{{$pendente->id}}" action="{{route('vistoria.status', $pendente)}}" method="post">
                                                 @csrf
                                                 @method('PUT')
-                                                <input type="numer" name="status" value="1" hidden>
-                                                <button class="btn btn-outline-danger" data-id="{{$pendente->id}}" onclick="confirm(event)"><i class="bi bi-hourglass"></i></button>
+                                                <input type="number" name="status" value="1" hidden>
+                                                <button class="btn btn-outline-danger p-1" data-id="{{$pendente->id}}" onclick="confirm(event)" title="Mudar status">
+                                                    <i class="bi bi-hourglass"></i>
+                                                </button>
                                             </form>
-                                            <!-- <button class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button> -->
                                         </div>
-
-                                    </td>
-                                </tr>
-                                @endforeach
-                                @endif
-
-
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -132,6 +142,26 @@
                     }
                 }
             });
+        }
+
+        function buscarRota(logradouro, numero, cidade) {
+            const enderecoImovel = `${logradouro}, ${numero}, ${cidade}`;
+
+            // Verifica se o navegador suporta a API de Geolocalização
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    // Constrói a URL para abrir no Google Maps
+                    const googleMapsUrl = `https://www.google.com/maps/dir/${latitude},${longitude}/${encodeURIComponent(enderecoImovel)}`;
+                    window.open(googleMapsUrl, '_blank');
+                }, function(error) {
+                    alert('Não foi possível obter a localização atual.');
+                });
+            } else {
+                alert('Geolocalização não é suportada neste navegador.');
+            }
         }
     </script>
 

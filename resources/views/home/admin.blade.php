@@ -25,19 +25,24 @@
             </thead>
             <tbody>
                 @foreach($imobiliarias as $imobiliaria)
-                <tr>
+                <tr class="{{ $imobiliaria->ativo ? '' : 'bg-secondary text-white' }}">
                     <td>{{$imobiliaria->name}}</td>
                     <th>{{$imobiliaria->razao_social}}</th>
                     <td>{{$imobiliaria->email}}</td>
                     <td>{{$imobiliaria->telefone}}</td>
-                    <td style="display: flex; flex-direction: row;">
+                    <td >
+                        <div style="display: flex; ">
 
-                            <a href="" class="btn btn-primary" style="margin-right: 5px;">Edit</a>
-                            <form action="" method="POST">
-                                @method('DELETE')
+                            <a href="{{route('edit.user', $imobiliaria)}}" class="btn btn-primary" style="margin-right: 5px;"><i class="bi bi-pencil-fill"></i></a>
+                            <form id="form-inativa-{{$imobiliaria->id}}" action="{{ route('update.user', $imobiliaria) }}" method="POST">
                                 @csrf
-                                <button class="btn btn-danger" type="submit" onclick="return confirm('Deseja realmente deletar?')">Delete</button>
+                                @method('PUT')
+                                <input type="numer" name="ativo" value="{{ $imobiliaria->ativo ? 0 : 1 }}" hidden>
+                                <button class="btn btn-danger" data-id="{{$imobiliaria->id}}" onclick="inativar(event)">
+                                    <i class="bi {{ $imobiliaria->ativo ? 'bi-toggle-off' : 'bi-toggle-on' }}"></i>
+                                </button>
                             </form>
+                        </div>
 
                     </td>
                 </tr>
@@ -47,17 +52,54 @@
     </div>
 </div>
 @if (session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 1500
-            });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
         });
-    </script>
-    @endif
+    });
+</script>
+@endif
+@if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erros de validação',
+            text: "{{ implode(', ', $errors->all()) }}"
+        });
+    });
+</script>
+@endif
+
+<script>
+    function inativar(event) {
+        event.preventDefault();
+        const id = event.currentTarget.getAttribute('data-id');
+        // console.log("Form ID:", 'form-locloca-' + id);
+        Swal.fire({
+            title: 'Deseja Ativar ou Inativar esta Imobiliaria?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('form-inativa-' + id);
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error("Formulário não encontrado: ", 'form-inativa-' + id);
+                }
+            }
+        });
+    }
+</script>
 
 @endsection

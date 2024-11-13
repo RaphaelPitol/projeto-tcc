@@ -32,9 +32,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request);
         $validador = new Validador();
 
-        if(!$request->cpf == null){
+        if (!$request->cpf == null) {
             if (!$validador->validarCPF($request->cpf)) {
                 return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
             }
@@ -58,11 +59,12 @@ class UserController extends Controller
         }
 
 
-        $isCnpjDuplicado = User::where('cnpj', $request->cnpj)->exists();
-        if ($isCnpjDuplicado){
-            return redirect()->back()->withErrors(['cnpj' => 'Este cnpj já está cadastrado.'])->withInput();
+        if (Auth::user()->permission === 'admin') {
+            $isCnpjDuplicado = User::where('cnpj', $request->cnpj)->exists();
+            if ($isCnpjDuplicado) {
+                return redirect()->back()->withErrors(['cnpj' => 'Este cnpj já está cadastrado.'])->withInput();
+            }
         }
-
         $dados = $request->except('_token');
 
         User::create($dados);
@@ -110,10 +112,35 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request);
         $validador = new Validador();
 
-        if (!$request->password == null){
-            if (!$validador->validarSenha($request->password)){
+
+        if (Auth::user()->permission === 'admin') {
+            $imobiliaria = User::findOrFail($id);
+            if ($imobiliaria) {
+                $imobiliaria->ativo = $request->input('ativo');
+                $imobiliaria->save();
+
+                if ($imobiliaria->ativo == 0) {
+                    User::where('id_imobiliaria', $imobiliaria->id)
+                        ->where('permission', 'vistoriador')
+                        ->update(['ativo' => 0]);
+                } else {
+                    User::where('id_imobiliaria', $imobiliaria->id)
+                        ->where('permission', 'vistoriador')
+                        ->update(['ativo' => 1]);
+                }
+
+                return redirect('/home/admin')->with('success', 'Imobiliária e vistoriadores atualizados com sucesso.');
+            }
+        }
+
+
+
+
+        if (!$request->password == null) {
+            if (!$validador->validarSenha($request->password)) {
                 return redirect()->back()->withErrors(['Senha' => 'Senha Invalida! Verifique os padroes exigidos.'])->withInput();
             }
         }
@@ -150,10 +177,10 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $temVistoriador = Vistoria::where('id_vistoriador', $id)
-        ->where('status', 1)
-        ->exists();
+            ->where('status', 1)
+            ->exists();
 
-        if($temVistoriador){
+        if ($temVistoriador) {
             return redirect()->back()->withErrors(['Locador' => 'Esse Vistoriador tem Vistoria finalizadas! Não é possivel Excluir.'])->withInput();
         }
         User::destroy($id);
@@ -166,5 +193,14 @@ class UserController extends Controller
         $vistoriadores = User::where('id_imobiliaria', Auth::user()->id)->get();
 
         return view('user.listvistoriador', ['vistoriadores' => $vistoriadores]);
+    }
+
+    public function ativoInativo(Request $request, string $id){
+        $dados = $request->except('_token');
+        $user = User::find($id);
+        $user->update($dados);
+
+        return redirect('/vistoriadores')->with('success', 'Vistoriador atualizados com sucesso!');
+
     }
 }

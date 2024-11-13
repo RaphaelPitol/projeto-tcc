@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class User extends Authenticatable implements CanResetPassword
@@ -38,6 +39,7 @@ class User extends Authenticatable implements CanResetPassword
         'bairro',
         'cidade',
         'id_imobiliaria',
+        'ativo',
     ];
 
     /**
@@ -62,7 +64,7 @@ class User extends Authenticatable implements CanResetPassword
 
     public function sendPasswordResetNotification($token): void
     {
-        $url = env('APP_URL') .'/reset-password/' . $token;
+        $url = env('APP_URL') . '/reset-password/' . $token;
 
         $this->notify(new PasswordRestNotification($url));
     }
@@ -77,4 +79,10 @@ class User extends Authenticatable implements CanResetPassword
         return $this->hasMany(Vistoria::class, 'id_vistoriador');
     }
 
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('ativo', function (Builder $builder) {
+    //         $builder->where('ativo', true);
+    //     });
+    // }
 }

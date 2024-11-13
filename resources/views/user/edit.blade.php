@@ -2,7 +2,7 @@
 @section('title', 'Edição')
 @section('content')
 
-@if (Auth::user()->permission == 'imobiliaria')
+@if (Auth::user()->permission == 'imobiliaria' || Auth::user()->permission == 'admin')
 <section class="vh-100 mb-4">
     @php
     if(isset($dados)){
@@ -94,19 +94,22 @@
                                                 <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                             </div>
                                         </div>
+                                        @if (Auth::user()->permission == 'imobiliaria')
                                         <div data-mdb-input-init class="form-outline col-md-6">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <label class="form-label" for="password">Senha</label>
-                                        <div class="input-group">
-                                            <input type="password" name="password" id="form-password" class="form-control"
-                                                required placeholder="Digite a sua senha"
-                                                pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
-                                                title="A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
-                                            <span class="input-group-text" onclick="togglePasswordVisibility()">
-                                                <i class="fa fa-eye" id="togglePasswordIcon"></i>
-                                            </span>
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <label class="form-label" for="password">Senha</label>
+                                            <div class="input-group">
+                                                <input type="password" name="password" id="form-password" class="form-control"
+                                                    required placeholder="Digite a sua senha"
+                                                    pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
+                                                    title="A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
+                                                <span class="input-group-text" onclick="togglePasswordVisibility()">
+                                                    <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                                </span>
+                                            </div>
+
                                         </div>
-                                    </div>
+                                            @endif
                                     </div>
 
                                     <input type="hidden" name="permission" value="imobiliaria">
@@ -182,6 +185,7 @@
                                             <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                         </div>
                                     </div>
+                                    
                                     <div data-mdb-input-init class="form-outline mb-3">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <label class="form-label" for="password">Senha</label>

@@ -10,7 +10,8 @@ class LoginController extends Controller
 {
     public function auth(Request $request)
     {
-        // dd($request);
+       try {
+        //code...
         $credenciais = $request->validate(
             [
                 'email' => ['required', 'email'],
@@ -22,6 +23,13 @@ class LoginController extends Controller
                 'password.required' => 'O Campo senha é Obrigatório!'
             ]
         );
+
+        $user = \App\Models\User::where('email', $request->email)->first();
+        // var_dump($user);
+        // dd($user->ativo);
+        if (!$user->ativo) {
+            return redirect()->back()->with('erro', 'Sua conta está desativada. Entre em contato com Administrador!');
+        }
 
         if (Auth::attempt($credenciais)) {
             $request->session()->regenerate();
@@ -40,6 +48,9 @@ class LoginController extends Controller
         } else {
             return redirect()->back()->with('erro', 'Email ou senha invalidos.');
         }
+       } catch (\Throwable $th) {
+        return redirect()->back()->with('erro', 'Problemas na conexão! Tente novamente mais tarde.');
+       }
     }
 
     public function logout (Request $request){

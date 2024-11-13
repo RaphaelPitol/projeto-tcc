@@ -101,6 +101,7 @@ $indice = 0;
     <div class="header">
         <p>Razão Social: {{$v->imobiliaria->razao_social}} - CNPJ: {{$v->imobiliaria->cnpj}}</p>
         <p>Endereço: {{$v->imobiliaria->logradouro}} - Número: {{$v->imobiliaria->numero}}, Bairro: {{$v->imobiliaria->bairro}}, Cidade: {{$v->imobiliaria->cidade}}</p>
+        <p>Telefone:{{$v->imobiliaria->telefone}}</p>
         <p>Email de Contato: {{$v->imobiliaria->email}}</p>
     </div>
 

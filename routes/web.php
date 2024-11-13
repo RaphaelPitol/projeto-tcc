@@ -86,6 +86,8 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
         Route::get('/uservistoriador', function () {
             return view('user.userVistoriador');
         })->name('vistoriador');
+
+        Route::put('/ativo/{id}', [UserController::class, 'ativoInativo'])->name('vistoriador.ativo');
     });
 
     //Rotas Gerenciadas apenas pelo Admin
