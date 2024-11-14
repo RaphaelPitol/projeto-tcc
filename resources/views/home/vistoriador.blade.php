@@ -63,7 +63,7 @@
                                 <tr>
                                     <th>Vistoria</th>
                                     <th>Prazo</th>
-                                    <th>Ações</th>
+                                    <th style="text-align: center;">Ações</th>
                                 </tr>
                             </thead>
                             @if (isset($pendentes))

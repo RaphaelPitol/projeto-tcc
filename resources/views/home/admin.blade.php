@@ -2,13 +2,19 @@
 @section('title', 'Piso')
 @section('content')
 
-<div class="container">
+<div class="container my-5">
 
     <div class="row gap-2 d-flex justify-content-between align-items-center">
-        <h1 class="text-center ml-4">Imobiliarias</h1>
+        <h1 class="text-center ml-4">Imobiliárias</h1>
         <a class="btn btn-success mr-5" href="{{route(name: 'imobiliaria')}}">
             <i class="bi bi-plus-lg"></i> Cadastrar
         </a>
+    </div>
+    <div class="input-group my-2">
+        <span class="input-group-text" id="basic-addon1">
+            <i class="bi bi-search"></i>
+        </span>
+        <input type="text" class="form-control" id="search" placeholder="Buscar imobiliárias..." onkeyup="searchFunction()">
     </div>
 
 
@@ -20,10 +26,10 @@
                     <th>Razão Social</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
-                    <th>Ações</th>
+                    <th style="text-align: center;">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="imobiliarias">
                 @foreach($imobiliarias as $imobiliaria)
                 <tr class="{{ $imobiliaria->ativo ? '' : 'bg-secondary text-white' }}">
                     <td>{{$imobiliaria->name}}</td>
@@ -77,6 +83,23 @@
 @endif
 
 <script>
+      function searchFunction() {
+        let input = document.getElementById('search');
+        let filter = input.value.toLowerCase();
+        let tbody = document.getElementById('imobiliarias');
+        let tr = tbody.getElementsByTagName('tr');
+
+        for (let i = 0; i < tr.length; i++) {
+            let txtValue = tr[i].textContent || tr[i].innerText;
+            if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+
+
     function inativar(event) {
         event.preventDefault();
         const id = event.currentTarget.getAttribute('data-id');
