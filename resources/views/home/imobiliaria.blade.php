@@ -24,7 +24,7 @@
                             <thead class="table-primary">
                                 <tr>
                                     <th>Vistoria</th>
-                                    <th>Ações</th>
+                                    <th style="text-align: center;">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +55,7 @@
 
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <div class="card-header bg-danger text-white text-center">
+                    <div class="card-header bg-warning text-white text-center">
                         <h3 class="card-title">Pendentes</h3>
                     </div>
                     <div class="card-body p-0">
@@ -64,7 +64,7 @@
                                 <tr>
 
                                     <th>Vistoria</th>
-                                    <th>Ações</th>
+                                    <th style="text-align: center;">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -16,7 +16,7 @@
 <div class="container my-4">
     <div class="row mb-3 d-flex justify-content-between align-items-center">
         <div class="col-md-8 text-center text-md-start">
-            <h2>Ambientes - {{ $dados }}</h2>
+            <h2>Ambientes - <a href="{{route('show.vistoria', $id)}}">{{ $dados}}</a></h2>
         </div>
         <div class="col-md-4 text-md-end text-center">
             <a class="btn btn-success" href="{{ route('ambiente.create', $id) }}">
@@ -58,6 +58,7 @@
         </table>
     </div>
 </div>
+
 
 <script>
     function excluirAmbiente(event) {

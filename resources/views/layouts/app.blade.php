@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     @if(session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -60,16 +60,19 @@
                 @auth
                 @if (Auth::user()->permission == 'vistoriador')
                 <a class="navbar-brand" href="{{route('vistoriador.home')}}">
+                <img src="/image/casa.png" alt="" class="img-fluid align-middle" style="height: 1.2em; margin-right: 0.5em;">
                     {{ config('app.name', 'VistoriaPro') }}
                 </a>
                 @endif
                 @if (Auth::user()->permission == 'admin')
                 <a class="navbar-brand" href="{{route('admin.home')}}">
+                <img src="/image/casa.png" alt="" class="img-fluid align-middle" style="height: 1.2em; margin-right: 0.5em;">
                     {{ config('app.name', 'VistoriaPro') }}
                 </a>
                 @endif
                 @if (Auth::user()->permission == 'imobiliaria')
-                <a class="navbar-brand" href="{{route('imobiliaria.home')}}">
+                <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{ route('imobiliaria.home') }}">
+                    <img src="/image/casa.png" alt="" class="img-fluid align-middle" style="height: 1.2em; margin-right: 0.5em;">
                     {{ config('app.name', 'VistoriaPro') }}
                 </a>
                 @endif
@@ -186,10 +189,37 @@
             </div>
         </nav>
 
-        <main class="py-4 container mt-3">
-            @yield('content')
-        </main>
     </div>
+    <main class="flex-grow-1">
+        @yield('content')
+    </main>
+    <footer class="bg-dark text-light py-4 mt-auto">
+        <div class="container">
+            <div class="row justify-content-between">
+                <!-- Logo e Descrição -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-uppercase">
+                        VistoriaPro</h5>
+                    <p>Facilitando o gerenciamento e as vistorias de imóveis com tecnologia e precisão. Nosso compromisso é com a sua segurança e tranquilidade.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-uppercase">Contato</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123, Cidade</li>
+                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> contato@vistoriapro.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Direitos Autorais -->
+            <div class="row">
+                <div class="col text-center">
+                    <small>&copy; {{ date('Y') }} VistoriaPro. Todos os direitos reservados.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

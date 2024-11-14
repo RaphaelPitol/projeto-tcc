@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
         Route::delete('/vistoria/{id}', [VistoriaController::class, "destroy"])->name('vistoria.destroy');
 
 
+
         Route::get('/uservistoriador', function () {
             return view('user.userVistoriador');
         })->name('vistoriador');
@@ -126,6 +127,8 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
         Route::get('/home/vistoriador', function () {
             return view('home.vistoriador');
         })->name('vistoriador.home');
+
+        Route::get('vistoria/detalhes/{id}', [VistoriaController::class, 'show'])->name('show.vistoria');
 
     });
 

@@ -49,12 +49,14 @@ class VistoriaController extends Controller
      */
     public function show(string $id)
     {
-        $vistoria = Vistoria::find($id);
-        // dd($vistoria);
+        // dd($id);
+        $detalhes = Vistoria::find($id);
+        // dd($detalhes);
 
-        return view('vistoria.show', [
-            "vistoria" => $vistoria,
-        ]);
+       return view('vistoria.show',[
+        'detalhes' => $detalhes
+       ]);
+
     }
 
     /**

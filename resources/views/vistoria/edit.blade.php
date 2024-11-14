@@ -2,7 +2,7 @@
 @section('title', 'Vistoria')
 @section('content')
 
-<section class="vh-100 mb-4">
+
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -118,7 +118,6 @@
             </div>
         </div>
     </div>
-</section>
 
 <script>
     document.getElementById("cep").addEventListener("input", function(e) {
