@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit.user');
     Route::put('/update/{id}', [UserController::class, 'update'])->name('update.user');
 
+    Route::get('vistoria/detalhes/{id}', [VistoriaController::class, 'show'])->name('show.vistoria');
+
     //Rotas Gerenciadas apenas pela imobiliaria
     Route::middleware(['can:imobiliaria'])->group(function () {
         Route::get('/home/imobiliaria', function () {
@@ -127,8 +129,6 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
         Route::get('/home/vistoriador', function () {
             return view('home.vistoriador');
         })->name('vistoriador.home');
-
-        Route::get('vistoria/detalhes/{id}', [VistoriaController::class, 'show'])->name('show.vistoria');
 
     });
 
