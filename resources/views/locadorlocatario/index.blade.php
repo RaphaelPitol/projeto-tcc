@@ -2,7 +2,7 @@
 @section('title', 'Edição')
 @section('content')
 
-<div class="container">
+<div class="container my-5">
     <div class="row gap-2 d-flex justify-content-between align-items-center">
         <h1 class="text-center ml-4">Locador/Locatarios</h1>
         <a class="btn btn-success mr-5" href="{{ route('locloca.create') }}">

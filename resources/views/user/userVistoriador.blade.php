@@ -2,10 +2,10 @@
 @section('title', 'Edição')
 @section('content')
 
-<section class="vh-100 mb-4">
+
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-12 col-xl-11">
+            <div class="col-lg-12 col-xl-11 my-5">
                 <div class="card text-black" style="border-radius: 25px;">
                     <div class="card-body p-md-5">
                         <div class="row justify-content-center">
@@ -50,8 +50,8 @@
                                         <div class="input-group">
                                             <input type="password" name="password" id="form-password" class="form-control"
                                                 required placeholder="Digite a sua senha"
-                                                pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
-                                                title="A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
+                                                pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$"
+                                                title="A senha deve ter no mínimo 8 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*." />
                                             <span class="input-group-text" onclick="togglePasswordVisibility()">
                                                 <i class="fa fa-eye" id="togglePasswordIcon"></i>
                                             </span>
@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-</section>
+
 
 @if ($errors->any())
 <script>
@@ -104,10 +104,10 @@
     function validatePassword() {
         const passwordInput = document.getElementById("form-password");
         const password = passwordInput.value;
-        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
         if (!regex.test(password)) {
-            alert("A senha deve ter no mínimo 6 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*.");
+            alert("A senha deve ter no mínimo 8 caracteres, incluindo pelo menos um número e um caractere especial !@#$%^&*.");
             return false; // Evita o envio do formulário
         }
         return true; // Permite o envio do formulário

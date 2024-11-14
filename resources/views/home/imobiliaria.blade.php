@@ -3,8 +3,8 @@
 @section('content')
 
 
-<h1 class="text-center mt-1">Vistorias</h1>
 <div class="container mt-5 text-right">
+    <h1 class="text-center mt-1">Vistorias</h1>
     <div class="d-grid gap-2">
         <a class="btn btn-primary mr-3" href="{{ route('vistoria.create') }}">
             <i class="bi bi-plus-lg"></i> Vistoria
