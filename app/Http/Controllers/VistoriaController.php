@@ -53,9 +53,7 @@ class VistoriaController extends Controller
         $detalhes = Vistoria::find($id);
         // dd($detalhes);
 
-       return view('vistoria.show',[
-        'detalhes' => $detalhes
-       ]);
+        return redirect('/ambiente/index/'.$id)->with('detalhes', $detalhes);
 
     }
 
