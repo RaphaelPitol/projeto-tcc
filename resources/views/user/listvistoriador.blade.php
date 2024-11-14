@@ -11,7 +11,6 @@
         </a>
     </div>
 
-
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">

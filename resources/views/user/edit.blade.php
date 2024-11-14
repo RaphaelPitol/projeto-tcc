@@ -123,7 +123,7 @@
 
                                         <div class="col-md-6 mt-4">
                                             <div class="mb-3 ">
-                                                <button type="submit" class="btn btn-primary btn-lg form-control">Cadastrar</button>
+                                                <button type="submit" class="btn btn-primary btn-lg form-control">Editar</button>
                                             </div>
                                         </div>
                                     </div>
