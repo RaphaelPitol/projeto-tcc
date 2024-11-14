@@ -41,7 +41,6 @@ class ResetPasswordController extends Controller
     return $status === Password::RESET_LINK_SENT
     ? back()->with(['status' => "Link Enviado, verifique sua caixa de entrada!" ])
     : back()->withErrors(['email' => __($status)]);
-
     }
 
     public function reset($token)
