@@ -10,6 +10,10 @@
         </a>
     </div>
 
+    <div class="input-group my-2">
+        <input type="text" class="form-control" id="search" placeholder="Buscar Vistoriador..." onkeyup="search()">
+    </div>
+
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
@@ -17,10 +21,10 @@
                     <th>Nome</th>
                     <th>Sobrenome</th>
                     <th>E-mail</th>
-                    <th>Ações</th>
+                    <th style="text-align: center;">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="vistoriador">
                 @foreach($vistoriadores as $vistoriador)
                 <tr class="{{ $vistoriador->ativo ? '' : 'bg-secondary text-white' }}">
                     <td>{{$vistoriador->name}}</td>
@@ -93,6 +97,22 @@
             }
         });
     }
+
+    function search() {
+            let input = document.getElementById('search');
+            let filter = input.value.toLowerCase();
+            let tbody = document.getElementById('vistoriador');
+            let tr = tbody.getElementsByTagName('tr');
+
+            for (let i = 0; i < tr.length; i++) {
+                let txtValue = tr[i].textContent || tr[i].innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
 </script>
 
 

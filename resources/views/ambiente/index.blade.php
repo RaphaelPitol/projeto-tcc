@@ -59,6 +59,26 @@
     </div>
 </div>
 
+@if (session('detalhes'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: "Endereço!",
+                html: `
+                {{ session('detalhes')->nome }} </br>
+                Logradouro: {{ session('detalhes')->logradouro }}-{{ session('detalhes')->numero}}</br>
+                Bairro: {{ session('detalhes')->bairro }}</br>
+                Cidade: {{ session('detalhes')->cidade }}
+                `,
+                showConfirmButton: true,
+
+            });
+        });
+    </script>
+    @endif
+
 
 <script>
     function excluirAmbiente(event) {

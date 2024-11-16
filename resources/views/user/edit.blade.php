@@ -3,7 +3,6 @@
 @section('content')
 
 @if (Auth::user()->permission == 'imobiliaria' || Auth::user()->permission == 'admin')
-<section class="vh-100 mb-4">
     @php
     if(isset($dados)){
     echo($dados);
@@ -11,7 +10,7 @@
     @endphp
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-12 col-xl-11">
+            <div class="col-lg-12 col-xl-11 my-5">
                 <div class="card text-black" style="border-radius: 25px;">
                     <div class="card-body p-md-5">
                         <div class="row justify-content-center">
@@ -137,15 +136,12 @@
         </div>
     </div>
 
-</section>
-
 @endif
 
 @if (Auth::user()->permission == 'vistoriador')
-<section class="vh-100">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-12 col-xl-11">
+            <div class="col-lg-12 col-xl-11 my-5">
                 <div class="card text-black" style="border-radius: 25px;">
                     <div class="card-body p-md-5">
                         <div class="row justify-content-center">
@@ -185,7 +181,7 @@
                                             <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
                                         </div>
                                     </div>
-                                    
+
                                     <div data-mdb-input-init class="form-outline mb-3">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <label class="form-label" for="password">Senha</label>
@@ -218,7 +214,6 @@
             </div>
         </div>
     </div>
-</section>
 @endif
 @if (session('success'))
 <script>

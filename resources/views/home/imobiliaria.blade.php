@@ -11,6 +11,7 @@
         </a>
     </div>
 </div>
+
 <div class="container mt-5">
     <div class="container mt-5">
         <div class="row">
@@ -20,6 +21,9 @@
                         <h3 class="card-title">Realizadas</h3>
                     </div>
                     <div class="card-body p-0">
+                        <div class="input-group my-2">
+                            <input type="text" class="form-control" id="search" placeholder="Buscar vistorias realizadas..." onkeyup="searchRealizadas()">
+                        </div>
                         <table class="table table-hover table-striped mb-0">
                             <thead class="table-primary">
                                 <tr>
@@ -27,14 +31,14 @@
                                     <th style="text-align: center;">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="realizadas">
                                 @if (isset($realizadas))
                                 @foreach ($realizadas as $realizada)
                                 <tr>
                                     <td>{{$realizada->nome}}-{{$realizada->locador->name}}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <form  id="form-status-{{$realizada->id}}" action="{{route('vistoria.status', $realizada)}}" method="post">
+                                            <form id="form-status-{{$realizada->id}}" action="{{route('vistoria.status', $realizada)}}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="numer" name="status" value="0" hidden>
@@ -59,6 +63,9 @@
                         <h3 class="card-title">Pendentes</h3>
                     </div>
                     <div class="card-body p-0">
+                        <div class="input-group my-2">
+                            <input type="text" class="form-control" id="searc" placeholder="Buscar vistorias pendentes..." onkeyup="searchPendentes()">
+                        </div>
                         <table class="table table-hover table-striped mb-0">
                             <thead class="table-primary">
                                 <tr>
@@ -67,8 +74,8 @@
                                     <th style="text-align: center;">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @if (isset($pendentes))
+                            <tbody id="pendente">
+                            @if (isset($pendentes))
                                 @foreach ($pendentes as $pendente)
                                 <tr>
                                     <td><a href="{{ route('ambiente.index', $pendente) }}">{{$pendente->nome}}-{{$pendente->locador->name}}</a>-{{\Carbon\Carbon::parse( $pendente->data_prazo)->format('d/m/Y') }}</td>
@@ -130,14 +137,14 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                const form = document.getElementById('form-status-' + id);
-                console.log(form);
-                if (form) {
-                    form.submit();
-                } else {
-                    console.error("Formulário não encontrado: ", 'form-status-' + id);
+                    const form = document.getElementById('form-status-' + id);
+                    console.log(form);
+                    if (form) {
+                        form.submit();
+                    } else {
+                        console.error("Formulário não encontrado: ", 'form-status-' + id);
+                    }
                 }
-            }
             });
         }
 
@@ -155,14 +162,46 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                const form = document.getElementById('form-pendente-excluir-' + id);
-                if (form) {
-                    form.submit();
+                    const form = document.getElementById('form-pendente-excluir-' + id);
+                    if (form) {
+                        form.submit();
+                    } else {
+                        console.error("Formulário não encontrado: ", 'form-pendente-excluir-' + id);
+                    }
+                }
+            });
+        }
+
+        function searchRealizadas() {
+            let input = document.getElementById('search');
+            let filter = input.value.toLowerCase();
+            let tbody = document.getElementById('realizadas');
+            let tr = tbody.getElementsByTagName('tr');
+
+            for (let i = 0; i < tr.length; i++) {
+                let txtValue = tr[i].textContent || tr[i].innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
                 } else {
-                    console.error("Formulário não encontrado: ", 'form-pendente-excluir-' + id);
+                    tr[i].style.display = "none";
                 }
             }
-            });
+        }
+
+        function searchPendentes() {
+            let input = document.getElementById('searc');
+            let filter = input.value.toLowerCase();
+            let tbody = document.getElementById('pendente');
+            let tr = tbody.getElementsByTagName('tr');
+
+            for (let i = 0; i < tr.length; i++) {
+                let txtValue = tr[i].textContent || tr[i].innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
         }
     </script>
 
