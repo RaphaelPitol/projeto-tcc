@@ -30,11 +30,6 @@ class LoginController extends Controller
             if (!$user->ativo) {
                 return redirect()->back()->with('erro', 'Sua conta está desativada. Entre em contato com Administrador!');
             }
-
-            return redirect('home/vistoriador');
-        } else {
-            return redirect()->back()->with('erro', 'Email ou senha inválidos.');
-
             if (Auth::attempt($credenciais)) {
                 $request->session()->regenerate();
                 // dd(Auth::user()->permission);
