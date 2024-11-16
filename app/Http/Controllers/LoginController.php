@@ -46,7 +46,7 @@ class LoginController extends Controller
 
             return redirect('home/vistoriador');
         } else {
-            return redirect()->back()->with('erro', 'Email ou senha invalidos.');
+            return redirect()->back()->with('erro', 'Email ou senha inválidos.');
         }
        } catch (\Throwable $th) {
         return redirect()->back()->with('erro', 'Problemas na conexão! Tente novamente mais tarde.');
