@@ -27,10 +27,10 @@ class LoginController extends Controller
             $user = \App\Models\User::where('email', $request->email)->first();
             // var_dump($user);
             // dd($user->ativo);
-            if (!$user->ativo) {
-                return redirect()->back()->with('erro', 'Sua conta está desativada. Entre em contato com Administrador!');
-            }
             if (Auth::attempt($credenciais)) {
+                if (!$user->ativo) {
+                    return redirect()->back()->with('erro', 'Sua conta está desativada. Entre em contato com Administrador!');
+                }
                 $request->session()->regenerate();
                 // dd(Auth::user()->permission);
                 if (Auth::user()->permission == 'admin') {

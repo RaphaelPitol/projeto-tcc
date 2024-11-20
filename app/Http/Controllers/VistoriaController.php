@@ -99,7 +99,7 @@ class VistoriaController extends Controller
             "data_prazo" => $request->data_prazo
         ]);
 
-        return view('home.imobiliaria');
+        return redirect('/home/imobiliaria')->with('success', 'Edição realizada com sucesso.');
     }
 
     /**
@@ -110,7 +110,7 @@ class VistoriaController extends Controller
         // dd($id);
         Vistoria::destroy($id);
 
-        return view('home.imobiliaria');
+        return redirect('/home/imobiliaria')->with('success', 'Deletado com sucesso.');
     }
 
     public function status(Request $request, string $id)
