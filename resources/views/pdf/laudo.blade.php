@@ -229,7 +229,7 @@ $indice = 0;
 
         <div class="signature">
             <div class="signature-line"></div>
-            {{$v->vistoriador->name}}
+            {{$v->vistoriador->name}} {{$v->vistoriador->sobreNome}}
             <p><span>Vistoriador Responsável</span> </p>
         </div>
     </div>

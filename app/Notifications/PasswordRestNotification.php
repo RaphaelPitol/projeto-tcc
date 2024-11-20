@@ -39,7 +39,7 @@ class PasswordRestNotification extends Notification
                     ->subject('Redefinição de Senha!')
                     ->greeting('Olá...')
                     ->salutation('Obrigado!')
-                    ->from('vistory@email.com')
+                    ->from(env('MAIL_FROM_ADDRESS'))
                     ->line('Click no botão para redefinir sua senha!')
                     ->action('Redefinir', url($this->url))
                     ->line('Obrigado por usar nossa solução!');
