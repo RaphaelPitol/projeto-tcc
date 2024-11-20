@@ -88,3 +88,7 @@ body {
     align-items: center;
     gap: 10px;
 }
+
+footer {
+    font-size: 14px;
+}

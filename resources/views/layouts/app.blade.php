@@ -197,13 +197,12 @@
         <div class="container">
             <div class="row justify-content-between">
                 <!-- Logo e Descrição -->
-                <div class="col-md-6">
-                    <h5 class="text-uppercase">
-                        VistoriaPro</h5>
+                <div class="col-md-4">
+                    <h6 class="text-uppercase"><strong>VistoriaPro</h6></strong>
                     <p>Facilitando o gerenciamento e as vistorias de imóveis com tecnologia e precisão. Nosso compromisso é com a sua segurança e tranquilidade.</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-uppercase">Contato</h5>
+                    <h6 class="text-uppercase"><strong>Contato</strong></h6>
                     <ul class="list-unstyled">
                         <li><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123, Cidade</li>
                         <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
