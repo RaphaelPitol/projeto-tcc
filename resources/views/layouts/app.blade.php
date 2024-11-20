@@ -193,16 +193,16 @@
     <main class="flex-grow-1">
         @yield('content')
     </main>
-    <footer class="bg-dark text-light py-4 mt-auto">
+    <footer class="bg-dark text-light py-3 mt-auto">
         <div class="container">
             <div class="row justify-content-between">
                 <!-- Logo e Descrição -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-6">
                     <h5 class="text-uppercase">
                         VistoriaPro</h5>
                     <p>Facilitando o gerenciamento e as vistorias de imóveis com tecnologia e precisão. Nosso compromisso é com a sua segurança e tranquilidade.</p>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4">
                     <h5 class="text-uppercase">Contato</h5>
                     <ul class="list-unstyled">
                         <li><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123, Cidade</li>

@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <div class="card-header bg-success text-white text-center">
+                    <div class="card-header bg-dark text-white text-center">
                         <h3 class="card-title">Realizadas</h3>
                     </div>
                     <div class="card-body p-0">
@@ -54,7 +54,7 @@
 
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <div class="card-header bg-warning text-white text-center">
+                    <div class="card-header bg-secondary text-white text-center">
                         <h3 class="card-title">Pendentes</h3>
                     </div>
                     <div class="card-body p-0">
