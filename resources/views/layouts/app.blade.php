@@ -59,19 +59,19 @@
             <div class="container">
                 @auth
                 @if (Auth::user()->permission == 'vistoriador')
-                <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{route('vistoriador.home')}}">
+                <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{route('vistoriador.home')}}" title="Voltar ao Inicio">
                 <img src="/image/casa.png" alt="" class="img-fluid align-middle" style="height: 1.2em; margin-right: 0.5em;">
                     {{ config('app.name', 'VistoriaPro') }}
                 </a>
                 @endif
                 @if (Auth::user()->permission == 'admin')
-                <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{route('admin.home')}}">
+                <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{route('admin.home')}}" title="Voltar ao Inicio">
                 <img src="/image/casa.png" alt="" class="img-fluid align-middle" style="height: 1.2em; margin-right: 0.5em;">
                     {{ config('app.name', 'VistoriaPro') }}
                 </a>
                 @endif
                 @if (Auth::user()->permission == 'imobiliaria')
-                <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{ route('imobiliaria.home') }}">
+                <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{ route('imobiliaria.home') }}" title="Voltar ao Inicio">
                     <img src="/image/casa.png" alt="" class="img-fluid align-middle" style="height: 1.2em; margin-right: 0.5em;">
                     {{ config('app.name', 'VistoriaPro') }}
                 </a>
