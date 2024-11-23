@@ -112,7 +112,7 @@ $indice = 0;
         <p><span>Endereço Completo:</span> {{$v->logradouro}} Número {{$v->numero}}, Bairro {{$v->bairro}}, Cidade {{$v->cidade}}</p>
         <p><span>Locador:</span> {{$v->locador->name}}</p>
         <p><span>Locatário:</span> {{$v->locatario->name}}</p>
-        <p><span>Vistoriador Responsável:</span> {{$v->vistoriador->name}}</p>
+        <p><span>Vistoriador Responsável:</span> {{$v->vistoriador->name}} {{$v->vistoriador->sobreNome}}</p>
     </div>
 
 

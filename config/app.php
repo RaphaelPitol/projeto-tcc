@@ -1,5 +1,6 @@
 <?php
 
+use App\Constants;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -188,6 +189,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
         'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+        'Constants' => App\Constants::class
     ])->toArray(),
 
 ];
