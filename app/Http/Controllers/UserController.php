@@ -118,6 +118,14 @@ class UserController extends Controller
 
         if (Auth::user()->permission === 'admin') {
             $imobiliaria = User::findOrFail($id);
+
+            if ($request->input('ativo') == null){
+                $dados = $request->except('_token');
+                $user = User::find($id);
+                $user->update($dados);
+                return redirect('/home/admin')->with('success', 'Imobiliária atualizados com sucesso.');
+            }
+            
             if ($imobiliaria) {
                 $imobiliaria->ativo = $request->input('ativo');
                 $imobiliaria->save();
@@ -132,7 +140,7 @@ class UserController extends Controller
                         ->update(['ativo' => 1]);
                 }
 
-                return redirect('/home/admin')->with('success', 'Imobiliária e vistoriadores atualizados com sucesso.');
+                return redirect('/home/admin')->with('success', 'Imobiliária atualizados com sucesso.');
             }
         }
 

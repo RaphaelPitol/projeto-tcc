@@ -100,6 +100,7 @@ class Constants
     const descricao_rodapes = [
         'Em todo contorno embutido',
         'Em todo contorno sobreposto',
+        'inteiros e concervados',
         'Com marcas de arranhões',
         'Desgastado nas extremidades',
         'Desbotado pela exposição ao sol',
@@ -166,6 +167,8 @@ class Constants
         'Requer repintura'
     ];
     const descricao_parede = [
+        'Limpo',
+        'Sem furos manchas ou rachaduras',
         'Revestida com Cerâmica',
         'Rachaduras',
         'Infiltração',
@@ -262,6 +265,9 @@ class Constants
         'Laranja suave'
     ];
     const descricao_teto = [
+        'limpo',
+        'sem furos manchas ou rachaduras',
+        'vigas aéreas intactas',
         'Manchas de umidade',
         'Rachaduras visíveis',
         'Fissuras leves',
