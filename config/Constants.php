@@ -98,7 +98,8 @@ class Constants
         'Desbotado'
     ];
     const descricao_rodapes = [
-        'Em todo contorno',
+        'Em todo contorno embutido',
+        'Em todo contorno sobreposto',
         'Com marcas de arranhões',
         'Desgastado nas extremidades',
         'Desbotado pela exposição ao sol',
@@ -283,13 +284,14 @@ class Constants
         'Presença de teias de aranha',
     ];
     const portas = [
-        'de madeira',
-        'de vidro',
-        'de alumínio',
-        'de ferro',
-        'de PVC',
-        'de aço',
-        'laminada',
+        'Madeira',
+        'Vidro',
+        'Alumínio',
+        'Ferro',
+        'PVC',
+        'Aço',
+        'Laminada',
+        'Sanfonada'
 
     ];
     const conservacao_porta = [
@@ -298,17 +300,7 @@ class Constants
         'Boa - leve desgaste natural, sem danos estruturais',
         'Regular - sinais de desgaste moderado, mas funcional',
         'Desgastada - desgaste evidente, mas ainda utilizável',
-        'Danificada - com danos superficiais, como arranhões ou lascas',
-        'Precisa de pequenos reparos - desgastes leves ou ferragens soltas',
-        'Precisa de reparo - danos significativos que afetam a funcionalidade',
-        'Precisa de substituição - danos severos e comprometimento estrutural',
-        'Riscos visíveis - arranhões ou marcas superficiais',
-        'Amassada - danos causados por impactos',
-        'Com ferrugem - sinais de corrosão, especialmente em áreas metálicas',
-        'Com pintura descascando - desgastes de acabamento, necessitando repintura',
-        'Desalinhada - dificuldade de fechamento adequado',
-        'Fechadura danificada - trava ou fechadura com problemas de funcionamento',
-        'Infiltração ou umidade - áreas com sinais de mofo ou umidade',
+
     ];
     const cores_portas_janelas = [
         'Branco',
@@ -365,9 +357,20 @@ class Constants
         'laqueada',
         'de duas folhas',
         'de correr embutida',
+        'Danificada - com danos superficiais, como arranhões ou lascas',
+        'Precisa de pequenos reparos - desgastes leves ou ferragens soltas',
+        'Precisa de reparo - danos significativos que afetam a funcionalidade',
+        'Precisa de substituição - danos severos e comprometimento estrutural',
+        'Riscos visíveis - arranhões ou marcas superficiais',
+        'Amassada - danos causados por impactos',
+        'Com ferrugem - sinais de corrosão, especialmente em áreas metálicas',
+        'Com pintura descascando - desgastes de acabamento, necessitando repintura',
+        'Desalinhada - dificuldade de fechamento adequado',
+        'Fechadura danificada - trava ou fechadura com problemas de funcionamento',
+        'Infiltração ou umidade - áreas com sinais de mofo ou umidade',
     ];
     const tipos_janelas = [
-        'Correr',
+        'Blindex de Correr',
         'Abrir (bate-bate)',
         'Guilhotina',
         'Veneziana',
@@ -450,6 +453,8 @@ class Constants
     ];
     const interruptores = [
         'simples (1 via)',
+        'paralelo',
+        'intermediario',
         'duplo (2 vias)',
         'triplo (3 vias)',
         'paralelo',

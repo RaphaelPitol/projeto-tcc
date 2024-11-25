@@ -33,7 +33,7 @@ class AmbienteController extends Controller
     public function create(string $id)
     {
         //dd($id);
-        
+
         return view('ambiente.create', ['id' => $id]);
     }
 
@@ -110,12 +110,18 @@ class AmbienteController extends Controller
            $dados = $dado->nome ."-" .$dado->locador->name;
         }
 
-        return view('ambiente.index', [
+        // return view('ambiente.index', [
+        //     'message' => $message,
+        //     'id' => $request->input('vistoria_id'),
+        //     'ambientes' => $ambientes,
+        //     'dados' => $dados
+        // ]);
+        return redirect(route('ambiente.index', [
             'message' => $message,
             'id' => $request->input('vistoria_id'),
             'ambientes' => $ambientes,
             'dados' => $dados
-        ]);
+        ]))->with('success', 'Ambiente gravado com sucesso.');
     }
 
     /**
@@ -197,7 +203,11 @@ class AmbienteController extends Controller
         $ambientes = Ambiente::where('vistoria_id', $request->vistoria_id)->get();
         // dd($ambientes);
 
-        return redirect()->route('ambiente.index', ['id' => $request->vistoria_id]);
+        // return redirect()->route('ambiente.index', ['id' => $request->vistoria_id]);
+
+        return redirect(route('ambiente.index', [
+            'id' => $request->vistoria_id,
+        ]))->with('success', 'Ambiente Editado com sucesso.');
 
     }
 
