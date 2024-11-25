@@ -28,6 +28,28 @@ class PDFController extends Controller
             "ambientes" => $ambientes
         ]);
 
-        return $pdf->stream('sample.pdf');
+        $pdf->setOption('isHtml5ParserEnabled', true);
+        $pdf->setOption('isRemoteEnabled', true);
+
+
+        $dompdf = $pdf->getDomPDF();
+        $dompdf->render();
+
+        $canvas = $dompdf->get_canvas();
+        if ($canvas) {
+            $canvas->page_text(
+                500,
+                800,
+                "Página {PAGE_NUM} de {PAGE_COUNT}",
+                null,
+                10,
+                [0, 0, 0] 
+            );
+        } else {
+            throw new \Exception("Canvas não pôde ser inicializado. Verifique as configurações do DOMPDF.");
+        }
+
+        return $pdf->stream('laudo.pdf');
+
     }
 }

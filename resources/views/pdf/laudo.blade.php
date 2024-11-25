@@ -60,6 +60,10 @@
         font-size: 12px;
         margin-top: 10px;
     }
+    .termo {
+        font-size: 12px;
+        margin-top: 10px;
+    }
 
     hr {
         border: 1px solid #ccc;
@@ -208,6 +212,16 @@ $indice = 0;
         <hr>
         @endforeach
     </div>
+    <div class="termo" style="text-indent: 30px;">
+        <p> O locatário tem ciência que deverá conferir está vistoria e qualquer
+            divergência deverá ser anotada em 02 (duas) vias, em uma folha a parte e
+            entregue na Imobiliária Garcia no prazo de 10 (dez) dias a contar destadata.
+        </p>
+        <p>
+            Reconheço as anotações constante deste relatório, pelo qual me considero responsável
+            assumindo o encargo de repor nas mesmas condições que ora recebo o imóvel.
+        </p>
+    </div>
 
     <div class="date-location">
         <p>Umuarama - PR, {{ $v->updated_at->locale('pt_BR')->isoFormat('D [de] MMMM [de] YYYY') }}</p>
@@ -234,6 +248,7 @@ $indice = 0;
         </div>
     </div>
     @endforeach
+
 </body>
 
 </html>
