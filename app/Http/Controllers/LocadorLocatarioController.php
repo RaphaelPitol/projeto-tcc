@@ -35,6 +35,23 @@ class LocadorLocatarioController extends Controller
      */
     public function store(Request $request)
     {
+
+        $credenciais = $request->validate(
+            [
+                'rg' => ['required'],
+                'name' => ['required'],
+                'cpf' => ['required'],
+                'telefone' => ['required'],
+            ],
+            [
+                'rg.required' => 'O Campo rg é Obrigatório!',
+                'name.required' => 'O Nome é Obrigatório!',
+                'cpf.required' => 'O cpf é Obrigatório!',
+                'telefone.email' => 'O telefone  é Obrigatório',
+
+            ]
+        );
+
         $validador = new Validador();
         if (!$validador->validarCPF($request->cpf)) {
             return redirect()->back()->withErrors(['cpf' => 'CPF inválido.'])->withInput();
