@@ -31,7 +31,50 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->permission === 'admin'){
+            $request->validate(
+                [
+                    'name' => ['required'],
+                    'cnpj' => ['required'],
+                    'email' => ['required', 'email'],
+                    'razao_social' => ['required'],
+                    'logradouro' => ['required'],
+                    'cidade' => ['required'],
+                    'password' => ['required'],
+                ],
+                [
+                    'name.required' => 'o Nome Fantasia é Obrigatório!',
+                    'cnpj.required' => 'O cnpj é Obrigatório!',
+                    'email.required' => 'O Campo email é Obrigatório!',
+                    'email.email' => 'O e-mail deve ser valido!',
+                    'razao_social.required' => 'A Razão Social é Obrigatória!',
+                    'logradouro.required' => 'O logradouro é Obrigatório!',
+                    'cidade.required' => 'O :atributo é Obrigatório!',
+                    'password.required' => 'A senha  é Obrigatória',
 
+                ]
+            );
+        }
+        if (Auth::user()->permission === 'imobiliaria'){
+            $request->validate(
+                [
+                    'name' => ['required'],
+                    'sobreNome' => ['required'],
+                    'email' => ['required', 'email'],
+                    'cpf' => ['required'],
+                    'password' => ['required'],
+                ],
+                [
+                    'email.required' => 'O Campo email é Obrigatório!',
+                    'name.required' => 'O Nome é Obrigatório!',
+                    'sobreNome.required' => 'O sobrenome é Obrigatório!',
+                    'email.email' => 'O e-mail deve ser valido!',
+                    'cpf.required' => 'O cpf é Obrigatório!',
+                    'password.email' => 'A senha  é Obrigatória',
+
+                ]
+            );
+        }
         // dd($request);
         $validador = new Validador();
 
@@ -65,6 +108,7 @@ class UserController extends Controller
                 return redirect()->back()->withErrors(['cnpj' => 'Este cnpj já está cadastrado.'])->withInput();
             }
         }
+
         $dados = $request->except('_token');
 
         User::create($dados);
@@ -125,7 +169,7 @@ class UserController extends Controller
                 $user->update($dados);
                 return redirect('/home/admin')->with('success', 'Imobiliária atualizados com sucesso.');
             }
-            
+
             if ($imobiliaria) {
                 $imobiliaria->ativo = $request->input('ativo');
                 $imobiliaria->save();
