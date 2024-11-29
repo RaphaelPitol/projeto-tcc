@@ -20,9 +20,16 @@ class VistoriaController extends Controller
      */
     public function create()
     {
-        $locadores = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
-        $locatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
-        $vistoriadores = User::where('permission', 'vistoriador')->where('id_imobiliaria', Auth::user()->id)->get();
+        $locadores = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)
+            ->orderBy('name', 'asc')
+            ->get();
+        $locatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)
+            ->orderBy('name', 'asc')
+            ->get();
+        $vistoriadores = User::where('permission', 'vistoriador')
+            ->where('id_imobiliaria', Auth::user()->id)
+            ->orderBy('name', 'asc')
+            ->get();
 
         return view('vistoria.create', [
             "locadores" => $locadores,
@@ -53,8 +60,7 @@ class VistoriaController extends Controller
         $detalhes = Vistoria::find($id);
         // dd($detalhes);
 
-        return redirect('/ambiente/index/'.$id)->with('detalhes', $detalhes);
-
+        return redirect('/ambiente/index/' . $id)->with('detalhes', $detalhes);
     }
 
     /**
@@ -62,10 +68,15 @@ class VistoriaController extends Controller
      */
     public function edit(string $id)
     {
-        $locadores = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
-        $locatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
+        $locadores = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)
+            ->orderBy('name', 'asc')
+            ->get();
+        $locatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)
+            ->orderBy('name', 'asc')
+            ->get();
         $vistoriadores = User::where('permission', 'vistoriador')
             ->where('id_imobiliaria', Auth::user()->id)
+            ->orderBy('name', 'asc')
             ->get();
         $vistoria = Vistoria::find($id);
 
@@ -122,9 +133,8 @@ class VistoriaController extends Controller
             "status" => $request->status,
         ]);
 
-        if(Auth::user()->permission == 'vistoriador'){
+        if (Auth::user()->permission == 'vistoriador') {
             return view('home.vistoriador');
-
         }
         return view('home.imobiliaria');
     }

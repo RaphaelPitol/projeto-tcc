@@ -17,7 +17,9 @@ class LocadorLocatarioController extends Controller
     public function index()
     {
 
-        $locadorlocatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)->get();
+        $locadorlocatarios = LocadorLocatario::where('id_imobiliaria', Auth::user()->id)
+            ->orderBy('name', 'asc')
+            ->get();
 
         return view('locadorlocatario.index', ["locadorlocatarios" => $locadorlocatarios]);
     }
@@ -125,13 +127,13 @@ class LocadorLocatarioController extends Controller
     public function destroy(string $id)
     {
         $temVistLocador = Vistoria::where('id_locador', $id)
-        ->exists();
+            ->exists();
         $temVistLocatario = Vistoria::where('id_locatario', $id)
-        ->exists();
-        if($temVistLocador){
+            ->exists();
+        if ($temVistLocador) {
             return redirect()->back()->withErrors(['Locador' => 'Esse Locador possui uma ou mais Vistorias! Não é possivel Excluir.'])->withInput();
         }
-        if($temVistLocatario){
+        if ($temVistLocatario) {
             return redirect()->back()->withErrors(['Locatario' => 'Esse Locatario possui uma ou mais Vistorias! Não é possivel Excluir.'])->withInput();
         }
 

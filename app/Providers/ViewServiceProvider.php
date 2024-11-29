@@ -17,6 +17,7 @@ class ViewServiceProvider extends ServiceProvider
             $pendentes = Vistoria::where('id_imobiliaria',  Auth::user()->id)
                 ->where('status', 0)
                 ->with('locador')
+                ->orderBy('data_prazo', 'asc')
                 ->get();
             $view->with('pendentes', $pendentes);
         });
@@ -25,6 +26,7 @@ class ViewServiceProvider extends ServiceProvider
             $realizadas = Vistoria::where('id_imobiliaria',  Auth::user()->id)
                 ->where('status', 1)
                 ->with('locador')
+                ->orderBy('updated_at', 'desc')
                 ->get();
             $view->with('realizadas', $realizadas);
         });
@@ -32,6 +34,7 @@ class ViewServiceProvider extends ServiceProvider
             $realizadas = Vistoria::where('id_vistoriador',  Auth::user()->id)
                 ->where('status', 1)
                 ->with('locador')
+                ->orderBy('updated_at', 'desc')
                 ->get();
             $view->with('realizadas', $realizadas);
         });
@@ -40,12 +43,15 @@ class ViewServiceProvider extends ServiceProvider
             $pendentes = Vistoria::where('id_vistoriador',  Auth::user()->id)
                 ->where('status', 0)
                 ->with('locador')
+                ->orderBy('data_prazo', 'asc')
                 ->get();
             $view->with('pendentes', $pendentes);
         });
 
         View::composer('home.admin', function($view){
-            $imobiliarias = User::where('permission', 'imobiliaria')->get();
+            $imobiliarias = User::where('permission', 'imobiliaria')
+            ->orderBy('ativo', 'desc')
+            ->get();
 
             $view->with('imobiliarias', $imobiliarias);
         });
