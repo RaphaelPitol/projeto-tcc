@@ -84,7 +84,7 @@
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="email">E-mail</label>
-                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Digite o seu e-mail" />
+                            <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Digite o seu e-mail" required/>
                         </div>
 
                         <!-- Password input -->

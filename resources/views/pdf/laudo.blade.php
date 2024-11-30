@@ -213,9 +213,9 @@ $indice = 0;
         @endforeach
     </div>
     <div class="termo" style="text-indent: 30px;">
-        <p> O locatário tem ciência que deverá conferir está vistoria e qualquer
+        <p> O locatário tem ciência que deverá conferir esta vistoria e qualquer
             divergência deverá ser anotada em 02 (duas) vias, em uma folha a parte e
-            entregue na Imobiliária Garcia no prazo de 10 (dez) dias a contar destadata.
+            entregue na Imobiliária Garcia no prazo de 10 (dez) dias a contar desta data.
         </p>
         <p>
             Reconheço as anotações constante deste relatório, pelo qual me considero responsável

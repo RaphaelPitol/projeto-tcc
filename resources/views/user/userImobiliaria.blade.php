@@ -29,7 +29,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="name">Fantasia</label>
-                                                <input type="text" id="name" name="name" class="form-control" />
+                                                <input type="text" id="name" name="name" class="form-control" required/>
                                             </div>
                                         </div>
 
@@ -39,14 +39,14 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="razao_social">Razão Social</label>
-                                                <input type="text" id="razao_social" name="razao_social" class="form-control" />
+                                                <input type="text" id="razao_social" name="razao_social" class="form-control" required/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="cep">CEP</label>
-                                                <input type="text" id="cep" name="cep" maxlength="10" class="form-control" placeholder="xx.xxx-xxx" />
+                                                <input type="text" id="cep" name="cep" maxlength="10" class="form-control" placeholder="xx.xxx-xxx" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="email">E-mail</label>
-                                                <input type="email" id="email" name="email" class="form-control" />
+                                                <input type="email" id="email" name="email" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div data-mdb-input-init class="form-outline col-md-6">
@@ -108,7 +108,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="telefone">Telefone</label>
-                                                <input type="text" id="telefone" name="telefone" class="form-control" />
+                                                <input type="text" id="telefone" name="telefone" class="form-control" required/>
                                             </div>
                                         </div>
 
@@ -181,7 +181,7 @@
                             text: "Cep Não Encontrado",
                         });
                     }
-                });
+            });
         }
     });
 

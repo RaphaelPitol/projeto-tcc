@@ -20,7 +20,7 @@
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="name">Nome Completo</label>
-                                            <input type="text" id="name" name="name" class="form-control" />
+                                            <input type="text" id="name" name="name" class="form-control" required/>
                                         </div>
                                     </div>
 
@@ -28,7 +28,7 @@
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <i class="bi bi-telephone fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="telefone">Telefone</label>
-                                            <input type="text" id="telefone" name="telefone" class="form-control" />
+                                            <input type="text" id="telefone" name="telefone" class="form-control" required/>
                                         </div>
                                     </div>
 

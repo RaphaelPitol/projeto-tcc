@@ -39,7 +39,7 @@
         /* Cor da borda ao passar o mouse */
     }
 
-    #voltar{
+    #voltar {
         background: orange;
     }
 </style>
@@ -129,7 +129,7 @@
                         <div class="form-group">
                             <label for="cons_piso">Estado de Conservação do Piso</label>
                             <select class="form-control" id="cons_piso" name="cons_piso">
-                                <option value="bom">Bom</option>
+                                <option value=""></option>
                                 @foreach (Constants::estado as $cons )
                                 <option value="{{$cons}}">{{$cons}}</option>
                                 @endforeach
@@ -243,7 +243,6 @@
                         <div class="form-group">
                             <label for="descricao_parede">Descrição da Parede</label>
                             <select class="form-control" id="descricao_parede" name="descricao_parede[]" multiple>
-                                <option value=""></option>
                                 @foreach (Constants::descricao_parede as $descricao_pared)
                                 <option value="{{$descricao_pared}}">{{ $descricao_pared}}</option>
                                 @endforeach
@@ -268,18 +267,14 @@
                             <select class="form-control" id="teto" name="teto">
                                 <option value=""></option>
                                 @foreach (Constants::tipos_tetos as $tipos_teto)
-
                                 <option value="{{$tipos_teto}}">{{$tipos_teto}}</option>
                                 @endforeach
-
-
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cons_teto">Estado de Conservação do Teto</label>
                             <select class="form-control" id="cons_teto" name="cons_teto">
-
                                 <option value=""></option>
                                 @foreach ( Constants::estado_conservacao_teto as $conservacao_teto)
                                 <option value="{{$conservacao_teto}}">{{$conservacao_teto}}</option>
@@ -311,7 +306,6 @@
                         <div class="form-group">
                             <label for="descricao_teto">Descrição do Teto</label>
                             <select class="form-control" id="descricao_teto" name="descricao_teto[]" multiple>
-                                <option value=""></option>
                                 @foreach (Constants::descricao_teto as $descricao_teto)
                                 <option value="{{$descricao_teto}}">{{$descricao_teto}}</option>
 
@@ -417,7 +411,7 @@
 
                         <div class="form-group">
                             <label for="cons_janela">Estado de Conservação da Janela</label>
-                            <select class="form-control" id="cons_janela" name="cons_janela" >
+                            <select class="form-control" id="cons_janela" name="cons_janela">
                                 <option value=""></option>
                                 @foreach (Constants::conservacao_janela as $conservacao)
                                 <option value="{{$conservacao}}">
@@ -429,7 +423,7 @@
                         <div class="form-group">
                             <label for="cor_janela">Pintura</label>
                             <select class="form-control" id="cor_janela" name="cor_janela">
-                            <option value=""></option>
+                                <option value=""></option>
                                 @foreach (Constants::cores_portas_janelas as $cores_portas_janela)
                                 <option value="{{$cores_portas_janela}}">{{$cores_portas_janela}}</option>
                                 @endforeach
@@ -438,8 +432,8 @@
 
                         <div class="form-group">
                             <label for="cons_pintura_janela">Conservação Pintura</label>
-                            <select class="form-control" id="cons_pintura_janela" name="cons_pintura_janela" >
-                            <option value=""></option>
+                            <select class="form-control" id="cons_pintura_janela" name="cons_pintura_janela">
+                                <option value=""></option>
                                 @foreach (Constants::estado_pintura as $estado_pint)
                                 <option value="{{$estado_pint}}">{{$estado_pint}}</option>
                                 @endforeach
@@ -448,12 +442,11 @@
 
                         <div class="form-group">
                             <label for="descricao_janela">Descrição do Janela</label>
-                            <select class="form-control" id="descricao_janela" name="descricao_janela[]" multiple >
-                            @foreach ( Constants::descricao_janela as $descricao)
+                            <select class="form-control" id="descricao_janela" name="descricao_janela[]" multiple>
+                                @foreach ( Constants::descricao_janela as $descricao)
                                 <option value="{{$descricao}}">
                                     {{$descricao}}
                                 </option>
-
                                 @endforeach
                                 <!-- Adicione outras opções conforme necessário -->
                             </select>
@@ -496,47 +489,69 @@
         // Função para adicionar novos interruptores dinamicamente
         $('#add-interruptor').click(function() {
             $('#interruptores-section').append(`
-                    <div class="form-group row">
-                        <div class="col-md-5">
-                            <label for="tipoInterruptor">Tipo de Interruptor</label>
-                            <select class="form-control" name="tipoInterruptor[]">
-                                @foreach (Constants::interruptores as $dado)
-                                <option>{{ $dado }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="quantidadeInterruptores">Quantidade de Interruptores</label>
-                            <input type="number" class="form-control" name="quantidadeInterruptores[]" placeholder="Digite a quantidade de interruptores">
-                        </div>
-                        <div class="col-md-2 d-flex align-items-center">
-                            <button type="button" class="btn btn-danger remove-interruptor">Remover</button>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="tipoInterruptor">Tipo de Interruptor</label>
+                        <select class="form-control" name="tipoInterruptor[]">
+                            @foreach (Constants::interruptores as $dado)
+                            <option>{{ $dado }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                `);
+                    <div class="col-md-5">
+                        <label for="quantidadeInterruptores">Quantidade de Interruptores</label>
+                        <input type="number" class="form-control" name="quantidadeInterruptores[]" placeholder="Digite a quantidade de interruptores" min="0">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center">
+                        <button type="button" class="btn btn-danger remove-interruptor">Remover</button>
+                    </div>
+                </div>
+            `);
+            $('#interruptores-section').on('input', 'input[name="quantidadeInterruptores[]"]', function() {
+                if ($(this).val() < 0) {
+                    $(this).val(0);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Valor inválido!',
+                        text: 'A quantidade de interruptores não pode ser menor que zero.',
+                        confirmButtonText: 'Entendido'
+                    });
+                }
+            });
         });
 
         // Função para adicionar novas tomadas dinamicamente
         $('#add-tomada').click(function() {
             $('#tomadas-section').append(`
-                    <div class="form-group row">
-                        <div class="col-md-5">
-                            <label for="tipoTomada">Tipo de Tomada</label>
-                            <select class="form-control" name="tipoTomada[]">
-                                @foreach (Constants::tomadas as $dado)
-                                <option>{{ $dado }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="quantidadeTomadas">Quantidade de Tomadas</label>
-                            <input type="number" class="form-control" name="quantidadeTomadas[]" placeholder="Digite a quantidade de tomadas">
-                        </div>
-                        <div class="col-md-2 d-flex align-items-center">
-                            <button type="button" class="btn btn-danger remove-tomada">Remover</button>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="tipoTomada">Tipo de Tomada</label>
+                        <select class="form-control" name="tipoTomada[]">
+                             @foreach (Constants::tomadas as $dado)
+                             <option>{{ $dado }}</option>
+                             @endforeach
+                        </select>
                     </div>
-                `);
+                    <div class="col-md-5">
+                        <label for="quantidadeTomadas">Quantidade de Tomadas</label>
+                        <input type="number" class="form-control" name="quantidadeTomadas[]" placeholder="Digite a quantidade de tomadas" min="0">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center">
+                        <button type="button" class="btn btn-danger remove-tomada">Remover</button>
+                    </div>
+                </div>
+            `);
+            $('#tomadas-section').on('input', 'input[name="quantidadeTomadas[]"]', function() {
+                if ($(this).val() < 0) {
+                    $(this).val(0);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Valor inválido!',
+                        text: 'A quantidade de tomadas não pode ser menor que zero.',
+                        confirmButtonText: 'Entendido'
+                    });
+                }
+            });
         });
 
         // Função para remover um interruptor
