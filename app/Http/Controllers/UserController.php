@@ -146,6 +146,12 @@ class UserController extends Controller
                 "user" => $user
             ]);
         }
+        if (Auth::user()->permission === 'admin' && $user->permission === 'admin') {
+
+            return view('user.editAdmin', [
+                "user" => $user
+            ]);
+        }
         return view('user.edit', [
             "user" => $user
         ]);
@@ -156,7 +162,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request);
+        // dd($request)
         $validador = new Validador();
 
 
@@ -167,7 +173,7 @@ class UserController extends Controller
                 $dados = $request->except('_token');
                 $user = User::find($id);
                 $user->update($dados);
-                return redirect('/home/admin')->with('success', 'Imobiliária atualizados com sucesso.');
+                return redirect('/home/admin')->with('success', 'Atualizado com sucesso.');
             }
 
             if ($imobiliaria) {
