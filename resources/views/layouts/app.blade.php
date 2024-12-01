@@ -204,8 +204,8 @@
                 <div class="col-md-4">
                     <h6 class="text-uppercase"><strong>Contato</strong></h6>
                     <ul class="list-unstyled">
-                        <li><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123, Cidade</li>
-                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Duque de Caxias, 4267, Umuarama-Pr</li>
+                        <li><i class="fas fa-phone"></i> (44) 9 8819-8370</li>
                         <li><i class="fas fa-envelope"></i> contato@vistoriapro.com</li>
                     </ul>
                 </div>

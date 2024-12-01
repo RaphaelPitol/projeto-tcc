@@ -508,12 +508,12 @@
                 </div>
             `);
             $('#interruptores-section').on('input', 'input[name="quantidadeInterruptores[]"]', function() {
-                if ($(this).val() < 0) {
-                    $(this).val(0);
+                if ($(this).val() <= 0) {
+                    $(this).val(1);
                     Swal.fire({
                         icon: 'error',
                         title: 'Valor inválido!',
-                        text: 'A quantidade de interruptores não pode ser menor que zero.',
+                        text: 'A quantidade de interruptores não pode ser menor ou igual zero.',
                         confirmButtonText: 'Entendido'
                     });
                 }
@@ -542,12 +542,12 @@
                 </div>
             `);
             $('#tomadas-section').on('input', 'input[name="quantidadeTomadas[]"]', function() {
-                if ($(this).val() < 0) {
-                    $(this).val(0);
+                if ($(this).val() <= 0) {
+                    $(this).val(1);
                     Swal.fire({
                         icon: 'error',
                         title: 'Valor inválido!',
-                        text: 'A quantidade de tomadas não pode ser menor que zero.',
+                        text: 'A quantidade de tomadas não pode ser menor ou igual zero.',
                         confirmButtonText: 'Entendido'
                     });
                 }
