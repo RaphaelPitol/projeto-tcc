@@ -21,14 +21,14 @@
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="name">Nome</label>
-                                            <input type="text" id="name" name="name" class="form-control" value="{{$user->name}}" />
+                                            <input type="text" id="name" name="name" class="form-control" value="{{$user->name}}" required/>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <!-- <i class="fas fa-user fa-lg me-3 fa-fw"></i> -->
                                             <label class="form-label" for="sobreNome">Sobrenome</label>
-                                            <input type="text" id="sobreNome" name="sobreNome" class="form-control" value="{{$user->sobreNome}}" />
+                                            <input type="text" id="sobreNome" name="sobreNome" class="form-control" value="{{$user->sobreNome}}" required/>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -42,7 +42,7 @@
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <label class="form-label" for="email">E-mail</label>
-                                            <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" />
+                                            <input type="email" id="email" name="email" class="form-control" value="{{$user->email}}" required />
                                         </div>
                                     </div>
 
