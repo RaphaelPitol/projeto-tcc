@@ -213,13 +213,15 @@ $indice = 0;
         @endforeach
     </div>
     <div class="termo" style="text-indent: 30px;">
-        <p> O locatário tem ciência que deverá conferir esta vistoria e qualquer
-            divergência deverá ser anotada em 02 (duas) vias, em uma folha a parte e
-            entregue na Imobiliária Garcia no prazo de 10 (dez) dias a contar desta data.
+        <p> 
+            O locatário declara estar ciente de que deverá conferir o presente laudo de vistoria e, 
+            caso identifique qualquer divergência, deverá registrá-la por escrito em duas (02) vias, 
+            em documento separado, e apresentá-las à Imobiliária no prazo máximo de dez (10) dias corridos, 
+            contados a partir da data de recebimento deste documento.
         </p>
         <p>
-            Reconheço as anotações constante deste relatório, pelo qual me considero responsável
-            assumindo o encargo de repor nas mesmas condições que ora recebo o imóvel.
+            O locatário reconhece as anotações constantes deste relatório, responsabilizando-se pela manutenção 
+            do imóvel e comprometendo-se a devolvê-lo nas mesmas condições em que o recebe nesta data.
         </p>
     </div>
 
