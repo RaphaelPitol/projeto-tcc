@@ -213,14 +213,14 @@ $indice = 0;
         @endforeach
     </div>
     <div class="termo" style="text-indent: 30px;">
-        <p> 
-            O locatário declara estar ciente de que deverá conferir o presente laudo de vistoria e, 
-            caso identifique qualquer divergência, deverá registrá-la por escrito em duas (02) vias, 
-            em documento separado, e apresentá-las à Imobiliária no prazo máximo de dez (10) dias corridos, 
+        <p>
+            O locatário declara estar ciente de que deverá conferir o presente laudo de vistoria e,
+            caso identifique qualquer divergência, deverá registrá-la por escrito em duas (02) vias,
+            em documento separado, e apresentá-las à {{$v->imobiliaria->name}} no prazo máximo de dez (10) dias corridos,
             contados a partir da data de recebimento deste documento.
         </p>
         <p>
-            O locatário reconhece as anotações constantes deste relatório, responsabilizando-se pela manutenção 
+            O locatário reconhece as anotações constantes deste relatório, responsabilizando-se pela manutenção
             do imóvel e comprometendo-se a devolvê-lo nas mesmas condições em que o recebe nesta data.
         </p>
     </div>

@@ -500,7 +500,7 @@
                     </div>
                     <div class="col-md-5">
                         <label for="quantidadeInterruptores">Quantidade de Interruptores</label>
-                        <input type="number" class="form-control" name="quantidadeInterruptores[]" placeholder="Digite a quantidade de interruptores" min="0">
+                        <input type="number" class="form-control" name="quantidadeInterruptores[]" placeholder="Digite a quantidade de interruptores" min="1">
                     </div>
                     <div class="col-md-2 d-flex align-items-center">
                         <button type="button" class="btn btn-danger remove-interruptor">Remover</button>
@@ -509,7 +509,7 @@
             `);
             $('#interruptores-section').on('input', 'input[name="quantidadeInterruptores[]"]', function() {
                 if ($(this).val() <= 0) {
-                    $(this).val(1);
+                    $(this).val('');
                     Swal.fire({
                         icon: 'error',
                         title: 'Valor inválido!',
@@ -543,7 +543,7 @@
             `);
             $('#tomadas-section').on('input', 'input[name="quantidadeTomadas[]"]', function() {
                 if ($(this).val() <= 0) {
-                    $(this).val(1);
+                    $(this).val('');
                     Swal.fire({
                         icon: 'error',
                         title: 'Valor inválido!',

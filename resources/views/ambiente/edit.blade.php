@@ -39,7 +39,8 @@
         border-color: #708090;
         /* Cor da borda ao passar o mouse */
     }
-    #voltar{
+
+    #voltar {
         background: orange;
     }
 </style>
@@ -499,7 +500,7 @@ $detalhes = json_decode($ambientes->detalhes);
 
                         <div class="form-group">
                             <label for="cons_janela">Estado de Conservação da Janela</label>
-                            <select class="form-control" id="cons_janela" name="cons_janela" >
+                            <select class="form-control" id="cons_janela" name="cons_janela">
                                 <option value=""></option>
                                 @foreach (Constants::conservacao_janela as $conservacao)
                                 <option value="{{$conservacao}}" {{$conservacao == $ambientes->cons_janela ? 'selected' : ''}}>
@@ -511,7 +512,7 @@ $detalhes = json_decode($ambientes->detalhes);
                         <div class="form-group">
                             <label for="cor_janela">Pintura</label>
                             <select class="form-control" id="cor_janela" name="cor_janela">
-                            <option value=""></option>
+                                <option value=""></option>
                                 @foreach (Constants::cores_portas_janelas as $cores_portas_janela)
                                 <option value="{{$cores_portas_janela}}" {{$cores_portas_janela == $ambientes->cor_janela ? 'selected' : ''}}>{{$cores_portas_janela}}</option>
                                 @endforeach
@@ -520,8 +521,8 @@ $detalhes = json_decode($ambientes->detalhes);
 
                         <div class="form-group">
                             <label for="cons_pintura_janela">Conservação Pintura</label>
-                            <select class="form-control" id="cons_pintura_janela" name="cons_pintura_janela" >
-                            <option value=""></option>
+                            <select class="form-control" id="cons_pintura_janela" name="cons_pintura_janela">
+                                <option value=""></option>
                                 @foreach (Constants::estado_pintura as $estado_pint)
                                 <option value="{{$estado_pint}}" {{$estado_pint == $ambientes->cons_pintura_janela ? 'selected' : ''}}>{{$estado_pint}}</option>
                                 @endforeach
@@ -530,8 +531,8 @@ $detalhes = json_decode($ambientes->detalhes);
 
                         <div class="form-group">
                             <label for="descricao_janela">Descrição do Janela</label>
-                            <select class="form-control" id="descricao_janela" name="descricao_janela[]" multiple >
-                            @foreach ( Constants::descricao_janela as $descricao)
+                            <select class="form-control" id="descricao_janela" name="descricao_janela[]" multiple>
+                                @foreach ( Constants::descricao_janela as $descricao)
                                 <option value="{{$descricao}}"
                                     {{ isset($detalhes->descricao_porta) && in_array($descricao, $detalhes->descricao_janela ?? []) ? 'selected' : '' }}>
                                     {{$descricao}}
@@ -597,6 +598,7 @@ $detalhes = json_decode($ambientes->detalhes);
                         </div>
                     </div>
                 `);
+
         });
 
         // Função para adicionar novas tomadas dinamicamente
@@ -620,6 +622,8 @@ $detalhes = json_decode($ambientes->detalhes);
                         </div>
                     </div>
                 `);
+
+
         });
 
         // Função para remover um interruptor
@@ -631,6 +635,30 @@ $detalhes = json_decode($ambientes->detalhes);
         $(document).on('click', '.remove-tomada', function() {
             $(this).closest('.form-group').remove();
         });
+    });
+
+    $('#tomadas-section').on('input', 'input[name="quantidadeTomadas[]"]', function() {
+        if ($(this).val() <= 0) {
+            $(this).val('');
+            Swal.fire({
+                icon: 'error',
+                title: 'Valor inválido!',
+                text: 'A quantidade de tomadas não pode ser menor ou igual zero.',
+                confirmButtonText: 'Entendido'
+            });
+        }
+    });
+
+    $('#interruptores-section').on('input', 'input[name="quantidadeInterruptores[]"]', function() {
+        if ($(this).val() <= 0) {
+            $(this).val('');
+            Swal.fire({
+                icon: 'error',
+                title: 'Valor inválido!',
+                text: 'A quantidade de interruptores não pode ser menor ou igual zero.',
+                confirmButtonText: 'Entendido'
+            });
+        }
     });
 </script>
 
