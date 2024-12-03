@@ -41,7 +41,7 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('login');
 
-Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+Route::post('/auth', [LoginController::class, 'auth'])->middleware('throttle:3, 5')->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 Route::get('/forgot-password', [ResetPasswordController::class, 'forgot'])->middleware('guest')->name('password.request');

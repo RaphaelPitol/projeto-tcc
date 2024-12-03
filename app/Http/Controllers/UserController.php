@@ -95,6 +95,13 @@ class UserController extends Controller
         }
 
 
+        if (Auth::user()->permission === 'admin') {
+            $isCnpjDuplicado = User::where('cnpj', $request->cnpj)->exists();
+            if ($isCnpjDuplicado) {
+                return redirect()->back()->withErrors(['cnpj' => 'Este cnpj já está cadastrado.'])->withInput();
+            }
+        }
+
         $isEmailDuplicado = User::where('email', $request->email)->exists();
 
         if ($isEmailDuplicado) {
@@ -102,12 +109,6 @@ class UserController extends Controller
         }
 
 
-        if (Auth::user()->permission === 'admin') {
-            $isCnpjDuplicado = User::where('cnpj', $request->cnpj)->exists();
-            if ($isCnpjDuplicado) {
-                return redirect()->back()->withErrors(['cnpj' => 'Este cnpj já está cadastrado.'])->withInput();
-            }
-        }
 
         $dados = $request->except('_token');
 
