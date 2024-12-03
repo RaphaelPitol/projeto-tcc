@@ -22,6 +22,7 @@ class LoginController extends Controller
                 'password.required' => 'O campo senha é Obrigatório!'
             ]
         );
+        
         try {
 
             $user = \App\Models\User::where('email', $request->email)->first();
