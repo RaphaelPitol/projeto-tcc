@@ -503,7 +503,7 @@
                         <input type="number" class="form-control" name="quantidadeInterruptores[]" placeholder="Digite a quantidade de interruptores" min="1">
                     </div>
                     <div class="col-md-2 d-flex align-items-center">
-                        <button type="button" class="btn btn-danger remove-interruptor">Remover</button>
+                        <button type="button" class="btn btn-danger mt-3 remove-interruptor">Remover</button>
                     </div>
                 </div>
             `);
@@ -537,7 +537,7 @@
                         <input type="number" class="form-control" name="quantidadeTomadas[]" placeholder="Digite a quantidade de tomadas" min="0">
                     </div>
                     <div class="col-md-2 d-flex align-items-center">
-                        <button type="button" class="btn btn-danger remove-tomada">Remover</button>
+                        <button type="button" class="btn btn-danger mt-3 remove-tomada">Remover</button>
                     </div>
                 </div>
             `);
