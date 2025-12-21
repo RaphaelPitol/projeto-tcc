@@ -42,6 +42,19 @@
     #voltar {
         background: orange;
     }
+
+    .preview-item {
+        cursor: grab;
+    }
+
+    .preview-item.dragging {
+        opacity: 0.5;
+    }
+
+    .preview-item img {
+        height: 150px;
+        object-fit: cover;
+    }
 </style>
 
 
@@ -467,7 +480,19 @@
                     <label for="observacoes">Observações</label>
                     <textarea class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Digite observações adicionais"></textarea>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Fotos do ambiente</label>
 
+                    <input
+                        type="file"
+                        id="imagens"
+                        name="imagens[]"
+                        class="form-control"
+                        multiple
+                        accept="image/*">
+                </div>
+
+                <div id="preview-imagens" class="row g-2"></div>
                 <!-- Botão de envio do formulário -->
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
@@ -564,6 +589,110 @@
             $(this).closest('.form-group').remove();
         });
     });
+
+
+    const input = document.getElementById('imagens');
+    const preview = document.getElementById('preview-imagens');
+
+    let arquivos = [];
+
+    input.addEventListener('change', function() {
+        const novosArquivos = Array.from(this.files);
+
+        novosArquivos.forEach(novo => {
+            // evita duplicar o mesmo arquivo
+            const existe = arquivos.some(antigo =>
+                antigo.name === novo.name &&
+                antigo.size === novo.size &&
+                antigo.lastModified === novo.lastModified
+            );
+
+            if (!existe) {
+                arquivos.push(novo);
+            }
+        });
+        input.value = '';
+
+        renderizarPreview();
+    });
+
+    function renderizarPreview() {
+        preview.innerHTML = '';
+
+        arquivos.forEach((file, index) => {
+            if (!file.type.startsWith('image/')) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const col = document.createElement('div');
+                col.className = 'col-6 col-md-3 preview-item';
+                col.draggable = true;
+                col.dataset.index = index;
+
+                col.innerHTML = `
+                <div class="card shadow-sm position-relative">
+                    <button
+                        type="button"
+                        class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
+                        onclick="removerImagem(${index})"
+                    >✕</button>
+
+                    <img src="${e.target.result}" class="card-img-top">
+                </div>
+            `;
+
+                adicionarEventosDrag(col);
+                preview.appendChild(col);
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        atualizarInput();
+    }
+
+    function removerImagem(index) {
+        arquivos.splice(index, 1);
+        renderizarPreview();
+    }
+
+    function atualizarInput() {
+        const dataTransfer = new DataTransfer();
+        arquivos.forEach(file => dataTransfer.items.add(file));
+        input.files = dataTransfer.files;
+    }
+
+    /* ===== DRAG & DROP ===== */
+
+    let dragIndex = null;
+
+    function adicionarEventosDrag(elemento) {
+        elemento.addEventListener('dragstart', function() {
+            dragIndex = this.dataset.index;
+            this.classList.add('dragging');
+        });
+
+        elemento.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+        });
+
+        elemento.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+
+        elemento.addEventListener('drop', function() {
+            const dropIndex = this.dataset.index;
+
+            if (dragIndex === dropIndex) return;
+
+            const temp = arquivos[dragIndex];
+            arquivos.splice(dragIndex, 1);
+            arquivos.splice(dropIndex, 0, temp);
+
+            renderizarPreview();
+        });
+    }
 </script>
 
 @endsection

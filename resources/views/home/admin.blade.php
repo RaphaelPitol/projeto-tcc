@@ -43,9 +43,9 @@
                             <form id="form-inativa-{{$imobiliaria->id}}" action="{{ route('update.user', $imobiliaria) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <input type="numer" name="ativo" value="{{ $imobiliaria->ativo ? 0 : 1 }}" hidden>
+                                <input  type="numer" name="ativo" value="{{ $imobiliaria->ativo ? 0 : 1 }}" hidden>
                                 <button class="btn btn-danger" data-id="{{$imobiliaria->id}}" onclick="inativar(event)">
-                                    <i class="bi {{ $imobiliaria->ativo ? 'bi-toggle-off' : 'bi-toggle-on' }}"></i>
+                                    <i id="ativo" class="bi {{ $imobiliaria->ativo ? 'bi-toggle-on' : 'bi-toggle-off' }}"></i>
                                 </button>
                             </form>
                         </div>
