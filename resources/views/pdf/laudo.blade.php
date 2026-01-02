@@ -60,6 +60,7 @@
         font-size: 12px;
         margin-top: 10px;
     }
+
     .termo {
         font-size: 12px;
         margin-top: 10px;
@@ -101,27 +102,28 @@ $indice = 0;
 
 <body>
 
-    @foreach ($vistoria as $v)
+
     <div class="header">
-        <p>Razão Social: {{$v->imobiliaria->razao_social}} - CNPJ: {{$v->imobiliaria->cnpj}}</p>
-        <p>Endereço: {{$v->imobiliaria->logradouro}} - Número: {{$v->imobiliaria->numero}}, Bairro: {{$v->imobiliaria->bairro}}, Cidade: {{$v->imobiliaria->cidade}}</p>
-        <p>Telefone:{{$v->imobiliaria->telefone}}</p>
-        <p>Email de Contato: {{$v->imobiliaria->email}}</p>
+        <p>Razão Social: {{$vistoria->imobiliaria->razao_social}} - CNPJ: {{$vistoria->imobiliaria->cnpj}}</p>
+        <p>Endereço: {{$vistoria->imobiliaria->logradouro}} - Número: {{$vistoria->imobiliaria->numero}}, Bairro: {{$vistoria->imobiliaria->bairro}}, Cidade: {{$vistoria->imobiliaria->cidade}}</p>
+        <p>Telefone:{{$vistoria->imobiliaria->telefone}}</p>
+        <p>Email de Contato: {{$vistoria->imobiliaria->email}}</p>
     </div>
 
     <h1 class="title">Termo de Vistoria</h1>
 
     <div class="section">
-        <p><span>Tipo do Imóvel:</span> {{$v->nome}}</p>
-        <p><span>Endereço Completo:</span> {{$v->logradouro}} Número {{$v->numero}}, Bairro {{$v->bairro}}, Cidade {{$v->cidade}}</p>
-        <p><span>Locador:</span> {{$v->locador->name}}</p>
-        <p><span>Locatário:</span> {{$v->locatario->name}}</p>
-        <p><span>Vistoriador Responsável:</span> {{$v->vistoriador->name}} {{$v->vistoriador->sobreNome}}</p>
+        <p><span>Tipo do Imóvel:</span> {{$vistoria->nome}}</p>
+        <p><span>Endereço Completo:</span> {{$vistoria->logradouro}} Número {{$vistoria->numero}}, Bairro {{$vistoria->bairro}}, Cidade {{$vistoria->cidade}}</p>
+        <p><span>Locador:</span> {{$vistoria->locador->name}}</p>
+        <p><span>Locatário:</span> {{$vistoria->locatario->name}}</p>
+        <p><span>Vistoriador Responsável:</span> {{$vistoria->vistoriador->name}} {{$vistoria->vistoriador->sobreNome}}</p>
     </div>
 
 
     <div class="ambientes">
-        @foreach ($ambientes as $ambiente)
+        @foreach ($vistoria->ambientes as $ambiente)
+
         @php
         $indice += 1;
         $detalhes = json_decode($ambiente->detalhes);
@@ -210,13 +212,35 @@ $indice = 0;
             @if(!empty($ambiente->observacoes))<p><span>Observações Gerais do Ambiente:</span> {{$ambiente->observacoes}}</p>.@endif
         </div>
         <hr>
+        @if ($ambiente->fotos->count())
+        <table width="100%" cellspacing="5">
+            <tr>
+                @foreach ($ambiente->fotos as $index => $foto)
+                <td width="25%" style="text-align:center;">
+                    <img
+                        src="{{ public_path('storage/'.$foto->imagem) }}"
+                        style="width:100%; height:120px; object-fit:cover;">
+                </td>
+
+                @if (($index + 1) % 4 == 0)
+            </tr>
+            <tr>
+                @endif
+                @endforeach
+            </tr>
+        </table>
+        @else
+        <p><em>Sem fotos para este ambiente.</em></p>
+        @endif
+
+
         @endforeach
     </div>
     <div class="termo" style="text-indent: 30px;">
         <p>
             O locatário declara estar ciente de que deverá conferir o presente laudo de vistoria e,
             caso identifique qualquer divergência, deverá registrá-la por escrito em duas (02) vias,
-            em documento separado, e apresentá-las à {{$v->imobiliaria->name}} no prazo máximo de dez (10) dias corridos,
+            em documento separado, e apresentá-las à {{$vistoria->imobiliaria->name}} no prazo máximo de dez (10) dias corridos,
             contados a partir da data de recebimento deste documento.
         </p>
         <p>
@@ -226,30 +250,30 @@ $indice = 0;
     </div>
 
     <div class="date-location">
-        <p>Umuarama - PR, {{ $v->updated_at->locale('pt_BR')->isoFormat('D [de] MMMM [de] YYYY') }}</p>
+        <p>Umuarama - PR, {{ $vistoria->updated_at->locale('pt_BR')->isoFormat('D [de] MMMM [de] YYYY') }}</p>
     </div>
 
     <!-- Sessão de Assinaturas -->
     <div class="signature-section">
         <div class="signature">
             <div class="signature-line"></div>
-            {{$v->locador->name}}
+            {{$vistoria->locador->name}}
             <p><span>Locador</span> </p>
         </div>
 
         <div class="signature">
             <div class="signature-line"></div>
-            {{$v->locatario->name}}
+            {{$vistoria->locatario->name}}
             <p><span>Locatário</span> </p>
         </div>
 
         <div class="signature">
             <div class="signature-line"></div>
-            {{$v->vistoriador->name}} {{$v->vistoriador->sobreNome}}
+            {{$vistoria->vistoriador->name}} {{$vistoria->vistoriador->sobreNome}}
             <p><span>Vistoriador Responsável</span> </p>
         </div>
     </div>
-    @endforeach
+    
 
 </body>
 

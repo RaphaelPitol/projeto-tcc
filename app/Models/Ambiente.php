@@ -46,4 +46,10 @@ class Ambiente extends Model
     {
         return $this->belongsTo(Vistoria::class);
     }
+
+    public function fotos()
+    {
+        return $this->hasMany(AmbienteFoto::class)
+                    ->orderBy('ordem');
+    }
 }

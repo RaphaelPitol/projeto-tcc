@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AmbienteController;
+use App\Http\Controllers\AmbienteFotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\DashbordController;
@@ -145,4 +146,5 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
     Route::put('/ambiente/{id}', [AmbienteController::class, "update"])->name('ambiente.update');
     Route::get('/ambiente/{id}', [AmbienteController::class, 'create'])->name('ambiente.create');
     Route::delete('/ambiente/{id}', [AmbienteController::class, "destroy"])->name('ambiente.destroy');
+    Route::delete('/ambiente/foto/{id}', [AmbienteFotoController::class, 'destroy']);
 });

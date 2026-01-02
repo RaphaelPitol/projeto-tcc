@@ -82,7 +82,7 @@ $detalhes = json_decode($ambientes->detalhes);
         </li>
     </ul>
 
-    <form action="{{route('ambiente.update', $ambientes)}}" method="POST">
+    <form action="{{route('ambiente.update', $ambientes)}}" method="POST" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
@@ -559,6 +559,40 @@ $detalhes = json_decode($ambientes->detalhes);
                     <textarea class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Digite observações adicionais">{{$ambientes->observacoes}}</textarea>
                 </div>
 
+                <div class="mb-3">
+                    <label class="form-label">Fotos do ambiente</label>
+
+                    @if($fotos->count())
+                    <div class="row mb-3">
+                        @foreach($fotos as $foto)
+                        <div class="col-4 col-md-2 mb-3 text-center">
+                            <img
+                                src="{{ asset('storage/' . $foto->imagem) }}"
+                                class="img-fluid rounded border"
+                                style="height: 120px; object-fit: cover;">
+
+                            <div class="mt-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="removerFoto({{ $foto->id }})">
+                                    Remover
+                                </button>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
+                    <input
+                        type="file"
+                        id="imagens"
+                        name="imagens[]"
+                        class="form-control"
+                        multiple
+                        accept="image/*">
+                </div>
+                <div id="preview-imagens" class="row g-2"></div>
+
                 <!-- Botão de envio do formulário -->
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
@@ -660,6 +694,120 @@ $detalhes = json_decode($ambientes->detalhes);
             });
         }
     });
+
+    const input = document.getElementById('imagens');
+    const preview = document.getElementById('preview-imagens');
+
+    let arquivos = [];
+
+    input.addEventListener('change', function() {
+        const novosArquivos = Array.from(this.files);
+
+        novosArquivos.forEach(novo => {
+            // evita duplicar o mesmo arquivo
+            const existe = arquivos.some(antigo =>
+                antigo.name === novo.name &&
+                antigo.size === novo.size &&
+                antigo.lastModified === novo.lastModified
+            );
+
+            if (!existe) {
+                arquivos.push(novo);
+            }
+        });
+        input.value = '';
+
+        renderizarPreview();
+    });
+
+    function renderizarPreview() {
+        preview.innerHTML = '';
+
+        arquivos.forEach((file, index) => {
+            if (!file.type.startsWith('image/')) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const col = document.createElement('div');
+                col.className = 'col-6 col-md-3 preview-item';
+                col.draggable = true;
+                col.dataset.index = index;
+
+                col.innerHTML = `
+                <div class="card shadow-sm position-relative">
+                    <button
+                        type="button"
+                        class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
+                        onclick="removerImagem(${index})"
+                    >✕</button>
+
+                    <img src="${e.target.result}" class="card-img-top">
+                </div>
+            `;
+
+                adicionarEventosDrag(col);
+                preview.appendChild(col);
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        atualizarInput();
+    }
+
+    function removerImagem(index) {
+        arquivos.splice(index, 1);
+        renderizarPreview();
+    }
+
+    function atualizarInput() {
+        const dataTransfer = new DataTransfer();
+        arquivos.forEach(file => dataTransfer.items.add(file));
+        input.files = dataTransfer.files;
+    }
+
+    /* ===== DRAG & DROP ===== */
+
+    let dragIndex = null;
+
+    function adicionarEventosDrag(elemento) {
+        elemento.addEventListener('dragstart', function() {
+            dragIndex = this.dataset.index;
+            this.classList.add('dragging');
+        });
+
+        elemento.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+        });
+
+        elemento.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+
+        elemento.addEventListener('drop', function() {
+            const dropIndex = this.dataset.index;
+
+            if (dragIndex === dropIndex) return;
+
+            const temp = arquivos[dragIndex];
+            arquivos.splice(dragIndex, 1);
+            arquivos.splice(dropIndex, 0, temp);
+
+            renderizarPreview();
+        });
+    }
+
+    function removerFoto(id) {
+        if (!confirm('Remover esta foto?')) return;
+
+        fetch(`/ambiente/foto/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }).then(() => location.reload());
+    }
 </script>
 
 @endsection

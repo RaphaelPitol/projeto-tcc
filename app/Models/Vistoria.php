@@ -50,4 +50,9 @@ class Vistoria extends Model
         return $this->belongsTo(LocadorLocatario::class, 'id_locatario');
     }
 
+    public function fotos()
+    {
+        return $this->hasMany(AmbienteFoto::class);
+    }
+
 }

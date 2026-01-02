@@ -92,7 +92,7 @@
         </li>
     </ul>
 
-    <form action="{{route('ambiente.store')}}" method="POST">
+    <form action="{{route('ambiente.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf
         <input type="text" name="vistoria_id" hidden value="{{$id}}">
