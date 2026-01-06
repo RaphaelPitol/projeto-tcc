@@ -82,7 +82,7 @@ $detalhes = json_decode($ambientes->detalhes);
         </li>
     </ul>
 
-    <form action="{{route('ambiente.update', $ambientes)}}" method="POST" enctype="multipart/form-data">
+    <form id= 'form-ambiente' action="{{route('ambiente.update', $ambientes)}}" method="POST" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
@@ -808,6 +808,50 @@ $detalhes = json_decode($ambientes->detalhes);
             }
         }).then(() => location.reload());
     }
+    document.getElementById('form-ambiente').addEventListener('submit', function() {
+        document.getElementById('loading-overlay').style.display = 'flex';
+    });
 </script>
+<style>
+    #loading-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.85);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loading-box {
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .spinner {
+        width: 60px;
+        height: 60px;
+        border: 6px solid #ddd;
+        border-top-color: #0d6efd;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+
+<div id="loading-overlay" style="display:none;">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Salvando ambiente e processando imagens…</p>
+        <small>Isso pode levar alguns segundos</small>
+    </div>
+</div>
 
 @endsection

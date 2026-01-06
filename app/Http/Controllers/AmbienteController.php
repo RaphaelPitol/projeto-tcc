@@ -47,6 +47,7 @@ class AmbienteController extends Controller
      */
     public function store(Request $request)
     {
+       
         $dados = [
             "vistoria_id" => $request->vistoria_id,
             "nome_ambiente" => $request->nome_ambiente,

@@ -157,7 +157,7 @@
                     const googleMapsUrl = `https://www.google.com/maps/dir/${latitude},${longitude}/${encodeURIComponent(enderecoImovel)}`;
                     window.open(googleMapsUrl, '_blank');
                 }, function(error) {
-                    alert('Não foi possível obter a localização atual.');
+                    alert(`Não foi possível obter a localização atual.`);
                 });
             } else {
                 alert('Geolocalização não é suportada neste navegador.');
