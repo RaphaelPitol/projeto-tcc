@@ -147,4 +147,5 @@ Route::group(['middleware' => ['auth', 'no.cache']], function () {
     Route::get('/ambiente/{id}', [AmbienteController::class, 'create'])->name('ambiente.create');
     Route::delete('/ambiente/{id}', [AmbienteController::class, "destroy"])->name('ambiente.destroy');
     Route::delete('/ambiente/foto/{id}', [AmbienteFotoController::class, 'destroy']);
+    Route::post('/ambienteduplicado/{id}', [AmbienteController::class, 'duplicar'])->name('ambiente.duplicar');
 });

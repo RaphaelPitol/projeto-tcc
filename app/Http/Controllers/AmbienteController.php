@@ -47,7 +47,8 @@ class AmbienteController extends Controller
      */
     public function store(Request $request)
     {
-       
+
+
         $dados = [
             "vistoria_id" => $request->vistoria_id,
             "nome_ambiente" => $request->nome_ambiente,
@@ -89,9 +90,12 @@ class AmbienteController extends Controller
                 "descricao_teto" => $request->descricao_teto,
                 "descricao_porta" => $request->descricao_porta,
                 "descricao_janela" => $request->descricao_janela,
+                "descricao_acessorios" => $request->descricao_acessorios,
+                "observacao_acessorios" => $request->observacao_acessorios
             ]),
         ];
 
+        // dd($dados);
         // Ambiente::create($dados);
 
         try {
@@ -161,9 +165,63 @@ class AmbienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function duplicar(string $id)
     {
-        //
+        $ambiente = Ambiente::find($id);
+        $json = json_decode($ambiente->detalhes);
+
+
+           $dados = [
+            "vistoria_id" => $ambiente->vistoria_id,
+            "nome_ambiente" => $ambiente->nome_ambiente,
+            "piso" => $ambiente->piso,
+            "cons_piso" => $ambiente->cons_piso,
+            "observacao_piso" => $ambiente->observacao_piso,
+            "rodape" => $ambiente->rodape,
+            "cons_rodape" => $ambiente->cons_rodape,
+            "observacao_rodape" => $ambiente->observacao_rodape,
+            "parede" => $ambiente->parede,
+            "cons_parede" => $ambiente->cons_parede,
+            "cor_parede" => $ambiente->cor_parede,
+            "cons_pintura_parede" => $ambiente->cons_pintura_parede,
+            "observacao_parede" => $ambiente->observacao_parede,
+            "teto" => $ambiente->teto,
+            "cons_teto" => $ambiente->cons_teto,
+            "cor_teto" => $ambiente->cor_teto,
+            "cons_pintura_teto" => $ambiente->cons_pintura_teto,
+            "observacao_teto" => $ambiente->observacao_teto,
+            "porta" => $ambiente->porta,
+            "cons_porta" => $ambiente->cons_porta,
+            "cor_porta" => $ambiente->cor_porta,
+            "cons_pintura_porta" => $ambiente->cons_pintura_porta,
+            "observacao_porta" => $ambiente->observacao_porta,
+            "janela" => $ambiente->janela,
+            "cons_janela" => $ambiente->cons_janela,
+            "cor_janela" => $ambiente->cor_janela,
+            "cons_pintura_janela" => $ambiente->cons_pintura_janela,
+            "observacao_janela" => $ambiente->observacao_janela,
+            "observacoes" => $ambiente->observacoes,
+            'detalhes' => json_encode([
+                'tipoInterruptor' => $json->tipoInterruptor,
+                'quantidadeInterruptores' => $json->quantidadeInterruptores,
+                'tipoTomada' => $json->tipoTomada,
+                'quantidadeTomadas' => $json->quantidadeTomadas,
+                'descricao_piso' => $json->descricao_piso,
+                "descricao_rodape" => $json->descricao_rodape,
+                "descricao_parede" => $json->descricao_parede,
+                "descricao_teto" => $json->descricao_teto,
+                "descricao_porta" => $json->descricao_porta,
+                "descricao_janela" => $json->descricao_janela,
+                "descricao_acessorios" => $json->descricao_acessorios,
+                "observacao_acessorios" => $json->observacao_acessorios
+            ]),
+        ];
+        Ambiente::create($dados);
+       // dd("Ambiente Duplicado", $id);
+
+        return redirect(route('ambiente.index', [
+            'id' => $ambiente->vistoria_id,
+        ]))->with('success', 'Ambiente Duplicado com sucesso.');
     }
 
     /**
@@ -234,7 +292,9 @@ class AmbienteController extends Controller
                 "descricao_parede" => $request->descricao_parede,
                 "descricao_teto" => $request->descricao_teto,
                 "descricao_porta" => $request->descricao_porta,
-                "descricao_janela" => $request->descricao_janela
+                "descricao_janela" => $request->descricao_janela,
+                "descricao_acessorios" => $request->descricao_acessorios,
+                "observacao_acessorios" => $request->observacao_acessorios
             ]),
         ]);
 

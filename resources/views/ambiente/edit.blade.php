@@ -74,6 +74,9 @@ $detalhes = json_decode($ambientes->detalhes);
         <li class="nav-item" role="presentation">
             <button class="nav-link btn my-1 ml-1" id="formEletrica-tab" data-bs-toggle="tab" data-bs-target="#formEletrica" type="button" role="tab" aria-controls="formEletrica" aria-selected="false">Eletrica</button>
         </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link btn my-1 ml-1" id="formAcessorios-tab" data-bs-toggle="tab" data-bs-target="#formAcessorios" type="button" role="tab" aria-controls="formAcessorios" aria-selected="false">Acessorios</button>
+        </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link btn my-1 ml-1" id="formFim-tab" data-bs-toggle="tab" data-bs-target="#formFim" type="button" role="tab" aria-controls="formFim" aria-selected="false">Finalizar</button>
         </li>
@@ -550,6 +553,35 @@ $detalhes = json_decode($ambientes->detalhes);
                     </fieldset>
                 </div>
             </div>
+               <div class="tab-pane fade" id="formAcessorios" role="tabpanel" aria-labelledby="formAcessorios-tab">
+                <div class="mb-3" id="formAcessorios">
+
+                    <fieldset>
+
+                        <legend>Cadastro de Acessorios</legend>
+
+                        <div class="form-group">
+                            <label for="descricao_acessorios">Acessorios</label>
+                            <select class="form-control" id="descricao_acessorios" name="descricao_acessorios[]" multiple>
+                                @foreach ( Constants::acessorios as $descricao)
+                               <option value="{{$descricao}}"
+                                    {{ isset($detalhes->descricao_acessorios) && in_array($descricao, $detalhes->descricao_acessorios ?? []) ? 'selected' : '' }}>
+                                    {{$descricao}}
+                                </option>
+                                @endforeach
+                                <!-- Adicione outras opções conforme necessário -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="observacao_acessorios">Observação do Acessorios</label>
+                            <textarea class="form-control" id="observacao_acessorios" name="observacao_acessorios" rows="3">
+                            {{isset($detalhes->observacao_acessorios) ? $detalhes->observacao_acessorios: ''}}
+                            </textarea>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
         </div>
         <!-- Campo de observações gerais -->
         <div class="tab-pane fade" id="formFim" role="tabpanel" aria-labelledby="formFim-tab">
@@ -575,7 +607,7 @@ $detalhes = json_decode($ambientes->detalhes);
                                 <button
                                     type="button"
                                     class="btn btn-sm btn-danger"
-                                    onclick="removerFoto({{ $foto->id }})">
+                                    onclick="removerFoto(`{{ $foto->id }}`)">
                                     Remover
                                 </button>
                             </div>
@@ -610,6 +642,7 @@ $detalhes = json_decode($ambientes->detalhes);
     new MultiSelectTag('descricao_teto')
     new MultiSelectTag('descricao_porta')
     new MultiSelectTag('descricao_janela')
+    new MultiSelectTag('descricao_acessorios')
     $(document).ready(function() {
         // Função para adicionar novos interruptores dinamicamente
         $('#add-interruptor').click(function() {

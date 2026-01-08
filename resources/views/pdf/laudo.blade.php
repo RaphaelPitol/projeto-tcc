@@ -196,6 +196,16 @@ $indice = 0;
                 @endif
                 @if(!empty($ambiente->observacao_janela))<span>Observação:</span> {{$ambiente->observacao_janela}}.@endif
             </p>
+            <p>
+                @if (!empty($detalhes->descricao_acessorios))
+                <span>Acessórios:</span>
+                @foreach ($detalhes->descricao_acessorios as $descricao_acessorio){{$descricao_acessorio}}, @endforeach
+                @endif
+                @if (!empty($detalhes->descricao_acessorios))
+                <span>Observação:</span>
+                {{$detalhes->observacao_acessorios }}
+                @endif
+            </p>
 
             @if (isset($detalhes->tipoTomada))
             @foreach($detalhes->tipoTomada as $index => $tipo)
@@ -211,7 +221,6 @@ $indice = 0;
 
             @if(!empty($ambiente->observacoes))<p><span>Observações Gerais do Ambiente:</span> {{$ambiente->observacoes}}</p>.@endif
         </div>
-        <hr>
         @if ($ambiente->fotos->count())
         <table width="100%" cellspacing="5">
             <tr>
@@ -233,6 +242,7 @@ $indice = 0;
         <p><em>Sem fotos para este ambiente.</em></p>
         @endif
 
+        <hr>
 
         @endforeach
     </div>
@@ -273,7 +283,7 @@ $indice = 0;
             <p><span>Vistoriador Responsável</span> </p>
         </div>
     </div>
-    
+
 
 </body>
 

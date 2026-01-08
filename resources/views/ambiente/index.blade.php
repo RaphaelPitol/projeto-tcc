@@ -17,8 +17,8 @@
     <div class="row mb-3 d-flex justify-content-between align-items-center">
         <div class="col-md-8 text-center text-md-start">
             <h2>Ambientes - <a href="{{route('show.vistoria', $id)}}">{{ $dados}}
-            <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
-            </a></h2>
+                    <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
+                </a></h2>
         </div>
         <div class="col-md-4 text-md-end text-center">
             <a class="btn btn-success" href="{{ route('ambiente.create', $id) }}">
@@ -48,8 +48,14 @@
                             <form id="form-deletAmbiente-{{$ambiente->id}}" action="{{ route('ambiente.destroy', $ambiente) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" data-id="{{$ambiente->id}}" onclick="excluirAmbiente(event)">
+                                <button class="btn btn-danger mr-2" data-id="{{$ambiente->id}}" onclick="excluirAmbiente(event)">
                                     <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </form>
+                            <form id="form-duplicaAmbiente-{{$ambiente->id}}" action="{{ route('ambiente.duplicar', $ambiente) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-success" data-id="{{$ambiente->id}}" onclick="duplicarAmbiente(event)">
+                                    <i class="bi bi-copy"></i>
                                 </button>
                             </form>
                         </div>
@@ -77,24 +83,24 @@
 @endif
 
 @if (session('detalhes'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: "center",
-                icon: "warning",
-                title: "Endereço!",
-                html: `
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "Endereço!",
+            html: `
                 {{ session('detalhes')->nome }} </br>
                 Logradouro: {{ session('detalhes')->logradouro }}-{{ session('detalhes')->numero}}</br>
                 Bairro: {{ session('detalhes')->bairro }}</br>
                 Cidade: {{ session('detalhes')->cidade }}
                 `,
-                showConfirmButton: true,
+            showConfirmButton: true,
 
-            });
         });
-    </script>
-    @endif
+    });
+</script>
+@endif
 
 
 <script>
@@ -117,6 +123,30 @@
                     form.submit();
                 } else {
                     console.error("Formulário não encontrado: ", 'form-deletAmbiente-' + id);
+                }
+            }
+        });
+    }
+
+      function duplicarAmbiente(event) {
+        event.preventDefault();
+        const id = event.currentTarget.getAttribute('data-id');
+        // console.log("Form ID:", 'form-locloca-' + id);
+        Swal.fire({
+            title: 'Deseja Duplicar Ambiente?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('form-duplicaAmbiente-' + id);
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error("Formulário não encontrado: ", 'form-duplicaAmbiente-' + id);
                 }
             }
         });
