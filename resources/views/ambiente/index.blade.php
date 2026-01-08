@@ -54,7 +54,7 @@
                             </form>
                             <form id="form-duplicaAmbiente-{{$ambiente->id}}" action="{{ route('ambiente.duplicar', $ambiente) }}" method="POST">
                                 @csrf
-                                <button class="btn btn-success" data-id="{{$ambiente->id}}" onclick="duplicarAmbiente(event)">
+                                <button class="btn btn-warning" data-id="{{$ambiente->id}}" onclick="duplicarAmbiente(event)">
                                     <i class="bi bi-copy"></i>
                                 </button>
                             </form>
